@@ -20,7 +20,7 @@ const AdminQuestions = () => {
   const [loading, setloading] = useState(false);
   const [auth, setAuth] = useAuth();
   const [BookMarked, setBookMarked] = useState([]);
-
+  const [UserName, SetUserName] = useState("");
   async function GetQuestions() {
     try {
       setloading(true);
@@ -166,36 +166,38 @@ const AdminQuestions = () => {
                 {Questions.length > 0 ? (
                   Questions.map((q) => (
                     <div class="card w-100 p-2">
-                      <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                          <p style={{ marginBottom: "0rem" }}>{q.title} </p>
-                          <div className="d-flex align-items-center w-100 justify-content-between">
+                      <div>
+                        <p className=" smalltitlefont3 bulletcircle mb-0">
+                          &#8226; {q.title.substring(0, 40)}... ?{" "}
+                        </p>
+                        <div className="d-flex justify-content-between w-100">
+                          <div>
                             {" "}
-                            <div>
-                              {" "}
-                              {q.tags.map((tag, index) => (
-                                <Tag color="blue">{tag}</Tag>
-                              ))}
-                            </div>
-                            <footer class="blockquote-footer">
-                              asked by{" "}
-                              <cite title="Source Title">
-                                <b>{q.user.Name}</b>
-                              </cite>{" "}
-                              {moment(q.createdAt).fromNow()}
-                            </footer>
+                            {q.tags.map((tag, index) => (
+                              <Tag color="blue">{tag}</Tag>
+                            ))}
                           </div>
-                        </blockquote>
+
+                          <footer class="blockquote-footer mt-1 ">
+                            asked by{" "}
+                            <cite title="Source Title">
+                              <b>{q.user.Name}</b>
+                            </cite>{" "}
+                            {moment(q.createdAt).format("MMMM Do YYYY")}
+                          </footer>
+                        </div>
                       </div>
+
                       <div className="d-flex" style={{ gap: "1rem" }}>
+                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
+                          <button className="btn btn-primary">View</button>
+                        </NavLink>
                         <NavLink to={`/dashboard/user/answers/${q._id}`}>
                           <Button variant="contained" color="success">
                             Answer
                           </Button>
                         </NavLink>
-                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                          <button className="btn btn-primary">View</button>
-                        </NavLink>
+
                         <ThemeProvider theme={theme}>
                           <Button
                             variant="contained"
@@ -243,7 +245,7 @@ const AdminQuestions = () => {
             </div>
           </TabPane>
 
-          <TabPane tab={<span className="tabtitle">BookMarked</span>} key="2">
+          <TabPane tab={<span className="tabtitle">Bookmarked</span>} key="2">
             <div>
               <div
                 className="d-flex justify-content-center flex-column align-items-center w-100"
@@ -252,36 +254,40 @@ const AdminQuestions = () => {
                 {BookMarked.length > 0 ? (
                   BookMarked.map((q) => (
                     <div class="card w-100 p-2">
-                      <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                          <p style={{ marginBottom: "0rem" }}>{q.title} </p>
-                          <div className="d-flex align-items-center w-100 justify-content-between">
+                      <div>
+                        <p className="mb-0  smalltitlefont3">
+                          {" "}
+                          &#8226; {q.title.substring(0, 100)}..... ?{" "}
+                        </p>
+
+                        <div className="d-flex justify-content-between">
+                          {" "}
+                          <div className="d-flex align-items-center">
                             {" "}
-                            <div>
-                              {" "}
-                              {q.tags.map((tag, index) => (
-                                <Tag color="blue">{tag}</Tag>
-                              ))}
-                            </div>
-                            <footer class="blockquote-footer">
-                              asked by{" "}
-                              <cite title="Source Title">
-                                <b>{q.user.Name}</b>
-                              </cite>{" "}
-                              {moment(q.createdAt).fromNow()}
-                            </footer>
+                            {q.tags.map((tag, index) => (
+                              <Tag color="blue">{tag}</Tag>
+                            ))}
                           </div>
-                        </blockquote>
+                          <footer className="blockquote-footer  ">
+                            asked by{" "}
+                            <cite title="Source Title">
+                              <b>{UserName}</b>
+                            </cite>{" "}
+                            {moment(q.createdAt).format("MMMM Do YYYY")}
+                          </footer>
+                        </div>
                       </div>
-                      <div className="d-flex" style={{ gap: "1rem" }}>
+
+                      <div className="d-flex mt-4" style={{ gap: "1rem" }}>
+                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
+                          <button className="btn btn-primary">View</button>
+                        </NavLink>
                         <NavLink to={`/dashboard/user/answers/${q._id}`}>
                           <Button variant="contained" color="success">
                             Answer
                           </Button>
                         </NavLink>
-                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                          <button className="btn btn-primary">View</button>
-                        </NavLink>
+
                         <button
                           className="btn btn-warning"
                           onClick={() => {

@@ -168,49 +168,37 @@ const AdminQuestions = () => {
                   Questions.map((q) => (
                     <div class="card w-100 p-2">
                       <div>
-                        <blockquote class="blockquote mb-0">
-                          <p
-                            className="ff smalltitlefont3 bulletcircle mb-0"
-                            style={{ marginLeft: "2px" }}
-                          >
-                            &#8226; {q.title.substring(0, 40)}.....{" "}
-                          </p>
-                          <div className="d-flex align-items-center w-100 justify-content-between">
+                        <p className=" smalltitlefont3 bulletcircle mb-0">
+                          &#8226; {q.title.substring(0, 40)}... ?{" "}
+                        </p>
+                        <div className="d-flex justify-content-between w-100">
+                          <div>
                             {" "}
-                            <div>
-                              {" "}
-                              {q.tags.map((tag, index) => (
-                                <Tag
-                                  color="blue"
-                                  className="ff"
-                                  style={{ marginLeft: "2px" }}
-                                >
-                                  {tag}
-                                </Tag>
-                              ))}
-                            </div>
-                            <footer class="blockquote-footer mt-1 ff">
-                              asked by{" "}
-                              <cite title="Source Title">
-                                <b>{q.user.Name}</b>
-                              </cite>{" "}
-                              {moment(q.createdAt).format("MMMM Do YYYY")}
-                            </footer>
+                            {q.tags.map((tag, index) => (
+                              <Tag color="blue">{tag}</Tag>
+                            ))}
                           </div>
-                        </blockquote>
+
+                          <footer class="blockquote-footer mt-1 ">
+                            asked by{" "}
+                            <cite title="Source Title">
+                              <b>{q.user.Name}</b>
+                            </cite>{" "}
+                            {moment(q.createdAt).format("MMMM Do YYYY")}
+                          </footer>
+                        </div>
                       </div>
-                      <div
-                        className="d-flex"
-                        style={{ gap: "1rem", marginLeft: "10rem" }}
-                      >
+
+                      <div className="d-flex" style={{ gap: "1rem" }}>
+                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
+                          <button className="btn btn-primary">View</button>
+                        </NavLink>
                         <NavLink to={`/dashboard/user/answers/${q._id}`}>
                           <Button variant="contained" color="success">
                             Answer
                           </Button>
                         </NavLink>
-                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                          <button className="btn btn-primary">View</button>
-                        </NavLink>
+
                         <ThemeProvider theme={theme}>
                           <Button
                             variant="contained"
@@ -258,7 +246,7 @@ const AdminQuestions = () => {
             </div>
           </TabPane>
 
-          <TabPane tab={<span className="tabtitle">BookMarked</span>} key="2">
+          <TabPane tab={<span className="tabtitle">Bookmarked</span>} key="2">
             <div>
               <div
                 className="d-flex justify-content-center flex-column align-items-center w-100"
@@ -268,43 +256,39 @@ const AdminQuestions = () => {
                   BookMarked.map((q) => (
                     <div class="card w-100 p-2">
                       <div>
-                        <blockquote class="blockquote mb-0 ff">
-                          <p className="mb-0 ff smalltitlefont3">
+                        <p className="mb-0  smalltitlefont3">
+                          {" "}
+                          &#8226; {q.title.substring(0, 100)}..... ?{" "}
+                        </p>
+
+                        <div className="d-flex justify-content-between">
+                          {" "}
+                          <div className="d-flex align-items-center">
                             {" "}
-                            &#8226; {q.title.substring(0, 100)}.....{" "}
-                          </p>
-                          <div className="d-flex align-items-center w-100 justify-content-between">
-                            {" "}
-                            <div>
-                              {" "}
-                              {q.tags.map((tag, index) => (
-                                <Tag className="ff" color="blue">
-                                  {tag}
-                                </Tag>
-                              ))}
-                            </div>
-                            <footer class="blockquote-footer mt-2">
-                              asked by{" "}
-                              <cite title="Source Title">
-                                <b>{UserName}</b>
-                              </cite>{" "}
-                              {moment(q.createdAt).format("MMMM Do YYYY")}
-                            </footer>
+                            {q.tags.map((tag, index) => (
+                              <Tag color="blue">{tag}</Tag>
+                            ))}
                           </div>
-                        </blockquote>
+                          <footer className="blockquote-footer  ">
+                            asked by{" "}
+                            <cite title="Source Title">
+                              <b>{UserName}</b>
+                            </cite>{" "}
+                            {moment(q.createdAt).format("MMMM Do YYYY")}
+                          </footer>
+                        </div>
                       </div>
-                      <div
-                        className="d-flex"
-                        style={{ gap: "1rem", marginLeft: "10rem" }}
-                      >
+
+                      <div className="d-flex mt-4" style={{ gap: "1rem" }}>
+                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
+                          <button className="btn btn-primary">View</button>
+                        </NavLink>
                         <NavLink to={`/dashboard/user/answers/${q._id}`}>
                           <Button variant="contained" color="success">
                             Answer
                           </Button>
                         </NavLink>
-                        <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                          <button className="btn btn-primary">View</button>
-                        </NavLink>
+
                         <button
                           className="btn btn-warning"
                           onClick={() => {

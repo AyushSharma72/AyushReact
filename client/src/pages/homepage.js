@@ -259,7 +259,7 @@ function Home() {
             <div className="w-50 chatgpt">
               <FadeIn />
             </div>
-            <div className="w-50 mt-4 user-tile" style={{ marginLeft: "4rem" }}>
+            <div className="w-50 mt-4 user-tile">
               <span
                 className="mediumtitlefont highlighted ff"
                 style={{ marginLeft: "6rem" }}
