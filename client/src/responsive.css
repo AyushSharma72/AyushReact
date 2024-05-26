@@ -1,0 +1,70 @@
+@media (max-width: 450px) {
+  .homepage-section {
+    flex-direction: column;
+  }
+  .homefirsttext {
+    width: 100% !important;
+  }
+  .homefirstimage {
+    height: 50% !important;
+  }
+  .WelcomeText {
+    width: 100% !important;
+  }
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+  .codechatgpt {
+    flex-direction: column;
+  }
+  .chatgpt {
+    width: 100% !important;
+  }
+
+  .question-box {
+    width: 100% !important;
+  }
+  .container {
+    justify-content: start !important;
+    margin: 0;
+  }
+  .user-tile {
+    width: 100% !important;
+  margin: 0 !important;
+  }
+
+  .News {
+    flex-direction: column;
+  }
+  .gg {
+    width: 100% !important;
+    margin: 0;
+    text-align: center;
+  }
+  .Explrebutton {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .Banner {
+    margin-top: 2rem;
+  }
+  .Accordian1{
+    margin: 0rem 10px 0rem 10px;
+    width: 100% !important;
+  }
+  .footer{
+    width: 100%;
+  }
+  .footerparent{
+    flex-direction: column;
+  }
+  .footer-brand{
+    width: 100% !important;
+  }
+  .footerlinks{
+      width: 100% !important;
+  }
+}
