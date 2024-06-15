@@ -68,7 +68,7 @@ const CartPage = () => {
                       style={{ width: "40%" }}
                     >
                       <Image
-                        src={`https://talkofcodebackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                        src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                         className="card-Image-top productimage"
                         style={{ height: "15rem", width: "100%" }}
                       />

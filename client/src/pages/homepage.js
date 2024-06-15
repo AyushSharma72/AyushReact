@@ -75,7 +75,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://talkofcodebackend.onrender.com/api/v1/product/get-product"
+          "http://localhost:8000/api/v1/product/get-product"
         );
         const data = await response.json();
 
@@ -135,10 +135,7 @@ function Home() {
           ></img>
         </div>{" "}
       </div>
-      <div
-        className="homepage-section d-flex align-items-center flex-column justify-content-center w-100  mb-3"
-        data-aos="fade-up"
-      >
+      <div className="homepage-section d-flex align-items-center flex-column justify-content-center w-100  mb-3">
         <h1 className=" w-50 text-center WelcomeText mt-5">
           {" "}
           More than 30+ Products Listed. Checkout Now!
@@ -198,7 +195,7 @@ function Home() {
                   <div className="user-image2 boxshadow">
                     <Card.Img
                       variant="top"
-                      src={`https://talkofcodebackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                      src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                       style={{
                         width: "100%",
                         height: "17rem",

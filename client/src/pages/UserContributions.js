@@ -3,13 +3,13 @@ import Layout from "../components/layout/layout";
 import { Card } from "antd";
 import { useAuth } from "../context/auth";
 import toast from "react-hot-toast";
-import UserMEnu from "../components/layout/UserMEnu";
 import { NavLink } from "react-router-dom";
 import { Modal } from "antd";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { blue } from "@mui/material/colors";
+import UserMEnu from "../components/layout/UserMEnu";
 
 const UserContributions = () => {
   const [auth, setAuth] = useAuth();
@@ -18,10 +18,11 @@ const UserContributions = () => {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null); // State to store the selected contribution ID
   const [expandedId, setExpandedId] = useState(null);
+
   async function getUserAnswer() {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Answer/Get_User_Answers/${auth.user._id}`
+        `http://localhost:8000/api/v1/Answer/Get_User_Answers/${auth.user._id}`
       );
       const answers = await response.json();
       if (answers) {
@@ -42,7 +43,7 @@ const UserContributions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://talkofcodebackend.onrender.com/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
+          `http://localhost:8000/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
           {
             method: "DELETE",
             headers: {
@@ -67,7 +68,7 @@ const UserContributions = () => {
   async function updateContribution(aid) {
     try {
       const updated = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Answer/Update_Answer/${aid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer/${aid}`,
         {
           method: "PUT",
           headers: {
@@ -112,6 +113,7 @@ const UserContributions = () => {
   };
 
   const handleSeeMore = (id) => {
+    // Expand or collapse the content based on current state
     setExpandedId(expandedId === id ? null : id);
   };
 
@@ -130,7 +132,7 @@ const UserContributions = () => {
                   <Card
                     title={
                       <span className="smalltitlefont3 bullet-circle">
-                        &#8226; {R.questionid.title}
+                        {R.questionid.title}
                       </span>
                     }
                     style={{
@@ -139,43 +141,20 @@ const UserContributions = () => {
                       paddingBottom: "0px",
                     }}
                   >
-                    <div
-                      style={{ display: "flex", alignItems: "center" }}
-                    ></div>
                     <p
-                      className="arrow-bullet ff"
                       style={{
                         fontSize: "18px",
-                        marginTop: "-2rem",
-                        flex: "1",
                       }}
                     >
-                      &rarr;{" "}
-                      {expandedId === R._id
-                        ? R.answer
-                        : `${R.answer.slice(0, 47)}...`}
-                      {R.answer.length > 50 && (
-                        <button
-                          type="link"
-                          onClick={() => handleSeeMore(R._id)}
-                          style={{ marginLeft: "5px" }}
-                        >
-                          {expandedId === R._id ? "See less" : "See more"}
-                        </button>
-                      )}
+                      {R.answer.substring(0, 50)}....
                     </p>
                   </Card>
-                  <div
-                    className="d-flex justify-content-center mt-1"
-                    style={{ width: "63%" }}
-                  >
+                  <div className="d-flex justify-content-start mt-1 gap-3 w-100">
                     <ThemeProvider theme={theme}>
                       <Button
                         variant="contained"
                         sx={{
                           bgcolor: "ochre.Update",
-                          marginLeft: "12rem",
-                          marginRight: "1rem",
                         }}
                         onClick={() => handleUpdateClick(R._id, R.answer)}
                       >

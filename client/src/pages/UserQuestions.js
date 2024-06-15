@@ -3,15 +3,14 @@ import Layout from "../components/layout/layout";
 import { NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Tag } from "antd";
-import UserMEnu from "../components/layout/UserMEnu";
 import moment from "moment";
-import DeleteIcon from "@mui/icons-material/Delete";
-import "../App.css";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import Button from "@mui/material/Button";
 import { useAuth } from "../context/auth";
 import { Tabs } from "antd";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import UserMEnu from "../components/layout/UserMEnu";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 const { TabPane } = Tabs;
 const AdminQuestions = () => {
   const [Questions, SetQuestions] = useState([]);
@@ -25,7 +24,7 @@ const AdminQuestions = () => {
     try {
       setloading(true);
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Questions/UserQuestions/${auth.user._id}/${SkipCount}`
+        `http://localhost:8000/api/v1/Questions/UserQuestions/${auth.user._id}/${SkipCount}`
       );
       const data = await response.json();
       if (response.status == 200) {
@@ -46,7 +45,7 @@ const AdminQuestions = () => {
   async function GetNumberofQuestion() {
     try {
       const data = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/Questions/QuestionCount"
+        "http://localhost:8000/api/v1/Questions/QuestionCount"
       );
 
       if (data) {
@@ -66,7 +65,7 @@ const AdminQuestions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://talkofcodebackend.onrender.com/api/v1/Questions/delete_question/${question}`,
+          `http://localhost:8000/api/v1/Questions/delete_question/${question}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
@@ -85,15 +84,15 @@ const AdminQuestions = () => {
       toast.error("Question Not Deleted");
     }
   }
+
   async function GetBookmarkedQuestion() {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Questions/getBookmarked/${auth.user._id}`
+        `http://localhost:8000/api/v1/Questions/getBookmarked/${auth.user._id}`
       );
       const data = await response.json();
       if (response.status === 200) {
         setBookMarked(data.questions.Bookmarked);
-        SetUserName(data.questions.Name);
       } else {
         if (response.status === 400) {
           toast.error("Please try Again");
@@ -107,7 +106,7 @@ const AdminQuestions = () => {
   async function RemoveBookmark(qid) {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Questions/removeBookmarked/${auth.user._id}/${qid}`,
+        `http://localhost:8000/api/v1/Questions/removeBookmarked/${auth.user._id}/${qid}`,
         {
           method: "PUT",
           headers: {
@@ -150,7 +149,7 @@ const AdminQuestions = () => {
   return (
     <Layout>
       <div className="bg d-flex justify-content-around">
-        <div className="w-25 mt-3">
+        <div className="w-25 ">
           <UserMEnu />
         </div>
 
@@ -171,7 +170,7 @@ const AdminQuestions = () => {
                         <p className=" smalltitlefont3 bulletcircle mb-0">
                           &#8226; {q.title.substring(0, 40)}... ?{" "}
                         </p>
-                        <div className="d-flex justify-content-between w-100">
+                        <div className="d-flex justify-content-between w-75">
                           <div>
                             {" "}
                             {q.tags.map((tag, index) => (
@@ -189,9 +188,12 @@ const AdminQuestions = () => {
                         </div>
                       </div>
 
-                      <div className="d-flex" style={{ gap: "1rem" }}>
+                      <div className="d-flex justify-content-end">
                         <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                          <button className="btn btn-primary">View</button>
+                          <MdOutlineRemoveRedEye
+                            className="ViewIcon mr-2"
+                            title="View Question"
+                          />
                         </NavLink>
                         <NavLink to={`/dashboard/user/answers/${q._id}`}>
                           <Button variant="contained" color="success">
@@ -199,24 +201,14 @@ const AdminQuestions = () => {
                           </Button>
                         </NavLink>
 
-                        <ThemeProvider theme={theme}>
-                          <Button
-                            variant="contained"
-                            sx={{
-                              bgcolor: "ochre.danger",
-                              "&:hover": {
-                                bgcolor: "ochre.dangerHover",
-                              },
-                            }}
-                            startIcon={<DeleteIcon />}
-                            onClick={() => {
-                              DeleteQuestion(q._id);
-                            }}
-                            className="DangerButton"
-                          >
-                            Delete
-                          </Button>
-                        </ThemeProvider>
+                        <RiDeleteBin6Line
+                          style={{ color: "red" }}
+                          title="Delete Question"
+                          className="Deleteicon"
+                          onClick={() => {
+                            DeleteQuestion(q._id);
+                          }}
+                        />
                       </div>
                     </div>
                   ))
@@ -261,7 +253,7 @@ const AdminQuestions = () => {
                           &#8226; {q.title.substring(0, 100)}..... ?{" "}
                         </p>
 
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between w-75 mt-3">
                           {" "}
                           <div className="d-flex align-items-center">
                             {" "}
@@ -272,16 +264,18 @@ const AdminQuestions = () => {
                           <footer className="blockquote-footer  ">
                             asked by{" "}
                             <cite title="Source Title">
-                              <b>{UserName}</b>
+                              <b>{q.user.Name}</b>
                             </cite>{" "}
                             {moment(q.createdAt).format("MMMM Do YYYY")}
                           </footer>
                         </div>
                       </div>
-
-                      <div className="d-flex mt-4" style={{ gap: "1rem" }}>
+                      <div className="d-flex justify-content-end">
                         <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                          <button className="btn btn-primary">View</button>
+                          <MdOutlineRemoveRedEye
+                            className="ViewIcon mr-2"
+                            title="View Question"
+                          />
                         </NavLink>
                         <NavLink to={`/dashboard/user/answers/${q._id}`}>
                           <Button variant="contained" color="success">
@@ -289,14 +283,14 @@ const AdminQuestions = () => {
                           </Button>
                         </NavLink>
 
-                        <button
-                          className="btn btn-warning"
+                        <RiDeleteBin6Line
+                          style={{ color: "red" }}
+                          title="Remove Bookmark"
+                          className="Deleteicon"
                           onClick={() => {
                             RemoveBookmark(q._id);
                           }}
-                        >
-                          Remove
-                        </button>
+                        />
                       </div>
                     </div>
                   ))

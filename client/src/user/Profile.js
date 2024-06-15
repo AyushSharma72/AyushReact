@@ -1,15 +1,17 @@
 import React from "react";
 import Layout from "../components/layout/layout";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/auth";
 import { Tabs, Tag } from "antd";
 import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Modal } from "antd";
-import UserMEnu from "./../components/layout/UserMEnu";
-import { Link } from "react-router-dom";
+
 import { FaArrowLeft } from "react-icons/fa";
+import UserMEnu from "./../components/layout/UserMEnu";
+
 const Profile = () => {
   const [auth, Setauth] = useAuth();
   const [Name, SetName] = useState("");
@@ -57,7 +59,7 @@ const Profile = () => {
 
       e.preventDefault();
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/profile",
+        "http://localhost:8000/api/v1/auth/profile",
         {
           method: "PUT",
           headers: {
@@ -102,7 +104,7 @@ const Profile = () => {
       formData.append("NewPassword", NewPassword);
 
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/ProfilePassword",
+        "http://localhost:8000/api/v1/auth/ProfilePassword",
         {
           method: "PUT",
           headers: {
@@ -145,7 +147,7 @@ const Profile = () => {
       e.preventDefault();
 
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/ProfileLinks",
+        "http://localhost:8000/api/v1/auth/ProfileLinks",
         {
           method: "PUT",
           headers: {
@@ -196,7 +198,7 @@ const Profile = () => {
       e.preventDefault();
 
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/auth/userskillsupdate/${skilltoremove}`,
+        `http://localhost:8000/api/v1/auth/userskillsupdate/${skilltoremove}`,
         {
           method: "PUT",
           headers: {
@@ -234,7 +236,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    const { Email, Name, Location, MobileNo, Github, LinkedIn, Website, tags } =
+    const { Email, Name, Address, MobileNo, Github, LinkedIn, Website, tags } =
       auth.user;
     SetName(Name);
     SetEmail(Email);
@@ -248,20 +250,23 @@ const Profile = () => {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-around">
+      <div className="bg d-flex justify-content-around ">
+        <div className="w-25 ">
+          <UserMEnu />
+        </div>
         <Tabs centered style={{ width: "60%" }}>
           <TabPane
-            tab={<span className="tabtitle">Personal Information</span>}
+            tab={<span className="tabtitle">Personal Infromation</span>}
             key="1"
             className="TabPanePersonalInfo"
           >
-            <div className="d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-center mt-5">
               {" "}
               <img
-                style={{ height: "12rem", width: "12rem", marginRight: "2rem" }}
+                style={{ height: "14rem", width: "14rem", marginRight: "2rem" }}
                 title
                 className="img-circle img-thumbnail isTooltip EditProfileUSerPhoto"
-                src={`https://talkofcodebackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                 data-original-title="Usuario"
               />
               <div className="d-flex justify-content-start w-100 border-2 mb-2">
@@ -295,11 +300,8 @@ const Profile = () => {
                 style={{ width: "100%" }}
               >
                 <div className="mb-1 w-100  d-flex align-items-center  justify-content-between">
-                  <label
-                    htmlFor="exampleInputName w-25 text-start"
-                    className="form-label smalltitlefont3"
-                  >
-                    <strong>Name :</strong>
+                  <label className="form-label smalltitlefont3">
+                    <b>Name :</b>
                   </label>
                   <input
                     type="text"
@@ -314,11 +316,8 @@ const Profile = () => {
                 </div>
 
                 <div className="mb-1 w-100  d-flex align-items-center  justify-content-between">
-                  <label
-                    htmlFor="exampleInputEmail1 w-25"
-                    className="form-label smalltitlefont3"
-                  >
-                    <b>Email</b>
+                  <label className="form-label smalltitlefont3">
+                    <b>Email :</b>
                   </label>
                   <input
                     type="email"
@@ -338,7 +337,7 @@ const Profile = () => {
                     htmlFor="exampleInputEmail1"
                     className="form-label smalltitlefont3"
                   >
-                    <b> Contact Number:</b>
+                    <b>Contact :</b>
                   </label>
                   <input
                     type="Number"
@@ -374,13 +373,13 @@ const Profile = () => {
                 >
                   Save
                 </button>
-                <Link
+                <NavLink
                   to="/dashboard/user"
-                  className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
+                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
                 >
                   <FaArrowLeft className="me-1" />
-                  Back to Dashboard
-                </Link>
+                  Dashboard
+                </NavLink>
               </div>
             </form>
           </TabPane>
@@ -406,7 +405,7 @@ const Profile = () => {
                 <h3>
                   Change Password{" "}
                   <button
-                    className="btn btn-outline-primary "
+                    className="btn btn-outline-primary"
                     type="button"
                     onClick={togglePasswordVisibility}
                   >
@@ -455,13 +454,13 @@ const Profile = () => {
                 >
                   Save
                 </button>
-                <Link
+                <NavLink
                   to="/dashboard/user"
-                  className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
+                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
                 >
                   <FaArrowLeft className="me-1" />
-                  Back to Dashboard
-                </Link>
+                  Dashboard
+                </NavLink>
               </div>
             </form>
           </TabPane>
@@ -489,7 +488,7 @@ const Profile = () => {
                     htmlFor="exampleInputPassword1"
                     className="form-label smalltitlefont3"
                   >
-                    <b>Github :</b>
+                    <b>Github:</b>
                   </label>
                   <input
                     className="form-control w-75"
@@ -505,7 +504,7 @@ const Profile = () => {
                     htmlFor="exampleInputPassword1"
                     className="form-label smalltitlefont3"
                   >
-                    <b>Linked In :</b>
+                    <b>Linked In:</b>
                   </label>
                   <input
                     type="text"
@@ -522,7 +521,7 @@ const Profile = () => {
                     htmlFor="exampleInputPassword1"
                     className="form-label smalltitlefont3"
                   >
-                    <b>Website :</b>
+                    <b>Website:</b>
                   </label>
                   <input
                     type="text"
@@ -539,7 +538,7 @@ const Profile = () => {
                     htmlFor="exampleInputPassword1"
                     className="form-label smalltitlefont3"
                   >
-                    <b>Skills :</b>
+                    <b>Skills:</b>
                   </label>
                   <div className="d-flex w-75 justify-content-between">
                     <div className="w-75 border d-flex align-items-center flex-wrap gap-1">
@@ -585,7 +584,7 @@ const Profile = () => {
                     htmlFor="exampleInputPassword1"
                     className="form-label smalltitlefont3"
                   >
-                    <b>Add Skills :</b>
+                    <b>Add Skills:</b>
                   </label>
                   <div className="d-flex w-75 justify-content-between">
                     {" "}
@@ -631,13 +630,13 @@ const Profile = () => {
                 >
                   Save
                 </button>
-                <Link
+                <NavLink
                   to="/dashboard/user"
-                  className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
+                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
                 >
                   <FaArrowLeft className="me-1" />
-                  Back to Dashboard
-                </Link>
+                  Dashboard
+                </NavLink>
               </div>
             </form>
           </TabPane>

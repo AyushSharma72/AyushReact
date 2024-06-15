@@ -16,7 +16,7 @@ const UpdateProducts = () => {
   async function GetAllProducts() {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/product/get-product-user/${auth.user._id}`
+        `http://localhost:8000/api/v1/product/get-product-user/${auth.user._id}`
       );
       const data = await response.json();
       if (data?.success) {
@@ -36,8 +36,8 @@ const UpdateProducts = () => {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-around mt-3">
-        <div className="w-25">
+      <div className="d-flex justify-content-around ">
+        <div className="w-25 mt-3">
           <UserMEnu></UserMEnu>
         </div>
 
@@ -51,10 +51,10 @@ const UpdateProducts = () => {
               Products.map((p) => (
                 <div
                   className="card border border-3 d-flex flex-column justify-content-center"
-                  style={{ width: "50%", height: "100%" }}
+                  style={{ width: "40%", height: "100%" }}
                 >
                   <Image
-                    src={`https://talkofcodebackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                    src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                     className="card-Image-top productimage"
                     style={{ height: "15rem", width: "100%" }}
                   />

@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout/layout";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/auth";
 import { Tabs, Tag } from "antd";
@@ -10,6 +11,7 @@ import AdminMenu from "./../../components/layout/AdminMenu";
 import { Modal } from "antd";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+
 const Profile = () => {
   const [auth, Setauth] = useAuth();
   const [Name, SetName] = useState("");
@@ -57,7 +59,7 @@ const Profile = () => {
 
       e.preventDefault();
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/profile",
+        "http://localhost:8000/api/v1/auth/profile",
         {
           method: "PUT",
           headers: {
@@ -102,7 +104,7 @@ const Profile = () => {
       formData.append("NewPassword", NewPassword);
 
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/ProfilePassword",
+        "http://localhost:8000/api/v1/auth/ProfilePassword",
         {
           method: "PUT",
           headers: {
@@ -145,7 +147,7 @@ const Profile = () => {
       e.preventDefault();
 
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/ProfileLinks",
+        "http://localhost:8000/api/v1/auth/ProfileLinks",
         {
           method: "PUT",
           headers: {
@@ -196,7 +198,7 @@ const Profile = () => {
       e.preventDefault();
 
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/auth/userskillsupdate/${skilltoremove}`,
+        `http://localhost:8000/api/v1/auth/userskillsupdate/${skilltoremove}`,
         {
           method: "PUT",
           headers: {
@@ -264,7 +266,7 @@ const Profile = () => {
                 style={{ height: "14rem", width: "14rem", marginRight: "2rem" }}
                 title
                 className="img-circle img-thumbnail isTooltip EditProfileUSerPhoto"
-                src={`https://talkofcodebackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                 data-original-title="Usuario"
               />
               <div className="d-flex justify-content-start w-100 border-2 mb-2">
@@ -298,11 +300,8 @@ const Profile = () => {
                 style={{ width: "100%" }}
               >
                 <div className="mb-1 w-100  d-flex align-items-center  justify-content-between">
-                  <label
-                    htmlFor="exampleInputName w-25 text-start"
-                    className="form-label smalltitlefont3"
-                  >
-                    <strong>Name :</strong>
+                  <label className="form-label smalltitlefont3">
+                    <b>Name :</b>
                   </label>
                   <input
                     type="text"
@@ -317,11 +316,8 @@ const Profile = () => {
                 </div>
 
                 <div className="mb-1 w-100  d-flex align-items-center  justify-content-between">
-                  <label
-                    htmlFor="exampleInputEmail1 w-25"
-                    className="form-label smalltitlefont3"
-                  >
-                    <b>Email</b>
+                  <label className="form-label smalltitlefont3">
+                    <b>Email :</b>
                   </label>
                   <input
                     type="email"
@@ -341,11 +337,11 @@ const Profile = () => {
                     htmlFor="exampleInputEmail1"
                     className="form-label smalltitlefont3"
                   >
-                    <b> Contact Number:</b>
+                    <b>Contact :</b>
                   </label>
                   <input
                     type="Number"
-                    className="form-control w-100"
+                    className="form-control w-75"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     value={Number}
@@ -377,13 +373,13 @@ const Profile = () => {
                 >
                   Save
                 </button>
-                <Link
+                <NavLink
                   to="/dashboard/user"
-                  className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
+                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
                 >
                   <FaArrowLeft className="me-1" />
-                  Back to Dashboard
-                </Link>
+                  Dashboard
+                </NavLink>
               </div>
             </form>
           </TabPane>
@@ -458,13 +454,13 @@ const Profile = () => {
                 >
                   Save
                 </button>
-                <Link
+                <NavLink
                   to="/dashboard/user"
-                  className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
+                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
                 >
                   <FaArrowLeft className="me-1" />
-                  Back to Dashboard
-                </Link>
+                  Dashboard
+                </NavLink>
               </div>
             </form>
           </TabPane>
@@ -634,13 +630,13 @@ const Profile = () => {
                 >
                   Save
                 </button>
-                <Link
+                <NavLink
                   to="/dashboard/user"
-                  className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
+                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
                 >
                   <FaArrowLeft className="me-1" />
-                  Back to Dashboard
-                </Link>
+                  Dashboard
+                </NavLink>
               </div>
             </form>
           </TabPane>

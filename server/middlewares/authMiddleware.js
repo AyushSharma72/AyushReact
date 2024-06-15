@@ -10,7 +10,7 @@ async function requireSignIn(req, resp, next) {
     );
     req.user = decode;
     next();
-  } catch (error) {   
+  } catch (error) {
     console.log(error);
     resp.status(404).send({
       success: false,

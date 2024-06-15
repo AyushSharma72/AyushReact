@@ -10,7 +10,9 @@ import { NavLink } from "react-router-dom";
 import { Input } from "antd";
 import { Empty } from "antd";
 import Avatar from "@mui/material/Avatar";
-import DeleteIcon from "@mui/icons-material/Delete";
+
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdChatboxes } from "react-icons/io";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -18,6 +20,7 @@ import { blue } from "@mui/material/colors";
 import { useAuth } from "../context/auth";
 import { Pagination } from "antd";
 import chatgpt from "../assests/chatgpt.png";
+
 const Interaction = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [conversation, setConversation] = useState([]);
@@ -108,7 +111,7 @@ const Interaction = () => {
         return;
       }
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Questions/Question_search/${keywordToSearch}`
+        `http://localhost:8000/api/v1/Questions/Question_search/${keywordToSearch}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -128,7 +131,7 @@ const Interaction = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://talkofcodebackend.onrender.com/api/v1/Questions/delete_question/${question}`,
+          `http://localhost:8000/api/v1/Questions/delete_question/${question}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
@@ -150,7 +153,7 @@ const Interaction = () => {
   async function GetQuestions() {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Questions/get_question/${Page}`
+        `http://localhost:8000/api/v1/Questions/get_question/${Page}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -167,7 +170,7 @@ const Interaction = () => {
   async function GetNumberofQuestion() {
     try {
       const data = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/Questions/QuestionCount"
+        "http://localhost:8000/api/v1/Questions/QuestionCount"
       );
 
       if (data) {
@@ -264,7 +267,7 @@ const Interaction = () => {
                   {message.role === "user" ? (
                     <div className="user-icon">
                       <Avatar
-                        src={`https://talkofcodebackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                        src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                         sx={{ width: 30, height: 30 }}
                       />
                     </div>
@@ -316,12 +319,28 @@ const Interaction = () => {
                       style={{ width: "50%" }}
                     >
                       <Avatar
-                        src={`https://talkofcodebackend.onrender.com/api/v1/auth/get-userPhoto/${q.user._id}`}
+                        src={`http://localhost:8000/api/v1/auth/get-userPhoto/${q.user._id}`}
                         sx={{ width: 30, height: 30 }} // Add margin for spacing
                       />
                       <p className="UserNameDisplay">{q.user.Name}</p>
                     </div>
+                    {auth.user.Role == 1 ? (
+                      <RiDeleteBin6Line
+                        style={{ color: "red" }}
+                        title="Delete Question"
+                        className="Deleteicon"
+                        onClick={() => {
+                          DeleteQuestion(q._id);
+                        }}
+                      />
+                    ) : null}
 
+                    <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
+                      <MdOutlineRemoveRedEye
+                        className="ViewIcon"
+                        title="View Question"
+                      />
+                    </NavLink>
                     {/* Asked label and date */}
                     <div
                       className="d-flex align-items-center"
@@ -372,33 +391,11 @@ const Interaction = () => {
                     className="d-flex align-items-center"
                     style={{ gap: "1rem" }}
                   >
-                    <NavLink to={`/dashboard/user/ViewQuestion/${q._id}`}>
-                      <button className="btn btn-primary">View</button>
-                    </NavLink>
                     <NavLink to={`/dashboard/user/answers/${q._id}`}>
                       <Button variant="contained" color="success">
                         Answer
                       </Button>
                     </NavLink>
-                    {auth.user.Role == 1 ? (
-                      <ThemeProvider theme={theme}>
-                        <Button
-                          variant="contained"
-                          sx={{
-                            bgcolor: "ochre.danger",
-                            "&:hover": {
-                              bgcolor: "ochre.dangerHover",
-                            },
-                          }}
-                          startIcon={<DeleteIcon />}
-                          onClick={() => {
-                            DeleteQuestion(q._id);
-                          }}
-                        >
-                          Delete
-                        </Button>
-                      </ThemeProvider>
-                    ) : null}
                   </div>
                 </div>
               </div>

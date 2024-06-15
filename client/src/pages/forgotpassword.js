@@ -39,7 +39,7 @@ const Forgotpassword = () => {
       e.preventDefault();
       Setloading(true);
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/forgetPassword",
+        "http://localhost:8000/api/v1/auth/forgetPassword",
         {
           method: "POST",
           headers: {
@@ -75,7 +75,7 @@ const Forgotpassword = () => {
     try {
       Setloading(true);
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/SendResetEmail",
+        "http://localhost:8000/api/v1/auth/SendResetEmail",
         {
           method: "POST",
           headers: {
@@ -289,7 +289,7 @@ const Forgotpassword = () => {
                 ></input>
               </Modal>
             </div>
-            <Link  
+            <Link
               to="/login"
               className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
             >

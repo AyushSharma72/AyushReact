@@ -78,7 +78,7 @@ async function DeleteAnswerController(req, resp) {
       _id: req.params.aid,
       UserWhoVoted: { $exists: true },
     });
-    console.log(votesCount);
+  
     const del = await Answermodel.findByIdAndDelete(req.params.aid);
     if (del) {
       await Questionmodel.findByIdAndUpdate(qid, {

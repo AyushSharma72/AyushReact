@@ -31,7 +31,7 @@ const UserDashboard = () => {
   async function GetAllUserQuestion() {
     try {
       const AllQuestion = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Questions/AskedUserQuestion/${auth.user._id}`
+        `http://localhost:8000/api/v1/Questions/AskedUserQuestion/${auth.user._id}`
       );
 
       if (AllQuestion.status == 200) {
@@ -47,7 +47,7 @@ const UserDashboard = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${auth.user._id}`
+        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${auth.user._id}`
       );
 
       if (AllAnswer.status == 200) {
@@ -61,7 +61,7 @@ const UserDashboard = () => {
   }
   async function GetUserReputation() {
     const resp = await fetch(
-      `https://talkofcodebackend.onrender.com/api/v1/auth/GetReputation/${auth.user._id}`
+      `http://localhost:8000/api/v1/auth/GetReputation/${auth.user._id}`
     );
     if (resp.status === 200) {
       const reputation = await resp.json();
@@ -95,15 +95,15 @@ const UserDashboard = () => {
             className="d-flex  flex-column "
             style={{ gap: "1rem", width: "100%" }}
           >
-            <button className="btn btn-primary btn-lg ButtonBorder">
+            <button className="btn btn-dark btn-lg ButtonBorder">
               <NavLink
                 to="/dashboard/admin/create-Category"
-                className="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action d-flex justify-content-center  align-items-center"
               >
                 Create Category
               </NavLink>
             </button>
-            <button className="btn btn-primary  btn-lg  ButtonBorder">
+            <button className="btn btn-dark  btn-lg  ButtonBorder">
               <NavLink
                 to="/dashboard/admin/create-product"
                 className="list-group-item list-group-item-action"
@@ -111,7 +111,7 @@ const UserDashboard = () => {
                 Create New Product
               </NavLink>
             </button>
-            <button className="btn btn-primary  btn-lg ButtonBorder">
+            <button className="btn btn-dark  btn-lg ButtonBorder">
               <NavLink
                 to="/dashboard/admin/Product"
                 className="list-group-item list-group-item-action"
@@ -120,7 +120,7 @@ const UserDashboard = () => {
               </NavLink>
             </button>
 
-            <button className="btn btn-primary  btn-lg ButtonBorder">
+            <button className="btn btn-dark  btn-lg ButtonBorder">
               <NavLink
                 to="/dashboard/Admin/Profile"
                 className="list-group-item list-group-item-action"
@@ -129,7 +129,7 @@ const UserDashboard = () => {
               </NavLink>
             </button>
 
-            <button className="btn btn-primary  btn-lg ButtonBorder">
+            <button className="btn btn-dark  btn-lg ButtonBorder">
               <NavLink
                 to="/dashboard/Admin/Users"
                 className="list-group-item list-group-item-action"
@@ -138,7 +138,7 @@ const UserDashboard = () => {
               </NavLink>
             </button>
 
-            <button className="btn btn-primary  btn-lg ButtonBorder">
+            <button className="btn btn-dark  btn-lg ButtonBorder">
               <NavLink
                 to="/dashboard/admin/questions"
                 className="list-group-item list-group-item-action d-flex justify-content-center  align-items-center"
@@ -147,7 +147,7 @@ const UserDashboard = () => {
               </NavLink>
             </button>
 
-            <button className="btn btn-primary  btn-lg ButtonBorder">
+            <button className="btn btn-dark  btn-lg ButtonBorder">
               <NavLink
                 to="/dashboard/admin/Contributions"
                 className="list-group-item list-group-item-action d-flex justify-content-center  align-items-center"
@@ -166,7 +166,7 @@ const UserDashboard = () => {
                 <div className="d-flex flex-column align-items-center">
                   <img
                     style={{ width: "90%" }}
-                    src={`https://talkofcodebackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                    src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                   />
                 </div>
               </div>

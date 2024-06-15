@@ -37,7 +37,7 @@ const ProductDetails = () => {
   async function GetProduct() {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/product/getSingle-product/${params.slug}`
+        `http://localhost:8000/api/v1/product/getSingle-product/${params.slug}`
       );
       const data = await response.json();
       console.log(data);
@@ -70,7 +70,7 @@ const ProductDetails = () => {
     if (comment && !isNaN(rating) && rating >= 1 && rating <= 5) {
       try {
         const response = await fetch(
-          `https://talkofcodebackend.onrender.com/api/v1/product/get-product/${productId}/${authId}/create-review`,
+          `http://localhost:8000/api/v1/product/get-product/${productId}/${authId}/create-review`,
           {
             method: "PUT",
             headers: {
@@ -103,7 +103,7 @@ const ProductDetails = () => {
     const productId = Detail[0]._id;
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/product/get-product/${productId}/${authId}/delete-review/${reviewId}`,
+        `http://localhost:8000/api/v1/product/get-product/${productId}/${authId}/delete-review/${reviewId}`,
         {
           method: "delete",
         }
@@ -143,7 +143,7 @@ const ProductDetails = () => {
           <div className="row">
             <div className="col-md-6" style={{ width: "40%" }}>
               <Image
-                src={`https://talkofcodebackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                 className="card-Image-top"
                 style={{ height: "25rem" }}
               />

@@ -22,7 +22,7 @@ const UserContributions = () => {
   async function getUserAnswer() {
     try {
       const response = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Answer/Get_User_Answers/${auth.user._id}`
+        `http://localhost:8000/api/v1/Answer/Get_User_Answers/${auth.user._id}`
       );
       const answers = await response.json();
       if (answers) {
@@ -43,7 +43,7 @@ const UserContributions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://talkofcodebackend.onrender.com/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
+          `http://localhost:8000/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
           {
             method: "DELETE",
             headers: {
@@ -68,7 +68,7 @@ const UserContributions = () => {
   async function updateContribution(aid) {
     try {
       const updated = await fetch(
-        `https://talkofcodebackend.onrender.com/api/v1/Answer/Update_Answer/${aid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer/${aid}`,
         {
           method: "PUT",
           headers: {
@@ -132,7 +132,7 @@ const UserContributions = () => {
                   <Card
                     title={
                       <span className="smalltitlefont3 bullet-circle">
-                        &#8226; {R.questionid.title}
+                        {R.questionid.title}
                       </span>
                     }
                     style={{
@@ -141,43 +141,20 @@ const UserContributions = () => {
                       paddingBottom: "0px",
                     }}
                   >
-                    <div
-                      style={{ display: "flex", alignItems: "center" }}
-                    ></div>
                     <p
-                      className="arrow-bullet ff"
                       style={{
                         fontSize: "18px",
-                        marginTop: "-2rem",
-                        flex: "1",
                       }}
                     >
-                      &rarr;{" "}
-                      {expandedId === R._id
-                        ? R.answer
-                        : `${R.answer.slice(0, 47)}...`}
-                      {R.answer.length > 50 && (
-                        <button
-                          type="link"
-                          onClick={() => handleSeeMore(R._id)}
-                          style={{ marginLeft: "5px" }}
-                        >
-                          {expandedId === R._id ? "See less" : "See more"}
-                        </button>
-                      )}
+                      {R.answer.substring(0, 50)}....
                     </p>
                   </Card>
-                  <div
-                    className="d-flex justify-content-center mt-1"
-                    style={{ width: "63%" }}
-                  >
+                  <div className="d-flex justify-content-start mt-1 gap-3 w-100">
                     <ThemeProvider theme={theme}>
                       <Button
                         variant="contained"
                         sx={{
                           bgcolor: "ochre.Update",
-                          marginLeft: "12rem",
-                          marginRight: "1rem",
                         }}
                         onClick={() => handleUpdateClick(R._id, R.answer)}
                       >

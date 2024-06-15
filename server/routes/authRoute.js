@@ -47,13 +47,23 @@ router.get("/AdminAuth", requireSignIn, IsAdmin, (req, res) => {
 
 router.post("/forgetPassword", ForgotPassword);
 
+
+
+
 router.put("/Profile", requireSignIn, formidable(), UpdateProfileController);
+
+
 router.put(
   "/ProfilePassword",
   requireSignIn,
   formidable(),
   UpdatePasswordController
 );
+
+
+
+
+
 router.put(
   "/ProfileLinks",
   requireSignIn,

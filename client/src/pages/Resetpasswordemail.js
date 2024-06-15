@@ -21,7 +21,7 @@ const Resetpasswordemail = () => {
     try {
       if (NewPass === NewPassAgain) {
         const response = await fetch(
-          `https://talkofcodebackend.onrender.com/api/v1/auth/DirectReset/${Email}`,
+          `http://localhost:8000/api/v1/auth/DirectReset/${Email}`,
           {
             method: "POST",
             headers: {

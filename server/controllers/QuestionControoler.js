@@ -90,7 +90,7 @@ async function DeletequestionController(req, resp) {
       console.log(deleted);
       resp.status(404).send({
         success: false,
-        message: "Question not found to delete", 
+        message: "Question not found to delete",
       });
     }
   } catch (error) {
@@ -254,7 +254,13 @@ async function GetBookMarkedQuestion(req, resp) {
   try {
     const questions = await Usermodel.findById(req.params.uid)
       .select({ Bookmarked: 1, Name: 1 })
-      .populate("Bookmarked");
+      .populate({
+        path: "Bookmarked",
+        populate: {
+          path: "user",
+          select: "Name",
+        },
+      });
 
     if (questions) {
       return resp.status(200).send({

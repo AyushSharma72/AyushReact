@@ -23,7 +23,7 @@ const CreateProductUSer = () => {
   async function GetCategories() {
     try {
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/category/GetAll-category",
+        "http://localhost:8000/api/v1/category/GetAll-category",
 
         {
           headers: {
@@ -55,7 +55,7 @@ const CreateProductUSer = () => {
 
     try {
       const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/product/create-product",
+        "http://localhost:8000/api/v1/product/create-product",
         {
           method: "POST",
           headers: {
@@ -82,10 +82,10 @@ const CreateProductUSer = () => {
   return (
     <Layout>
       <div
-        className="d-flex justify-content-around mt-3 overflow-auto"
+        className="d-flex justify-content-around  overflow-auto"
         style={{ height: "100%" }}
       >
-        <div className="w-25">
+        <div className="w-25 mt-3">
           <UserMEnu />
         </div>
         <div className="w-50 d-flex flex-column" style={{ height: "100%" }}>

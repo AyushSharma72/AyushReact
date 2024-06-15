@@ -19,19 +19,16 @@ const Login = () => {
       e.preventDefault();
 
       SetLoading(true);
-      const response = await fetch(
-        "https://talkofcodebackend.onrender.com/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Email,
-            Password,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email,
+          Password,
+        }),
+      });
       const data = await response.json();
 
       if (response.status === 404) {
@@ -78,22 +75,21 @@ const Login = () => {
   return (
     <Layout>
       <ToastContainer />
-      <div>
-        </div>
+      <div></div>
       <div className="bg">
         <div
           className="Registerlayout bg-light"
           style={{ width: "70%", padding: "20px", borderRadius: "10px" }}
         >
           <div className="d-flex mb-3 gap-2 loginheader">
-            <NavLink to="/register" className="w-50 loginreglink"  >
-              {" "} 
-           Register 
+            <NavLink to="/register" className="w-50 loginreglink">
+              {" "}
+              Register
             </NavLink>
 
-            <NavLink to="/login" className="w-50 loginreglink" >
+            <NavLink to="/login" className="w-50 loginreglink">
               {" "}
-            Login 
+              Login
             </NavLink>
           </div>
 

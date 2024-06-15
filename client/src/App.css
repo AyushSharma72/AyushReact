@@ -93,7 +93,9 @@ body {
   background-color: rgba(173, 218, 230, 0.205);
   padding: 1rem;
   gap: 0.5rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.4),
+    0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .registerformupdate {
@@ -102,7 +104,9 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 10px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 1rem;
   gap: 0.5rem;
 }
@@ -113,7 +117,9 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 10px 20px 0 rgba(0, 0, 0, 0.19);
   gap: 0.5rem;
 }
 
@@ -384,8 +390,17 @@ body {
   color: #3b3b3b;
   cursor: pointer;
   display: inline-block;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:
+    Roobert,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-size: 20px;
   font-weight: 600;
   line-height: normal;
@@ -510,7 +525,9 @@ UserInfo .col-md-4 img {
   height: 100%;
   width: 80%;
 
-  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.4), 4px 8px 10px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    4px 8px 10px rgba(0, 0, 0, 0.4),
+    4px 8px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 0.2rem;
 }
@@ -599,7 +616,9 @@ UserInfo .col-md-4 img {
 }
 
 .boxshadow {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .bg-primary {
@@ -1024,18 +1043,6 @@ UserInfo .col-md-4 img {
 
 .smalltitlefont3 {
   font-size: 21px;
-  font-weight: 500;
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.smalltitlefont4 {
-  font-size: 18px;
-  font-weight: 500;
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.ff {
-  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .btn-primary2 {
@@ -1139,7 +1146,7 @@ UserInfo .col-md-4 img {
 }
 
 .tabtitle {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .bullet-circle {
@@ -1284,4 +1291,17 @@ UserInfo .col-md-4 img {
   background-color: #007bff;
   color: white;
   font-weight: 700;
+}
+
+.Deleteicon {
+  position: absolute;
+  top: 5%;
+  right: 0.5%;
+  cursor: pointer;
+}
+.ViewIcon {
+  position: absolute;
+  top: 5%;
+  right: 2.5%;
+  cursor: pointer;
 }
