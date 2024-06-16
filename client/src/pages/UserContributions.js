@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { blue } from "@mui/material/colors";
 import UserMEnu from "../components/layout/UserMEnu";
+import AdminMenu from "../components/layout/AdminMenu";
 
 const UserContributions = () => {
   const [auth, setAuth] = useAuth();
@@ -18,7 +19,7 @@ const UserContributions = () => {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null); // State to store the selected contribution ID
   const [expandedId, setExpandedId] = useState(null);
-
+  const isSmallScreen = window.innerWidth <= 450;
   async function getUserAnswer() {
     try {
       const response = await fetch(
@@ -119,11 +120,11 @@ const UserContributions = () => {
 
   return (
     <Layout>
-      <div className="bg w-100 d-flex justify-content-around ">
-        <div className="w-25">
-          <UserMEnu />
+      <div className="bg w-100 d-flex justify-content-around usercontributiondiv">
+        <div className="w-25 usermenu">
+          {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
         </div>
-        <div className="d-flex flex-column align-items-center w-50">
+        <div className="d-flex flex-column align-items-center w-50 usercontributions">
           <h1>Your Contributions</h1>
           <div className="w-100 d-flex flex-column" style={{ gap: "1rem" }}>
             {response.length > 0 ? (
@@ -206,7 +207,7 @@ const UserContributions = () => {
               onChange={(e) => setAnswer(e.target.value)}
               value={answer}
               rows="4"
-              cols="140"
+              cols={`${isSmallScreen ? "60" : "140"}`}
             ></textarea>
           </Modal>
         </div>

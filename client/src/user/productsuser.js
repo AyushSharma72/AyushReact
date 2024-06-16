@@ -36,12 +36,15 @@ const UpdateProducts = () => {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-around ">
-        <div className="w-25 mt-3">
+      <div className="d-flex justify-content-around userproductsdiv">
+        <div
+          className="w-25 mt-3 usermenu 
+        "
+        >
           <UserMEnu></UserMEnu>
         </div>
 
-        <div className="w-50 " style={{ height: "100%" }}>
+        <div className="w-50 userprocuts" style={{ height: "100%" }}>
           <h1 className="text-center">Edit products listed by you</h1>
           <div
             className="d-flex justify-content-around flex-wrap align-items-center "

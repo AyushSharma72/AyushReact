@@ -59,10 +59,10 @@ const AskQuestion = () => {
       {" "}
       <div
         className="d-flex justify-content-center flex-column align-items-center w-100"
-        style={{ gap: "1rem", height: "77vh" }}
+        style={{ gap: "1rem" }}
       >
         <h2 className="mt-2 Titlefont">Ask Your Question</h2>
-        <div className="form-container">
+        <div className="form-container width90">
           <form
             onSubmit={(e) => {
               PostQuestion(e);
@@ -70,7 +70,7 @@ const AskQuestion = () => {
             className="w-100 d-flex flex-column justify-content-center align-items-center "
             style={{ gap: "1rem" }}
           >
-            <div className="w-75">
+            <div className="w-75 width1000">
               <b>
                 <label className="form-label " for="Title">
                   Title
@@ -89,7 +89,7 @@ const AskQuestion = () => {
               ></input>
             </div>
 
-            <div className="w-75">
+            <div className="w-75 width1000">
               <b>
                 <label className="form-label " for="Question">
                   Body
@@ -109,7 +109,7 @@ const AskQuestion = () => {
               ></textarea>
             </div>
 
-            <div className="w-50 d-flex flex-column">
+            <div className="w-50 d-flex flex-column width1000">
               <b>
                 <label className="form-label " for="Question">
                   Tags

@@ -83,8 +83,8 @@ const AnswerQuestion = () => {
         <h1 className="Titlefont mt-2" style={{ marginBottom: "-1rem" }}>
           Contribute
         </h1>
-        <div className="d-flex flex-column contactlayout">
-          <h3 className="mediumtitlefont">Question: {Title} ?</h3>
+        <div className="d-flex flex-column contactlayout width90">
+          <h3 className="mediumtitlefont">Question: {Title} </h3>
           <p>
             <strong>Description:</strong> {Description}
           </p>
@@ -95,7 +95,7 @@ const AnswerQuestion = () => {
             PostAnswer(e);
           }}
         >
-          <div className="w-75">
+          <div className="w-75 width90">
             <b>
               <label
                 for="Question"

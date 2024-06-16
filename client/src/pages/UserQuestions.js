@@ -11,8 +11,10 @@ import { Tabs } from "antd";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import UserMEnu from "../components/layout/UserMEnu";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import AdminMenu from "../components/layout/AdminMenu";
+
 const { TabPane } = Tabs;
-const AdminQuestions = () => {
+const UserQuestions = () => {
   const [Questions, SetQuestions] = useState([]);
   const [SkipCount, setSkipCount] = useState(0); // State for skip count
   const [TotalQuestions, SetTotalQuestions] = useState(0);
@@ -148,12 +150,12 @@ const AdminQuestions = () => {
 
   return (
     <Layout>
-      <div className="bg d-flex justify-content-around">
-        <div className="w-25 ">
-          <UserMEnu />
+      <div className="bg d-flex justify-content-around userquestiondiv">
+        <div className="w-25 mt-3 usermenu">
+          {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
         </div>
 
-        <Tabs className="w-50">
+        <Tabs className="w-50 tab1questions">
           <TabPane
             tab={<span className="tabtitle">Your Questions</span>}
             key="1"
@@ -308,4 +310,4 @@ const AdminQuestions = () => {
   );
 };
 
-export default AdminQuestions;
+export default UserQuestions;

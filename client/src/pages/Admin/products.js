@@ -33,20 +33,20 @@ const Products = () => {
 
   return (
     <Layout>
-      <div className="bg d-flex justify-content-around mt-3">
-        <div className="w-25">
+      <div className="bg d-flex justify-content-around mt-3 adminprodutsdiv">
+        <div className="w-25 usermenu">
           <AdminMenu></AdminMenu>
         </div>
 
-        <div className="w-75 " style={{ height: "100%" }}>
-          <h1 className="text-center">All Products List</h1>
+        <div className="w-75 adminproducts " style={{ height: "100%" }}>
+          <h1 className="text-center mt-2">All Products List</h1>
           <div
-            className="d-flex justify-content-around flex-wrap align-items-center "
+            className="d-flex justify-content-around flex-wrap align-items-center flex-column"
             style={{ gap: "0.5rem" }}
           >
             {Products.map((p) => (
               <div
-                className="card d-flex border border-3 "
+                className="card d-flex border border-3 width100"
                 style={{ width: "25%", height: "100%" }}
               >
                 <Image

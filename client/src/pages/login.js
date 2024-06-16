@@ -5,6 +5,7 @@ import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
+
 const Login = () => {
   const [Email, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
@@ -75,10 +76,10 @@ const Login = () => {
   return (
     <Layout>
       <ToastContainer />
-      <div></div>
+
       <div className="bg">
         <div
-          className="Registerlayout bg-light"
+          className="Registerlayout bg-light width1000"
           style={{ width: "70%", padding: "20px", borderRadius: "10px" }}
         >
           <div className="d-flex mb-3 gap-2 loginheader">
@@ -108,71 +109,63 @@ const Login = () => {
                 </p>
               </div>
 
-              <div className="mb-2 w-75" style={{ marginLeft: "5rem" }}>
-                <label
-                  htmlFor="exampleInputEmail1"
-                  className="form-label smalltitlefont2"
-                >
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  placeholder="Enter your email"
-                  aria-describedby="emailHelp"
-                  value={Email}
-                  onChange={(e) => {
-                    SetEmail(e.target.value);
-                  }}
-                  required
-                  style={{ fontSize: "16px" }}
-                />
-              </div>
-
-              <div
-                className="mb-3"
-                style={{ width: "75%", marginLeft: "5rem" }}
-              >
-                <label
-                  htmlFor="exampleInputPassword1"
-                  className="form-label smalltitlefont2"
-                >
-                  Password
-                </label>
-                <div style={{ display: "flex" }}>
+              <div className="mb-2 w-100 d-flex flex-col ">
+                <div className="w-75 m-auto width1000">
+                  <label
+                    htmlFor="exampleInputEmail1"
+                    className="form-label smalltitlefont2 d-flex justify-content-startc w-100"
+                  >
+                    Email address
+                  </label>
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type="email"
                     className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Enter your Password"
-                    value={Password}
+                    id="exampleInputEmail1"
+                    placeholder="Enter your email"
+                    aria-describedby="emailHelp"
+                    value={Email}
                     onChange={(e) => {
-                      SetPassword(e.target.value);
+                      SetEmail(e.target.value);
                     }}
                     required
+                    style={{ fontSize: "16px" }}
                   />
-                  <button
-                    className="btn btn-outline-primary"
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    style={{ marginLeft: "5px" }}
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
                 </div>
               </div>
 
-              <div
-                className="mt-3"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  width: "60%",
-                  marginLeft: "8rem",
-                }}
-              >
+              <div className="mb-3">
+                <div className="w-75 m-auto width1000">
+                  <label
+                    htmlFor="exampleInputPassword1"
+                    className="form-label smalltitlefont2"
+                  >
+                    Password
+                  </label>
+                  <div style={{ display: "flex" }}>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Enter your Password"
+                      value={Password}
+                      onChange={(e) => {
+                        SetPassword(e.target.value);
+                      }}
+                      required
+                    />
+                    <button
+                      className="btn btn-outline-primary"
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                      style={{ marginLeft: "5px" }}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 w-100 justify-content-center gap-5 d-flex">
                 <button
                   type="submit"
                   className="btn btn-primary"

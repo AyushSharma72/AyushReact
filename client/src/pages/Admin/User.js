@@ -78,17 +78,17 @@ const User = () => {
   return (
     <Layout>
       <div
-        className="bg d-flex justify-content-around"
+        className="bg d-flex justify-content-around responsivestyles"
         style={{ width: "100%" }}
       >
-        <div className="w-25">
+        <div className="w-25 usermenu">
           <AdminMenu />
         </div>
         <div
           style={{ width: "60%" }}
           className="mt-3 d-flex flex-column align-items-center"
         >
-          <table className="table table-striped table-bordered">
+          <table className="table table-striped table-bordered overflow-auto">
             <thead>
               <tr>
                 <th scope="col">Sr_no</th>

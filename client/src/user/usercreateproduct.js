@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
 import { useAuth } from "../context/auth";
+import AdminMenu from "../components/layout/AdminMenu";
 
 const CreateProductUSer = () => {
   const [categories, SetCategories] = useState([]);
@@ -82,13 +83,16 @@ const CreateProductUSer = () => {
   return (
     <Layout>
       <div
-        className="d-flex justify-content-around  overflow-auto"
+        className="d-flex justify-content-around  overflow-auto createproductdiv"
         style={{ height: "100%" }}
       >
-        <div className="w-25 mt-3">
-          <UserMEnu />
+        <div className="w-25 mt-3 usermenu">
+          {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
         </div>
-        <div className="w-50 d-flex flex-column" style={{ height: "100%" }}>
+        <div
+          className="w-50 d-flex flex-column createproduct"
+          style={{ height: "100%" }}
+        >
           <h1>Create Product</h1>
           <div className="w-75">
             <form onSubmit={HandleCreateProduct}>

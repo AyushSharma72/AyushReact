@@ -11,7 +11,7 @@ import PrivateRoute from "./components/routes/privateroute";
 import Forgotpassword from "./pages/forgotpassword";
 import AdminRoute from "./components/routes/Adminroute";
 import CreateCategory from "./pages/Admin/CreateCategory";
-import CreateProduct from "./pages/Admin/CeateProduct";
+// import CreateProduct from "./pages/Admin/CeateProduct";
 import Orders from "./user/orders";
 import Profile from "./user/Profile";
 import Products from "./pages/Admin/products";
@@ -21,7 +21,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Categorylist from "./pages/categorylist";
 import CartPage from "./pages/CartPage";
 import Adminorder from "./pages/Admin/Adminorder";
-import AdminProfile from "./pages/Admin/AdminProfile";
+// import AdminProfile from "./pages/Admin/AdminProfile";
 import Users from "./pages/Admin/User";
 import CreateProductUSer from "./user/usercreateproduct";
 import UpdateProducts from "./user/productsuser";
@@ -32,8 +32,8 @@ import UserQuestions from "./pages/UserQuestions";
 import AnswerQuestion from "./pages/AnswerQuestion";
 import UserContributions from "./pages/UserContributions";
 import View from "./pages/View";
-import AdminQuestions from "./pages/Admin/AdminQuestion";
-import AdminContributions from "./pages/Admin/AdminContributions";
+// import AdminQuestions from "./pages/Admin/AdminQuestion";
+// import AdminContributions from "./pages/Admin/AdminContributions";
 import Productpage from "./pages/Productpage";
 import Technews from "./pages/Technews";
 import UsersProfiles from "./pages/Users";
@@ -64,13 +64,15 @@ function App() {
           path="/userinformation/:Userid"
           element={<UserInformation />}
         ></Route>
-        <Route path="/Resetbyemail/:email" element={<Resetpasswordemail />}></Route>
+        <Route
+          path="/Resetbyemail/:email"
+          element={<Resetpasswordemail />}
+        ></Route>
 
         <Route path="/technews" element={<Technews />}></Route>
 
+        {/* private routes */}
 
-  {/* private routes */}
-  
         <Route path="/Dashboard" element={<PrivateRoute />}>
           <Route path="user/interaction" element={<Interaction />}></Route>
           <Route path="user" element={<Dashboard />}></Route>
@@ -107,7 +109,7 @@ function App() {
           <Route path="admin" element={<AdminDashboard />}></Route>
           <Route
             path="admin/Create-Product"
-            element={<CreateProduct></CreateProduct>}
+            element={<CreateProductUSer />}
           ></Route>
           <Route
             path="admin/Create-Category"
@@ -124,17 +126,17 @@ function App() {
             path="Admin/Orders"
             element={<Adminorder></Adminorder>}
           ></Route>
-          <Route path="Admin/Profile" element={<AdminProfile />}></Route>
+          <Route path="Admin/Profile" element={<Profile />}></Route>
           <Route path="Admin/Users" element={<Users />}></Route>
 
           <Route path="Admin/Interaction" element={<Interaction />}></Route>
 
           <Route path="admin/Ask" element={<AskQuestion />}></Route>
-          <Route path="admin/questions" element={<AdminQuestions />}></Route>
+          <Route path="admin/questions" element={<UserQuestions />}></Route>
           <Route path="admin/answers/:id" element={<AnswerQuestion />}></Route>
           <Route
             path="admin/Contributions"
-            element={<AdminContributions />}
+            element={<UserContributions />}
           ></Route>
           <Route path="admin/ViewQuestion/:qid" element={<View />}></Route>
         </Route>

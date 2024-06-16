@@ -105,23 +105,16 @@ const Forgotpassword = () => {
     <Layout>
       <div className="bg">
         <div
-          className="Registerlayout bg-light"
-          style={{ width: "70%", padding: "20px", borderRadius: "10px" }}
+          className="Registerlayout bg-light width1000"
+          style={{ width: "50%", padding: "20px", borderRadius: "10px" }}
         >
-          <div className="d-flex mb-2"></div>
-
           <form
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            className="d-flex justify-content-center flex-column align-items-center"
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
-            <img src={forget}></img>
+            <img src={forget} style={{ width: "50%" }}></img>
             <div className="mt-1" style={{ width: "100%" }}>
               <div style={{ textAlign: "center" }}>
                 <h3 style={{ fontWeight: "600" }}>Forgot Password</h3>
@@ -131,7 +124,7 @@ const Forgotpassword = () => {
               </div>
             </div>
 
-            <div className="mb-2 w-75" style={{ marginLeft: "3rem" }}>
+            <div className="mb-2 w-75 width1000">
               <label
                 htmlFor="exampleInputEmail1"
                 className="form-label smalltitlefont2"
@@ -152,7 +145,7 @@ const Forgotpassword = () => {
               />
             </div>
 
-            <div className="mb-3 w-75" style={{ marginLeft: "3rem" }}>
+            <div className="mb-3 w-75 width1000">
               <label
                 htmlFor="securityQuestion"
                 className="form-label smalltitlefont2"
@@ -186,7 +179,7 @@ const Forgotpassword = () => {
               </select>
             </div>
 
-            <div className="mb-3" style={{ width: "75%", marginLeft: "3rem" }}>
+            <div className="mb-3 w-75 width1000">
               <label
                 htmlFor="exampleInputEmail1"
                 className="form- smalltitlefont2"
@@ -207,15 +200,17 @@ const Forgotpassword = () => {
               />
             </div>
 
-            <div className="mb-3" style={{ width: "75%", marginLeft: "3rem" }}>
+            <div className="mb-3 w-75  width1000">
               <label
                 htmlFor="exampleInputPassword1"
                 className="form-label smalltitlefont2"
               >
                 New Password
               </label>
+
               <div style={{ display: "flex" }}>
-                <input
+                <in
+                  put
                   type={showPassword ? "text" : "password"}
                   className="form-control"
                   id="exampleInputPassword1"
@@ -226,6 +221,7 @@ const Forgotpassword = () => {
                   }}
                   required
                 />
+
                 <button
                   className="btn btn-outline-primary"
                   type="button"
@@ -237,19 +233,11 @@ const Forgotpassword = () => {
               </div>
             </div>
 
-            <div
-              className="mt-3"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                width: "60%",
-                marginLeft: "6rem",
-              }}
-            >
+            <div className="mt-3 d-flex justify-content-center align-items-center w-75 gap-5">
               <button
                 type="submit"
                 className="btn btn-primary"
-                style={{ width: "10rem", marginRight: "6rem" }}
+                style={{ width: "10rem" }}
               >
                 Reset Password
               </button>
@@ -289,13 +277,6 @@ const Forgotpassword = () => {
                 ></input>
               </Modal>
             </div>
-            <Link
-              to="/login"
-              className="mt-3 btn btn-outline-primary d-flex align-items-center text-decoration-none"
-            >
-              <FaArrowLeft className="me-1" />
-              Back to Login
-            </Link>
           </form>
         </div>
       </div>

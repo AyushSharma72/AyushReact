@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import {
   CountryDropdown,
   RegionDropdown,
-  CountryRegionData,
+  // CountryRegionData,
 } from "react-country-region-selector";
 
 const Register = () => {
@@ -84,7 +84,7 @@ const Register = () => {
     <Layout>
       <div className="bg">
         <div
-          className="Registerlayout bg-light"
+          className="Registerlayout bg-light width1000"
           style={{
             width: "70%",
             height: "100%",
@@ -161,8 +161,11 @@ const Register = () => {
                 />
               </div>
 
-              <div className="mb-3 d-flex">
-                <div style={{ width: "50%", marginRight: "10px" }}>
+              <div className="mb-3 d-flex flex-col">
+                <div
+                  style={{ width: "50%", marginRight: "10px" }}
+                  className="width1000"
+                >
                   <label
                     htmlFor="password"
                     className="form-label smalltitlefont2"
@@ -192,7 +195,7 @@ const Register = () => {
                     </button>
                   </div>
                 </div>
-                <div style={{ width: "50%" }}>
+                <div style={{ width: "50%" }} className="width1000">
                   <label
                     htmlFor="mobile"
                     className="form-label smalltitlefont2"
@@ -214,40 +217,46 @@ const Register = () => {
                 </div>
               </div>
 
-              <div className="d-flex">
-                <div style={{ width: "50%", marginRight: "10px" }}>
-                  <label
-                    htmlFor="country"
-                    className="form-label smalltitlefont2"
-                  >
-                    Country
-                  </label>
-                </div>
+              <div className="d-flex mb-3 flex-col">
                 <div>
-                  <label htmlFor="city" className="form-label smalltitlefont2">
-                    City
-                  </label>
+                  <div style={{ width: "50%", marginRight: "10px" }}>
+                    <label
+                      htmlFor="country"
+                      className="form-label smalltitlefont2"
+                    >
+                      Country
+                    </label>
+                  </div>
+                  <div style={{ width: "50%", marginRight: "10px" }}>
+                    <CountryDropdown
+                      value={country}
+                      onChange={(val) => {
+                        setCountry(val);
+                      }}
+                      style={{ height: "40px", fontSize: "16px" }}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="mb-3 d-flex">
-                <div style={{ width: "50%", marginRight: "10px" }}>
-                  <CountryDropdown
-                    value={country}
-                    onChange={(val) => {
-                      setCountry(val);
-                    }}
-                    style={{ height: "40px", fontSize: "16px" }}
-                  />
-                </div>
-                <div style={{ width: "50%" }}>
-                  <RegionDropdown
-                    country={country}
-                    value={region}
-                    onChange={(val) => {
-                      setRegion(val);
-                    }}
-                    style={{ height: "40px", fontSize: "16px" }}
-                  />
+
+                <div>
+                  <div>
+                    <label
+                      htmlFor="city"
+                      className="form-label smalltitlefont2"
+                    >
+                      City
+                    </label>
+                  </div>
+                  <div style={{ width: "100%" }}>
+                    <RegionDropdown
+                      country={country}
+                      value={region}
+                      onChange={(val) => {
+                        setRegion(val);
+                      }}
+                      style={{ height: "40px", fontSize: "16px" }}
+                    />
+                  </div>
                 </div>
               </div>
 

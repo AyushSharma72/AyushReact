@@ -100,7 +100,7 @@ const Technews = () => {
               effect={"coverflow"}
               grabCursor={true}
               centeredSlides={true}
-              slidesPerView={4}
+              slidesPerView={1}
               loop={true}
               navigation={true}
               coverflowEffect={{
@@ -113,7 +113,15 @@ const Technews = () => {
               modules={[EffectCoverflow, Pagination, Navigation]}
               className="mySwiper"
               initialSlide={0}
+              breakpoints={{
+                450: {
+                  slidesPerView: 1,
+                },
+                // Add more breakpoints if needed
+              }}
             >
+              {/* Your slides go here */}
+
               {newsData.map((newsItem, index) => (
                 <SwiperSlide key={index}>
                   <Card className="box-layout boxlayout">

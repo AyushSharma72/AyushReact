@@ -31,7 +31,7 @@
   }
   .user-tile {
     width: 100% !important;
-  margin: 0 !important;
+    margin: 0 !important;
   }
 
   .News {
@@ -51,20 +51,142 @@
   .Banner {
     margin-top: 2rem;
   }
-  .Accordian1{
+  .Accordian1 {
     margin: 0rem 10px 0rem 10px;
     width: 100% !important;
   }
-  .footer{
+  .footer {
     width: 100%;
   }
-  .footerparent{
+  .footerparent {
     flex-direction: column;
   }
-  .footer-brand{
+  .footer-brand {
     width: 100% !important;
   }
-  .footerlinks{
-      width: 100% !important;
+  .footerlinks {
+    width: 100% !important;
+  }
+
+  .homemaindiv {
+    flex-direction: column;
+  }
+  .categorydiv {
+    display: flex;
+  }
+  .categorydiv h2 {
+    display: none;
+  }
+  .cat {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+  }
+
+  .pricerange h2 {
+    display: none;
+  }
+
+  .catparent {
+    width: 50% !important;
+    display: flex;
+  }
+  .productsparent {
+    width: 100% !important;
+  }
+  .paroducts {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .boxlayoutproducts {
+    width: 80% !important ;
+  }
+  .probuttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .searchbutton {
+    width: 80% !important;
+  }
+  .questioncontainer {
+    width: 95% !important;
+  }
+  .profilediv {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .usermenu {
+    width: 90% !important;
+    justify-content: center;
+  }
+  .tabs {
+    width: 100% !important;
+  }
+  .photobutton {
+    justify-content: center !important;
+  }
+  .TabPanePersonalInfo {
+    flex-direction: column !important;
+  }
+  .userinputform {
+    width: 100% !important;
+  }
+  .userproductsdiv,
+  .createproductdiv,
+  .userquestiondiv,
+  .usercontributiondiv,
+  .categorycreatediv,
+  .adminprodutsdiv,
+  .responsivestyles {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .userprocuts {
+    width: 100% !important;
+  }
+  .createproduct {
+    width: 100% !important;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .tab1questions {
+    width: 100% !important;
+  }
+  .usercontributions {
+    width: 100% !important;
+  }
+
+  .categoryshowdiv {
+    width: 100% !important;
+    justify-content: center;
+  }
+  .adminproducts {
+    width: 100% !important;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .width100 {
+    width: 80% !important;
+  }
+  .width1000 {
+    width: 100% !important;
+  }
+  .width90 {
+    width: 90% !important;
+  }
+  .jtc {
+    justify-content: center;
+  }
+  .alc {
+    align-items: center;
+  }
+  .ViewIcon {
+    margin-right: 1rem;
   }
 }

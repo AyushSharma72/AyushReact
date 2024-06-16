@@ -8,9 +8,9 @@ import { Tabs, Tag } from "antd";
 import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Modal } from "antd";
-
 import { FaArrowLeft } from "react-icons/fa";
 import UserMEnu from "./../components/layout/UserMEnu";
+import AdminMenu from "../components/layout/AdminMenu";
 
 const Profile = () => {
   const [auth, Setauth] = useAuth();
@@ -250,17 +250,20 @@ const Profile = () => {
 
   return (
     <Layout>
-      <div className="bg d-flex justify-content-around ">
-        <div className="w-25 ">
-          <UserMEnu />
+      <div className="bg d-flex justify-content-around profilediv">
+        <div className="w-25 usermenu">
+          {(auth.user.Role = 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>)}
         </div>
-        <Tabs centered style={{ width: "60%" }}>
+        <Tabs centered style={{ width: "60%" }} className="tabs">
           <TabPane
             tab={<span className="tabtitle">Personal Infromation</span>}
             key="1"
             className="TabPanePersonalInfo"
           >
-            <div className="d-flex flex-column align-items-center mt-5">
+            <div
+              className="d-flex flex-column align-items-center mt-5 userimagediv
+            "
+            >
               {" "}
               <img
                 style={{ height: "14rem", width: "14rem", marginRight: "2rem" }}
@@ -269,7 +272,7 @@ const Profile = () => {
                 src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                 data-original-title="Usuario"
               />
-              <div className="d-flex justify-content-start w-100 border-2 mb-2">
+              <div className="d-flex justify-content-start w-100 border-2 mb-2 photobutton">
                 <label className="btn border border-3  btn-outline-primary ">
                   {photo ? photo.name.substring(0, 20) : "Update Profile Photo"}
                   <input
@@ -294,6 +297,7 @@ const Profile = () => {
               onSubmit={(e) => {
                 handlePersonalSubmit(e);
               }}
+              className="userinputform"
             >
               <div
                 className="registerformupdate mt-3"

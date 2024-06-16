@@ -64,7 +64,7 @@ const Resetpasswordemail = () => {
         }}
         className="FormBackgound d-flex justify-content-center align-items-center"
       >
-        <div className="registerform registerformresponsicve">
+        <div className="registerform registerformresponsicve width100">
           <div className="d-flex align-items-center justify-content-center">
             <h1 style={{ fontWeight: "300" }}>Reset Password </h1>{" "}
             <button
@@ -108,7 +108,7 @@ const Resetpasswordemail = () => {
               value={NewPassAgain}
             />
           </div>
-          <button type="submit" className="btn btn-dark" disabled={loading}>
+          <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? "Processing..." : "Reset"}
           </button>
         </div>

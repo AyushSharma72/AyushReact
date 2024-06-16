@@ -20,12 +20,12 @@ const Search = () => {
             : `Found ${values.Products.length} Produts`}
 
           <div
-            className="d-flex justify-content-around flex-wrap "
+            className="d-flex justify-content-around flex-wrap flex-col jtc alc"
             style={{ height: "100%", gap: "0.5rem" }}
           >
             {values.Products.map((p) => (
               <div
-                className="card d-flex border border-3"
+                className="card d-flex border border-3 width100 "
                 style={{ width: "25%", height: "100%" }}
               >
                 <Image

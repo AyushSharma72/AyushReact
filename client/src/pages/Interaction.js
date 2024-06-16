@@ -240,7 +240,7 @@ const Interaction = () => {
             onSearch(Keyword);
           }}
           enterButton
-          className="w-50"
+          className="w-50 searchbutton"
         />
         <Button
           variant="contained"
@@ -305,7 +305,7 @@ const Interaction = () => {
           {Questions.length > 0 ? (
             Questions.map((q) => (
               <div
-                class="card w-75 p-2"
+                class="card w-75 p-2 questioncontainer"
                 style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.3)" }}
               >
                 <div class="card-body">

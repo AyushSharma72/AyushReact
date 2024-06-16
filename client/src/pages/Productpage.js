@@ -143,15 +143,15 @@ function Productpage() {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-end mt-3 ">
+      <div className="d-flex justify-content-end mt-3 homemaindiv ">
         <div
           style={{ width: "20%", marginLeft: "1rem" }}
-          className="Fixed mt-3"
+          className=" mt-3 catparent"
         >
-          <div>
+          <div className="categorydiv">
             <h2 className="mediumtitlefont">Select Category</h2>
 
-            <div className="d-flex flex-column p-1 gap-2">
+            <div className="d-flex flex-column p-1 gap-2 cat">
               {Categories?.map((c) => (
                 <Checkbox
                   key={c._id}
@@ -165,16 +165,17 @@ function Productpage() {
             </div>
           </div>
           {/* filter by price */}
-          <div className="mt-3">
+          <div className="mt-3 pricerange">
             <h2 className="mediumtitlefont">Select Price Range</h2>
-            <div className="d-flex flex-column p-1">
+            <div className="d-flex flex-column p-1 ">
               <Radio.Group
                 onChange={(e) => {
                   SetRadioval(e.target.value);
                 }}
+                className="pri"
               >
                 {Prices?.map((p) => (
-                  <div key={p._id} className="d-flex flex-column p-1 gap-2">
+                  <div key={p._id} className="d-flex flex-column p-1 gap-2 ">
                     <Radio value={p.array}>
                       <strong>{p.name}</strong>
                     </Radio>
@@ -195,11 +196,14 @@ function Productpage() {
           </div>
         </div>
 
-        <div className=" text-center " style={{ height: "100%", width: "80%" }}>
+        <div
+          className=" text-center productsparent"
+          style={{ height: "100%", width: "80%" }}
+        >
           <h1 className="Titlefont">All Products</h1>
           {FilterProductLength ? (
             <div
-              className="d-flex justify-content-around flex-wrap "
+              className="d-flex justify-content-around flex-wrap paroducts "
               style={{ height: "100%", gap: "2rem" }}
             >
               {Products.map((p) => (
@@ -221,9 +225,9 @@ function Productpage() {
                     <p className="card-text">
                       Price: <span className="priceSpan">₹ {p.price}</span>{" "}
                     </p>
-                    <div className="d-flex justify-content-around">
+                    <div className="d-flex justify-content-around  probuttons">
                       <button
-                        className="btn btn-primary ButtonBorder"
+                        className="btn btn-primary ButtonBorder "
                         onClick={() => {
                           if (!auth.user) {
                             toast("Please Login First", {
@@ -237,7 +241,7 @@ function Productpage() {
                         More details
                       </button>
                       <button
-                        className="btn btn-light  border-dark border-2"
+                        className="btn btn-light  border-dark border-2  "
                         onClick={() => {
                           if (!auth.user) {
                             toast("Please Login First");
