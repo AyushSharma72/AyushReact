@@ -65,6 +65,19 @@ const UserSchema = new mongoose.Schema(
         ref: "Questions",
       },
     ],
+    CartItems: [
+      {
+        product: {
+          type: mongoose.ObjectId,
+          ref: "Products",
+        },
+        quantity: {
+          type: Number,
+          required: true,
+          default: 0,
+        },
+      },
+    ],
   },
   {
     timestamps: true,

@@ -100,7 +100,7 @@ const Technews = () => {
               effect={"coverflow"}
               grabCursor={true}
               centeredSlides={true}
-              slidesPerView={1}
+              slidesPerView={4}
               loop={true}
               navigation={true}
               coverflowEffect={{
@@ -113,12 +113,12 @@ const Technews = () => {
               modules={[EffectCoverflow, Pagination, Navigation]}
               className="mySwiper"
               initialSlide={0}
-              breakpoints={{
-                450: {
-                  slidesPerView: 1,
-                },
-                // Add more breakpoints if needed
-              }}
+              // breakpoints={{
+              //   450: {
+              //     slidesPerView: 1,
+              //   },
+              //   // Add more breakpoints if needed
+              // }}
             >
               {/* Your slides go here */}
 

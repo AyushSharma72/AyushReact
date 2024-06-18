@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* navbar css */
@@ -648,7 +648,8 @@ UserInfo .col-md-4 img {
   height: 100%;
 
   min-width: 450px;
-  background-color: rgba(255, 127, 80, 0.328);
+
+  background-color: #ace2e1;
 }
 
 .card-wrapper {
@@ -785,6 +786,13 @@ UserInfo .col-md-4 img {
 
 .swiper-pagination {
   bottom: 8% !important;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: #00f2fe !important;
+
+  position: absolute;
+  top: 82% !important;
 }
 
 .icon {
@@ -1304,4 +1312,9 @@ UserInfo .col-md-4 img {
   top: 5%;
   right: 2.5%;
   cursor: pointer;
+}
+
+.minusplus:hover {
+  cursor: pointer;
+  background-color: white;
 }

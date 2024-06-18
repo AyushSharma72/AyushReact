@@ -107,7 +107,6 @@ const UserDashboard = () => {
                 <FaUserEdit /> Edit Profile
               </NavLink>
             </button>
-
             {/* <button
   className="btn btn-dark ButtonBorder w-100"
   style={{ fontWeight: "700" }}
@@ -120,7 +119,6 @@ const UserDashboard = () => {
     <BsFillCartCheckFill /> Your Orders
   </NavLink>
 </button> */}
-
             <button
               className="btn btn-dark ButtonBorder w-100"
               style={{ fontWeight: "700" }}
@@ -146,7 +144,6 @@ const UserDashboard = () => {
                 Update Product
               </NavLink>
             </button>
-
             <button
               className="btn btn-dark ButtonBorder w-100"
               style={{ fontWeight: "700" }}
@@ -159,7 +156,6 @@ const UserDashboard = () => {
                 <BsFillQuestionSquareFill /> Your Questions
               </NavLink>
             </button>
-
             <button
               className="btn btn-dark ButtonBorder w-100"
               style={{ fontWeight: "700" }}
@@ -173,10 +169,11 @@ const UserDashboard = () => {
                 Your Contributions
               </NavLink>
             </button>
+            a
           </div>
         </Drawer>
         <div className="container bootstrap snippets bootdey">
-          <div className="panel-body inf-content">
+          <div className="panel-body inf-content" style={{ width: "100%" }}>
             <div className="row">
               <div className="col-md-4">
                 <div className="d-flex flex-column align-items-center">

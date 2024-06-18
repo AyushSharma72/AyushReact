@@ -41,7 +41,7 @@ const Products = () => {
         <div className="w-75 adminproducts " style={{ height: "100%" }}>
           <h1 className="text-center mt-2">All Products List</h1>
           <div
-            className="d-flex justify-content-around flex-wrap align-items-center flex-column"
+            className="d-flex justify-content-around flex-wrap align-items-center "
             style={{ gap: "0.5rem" }}
           >
             {Products.map((p) => (

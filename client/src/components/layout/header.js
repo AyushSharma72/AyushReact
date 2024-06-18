@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./../../App.css";
 import { useAuth } from "../../context/auth";
@@ -12,8 +12,8 @@ import Avatar from "@mui/material/Avatar";
 //import { logo } from ',,';
 function Header() {
   const [auth, setAuth] = useAuth();
-  const [cart, setCart] = useCart();
 
+  const [itemCount, setItemCount] = useState(0);
   function HandleLogout() {
     setAuth({
       ...auth,
@@ -25,6 +25,27 @@ function Header() {
       toast.success("logout Successfull");
     }, 500);
   }
+  async function GetCartItems(id) {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/product/getcartitemscount/${id}`
+      );
+      if (response.status == 200) {
+        const { count } = await response.json();
+
+        setItemCount(count);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("cannot fetch cart items");
+    }
+  }
+  useEffect(() => {
+    if (auth?.user?._id) {
+      GetCartItems(auth.user._id);
+    }
+  }, [auth]);
+
   return (
     <>
       <nav
@@ -162,7 +183,7 @@ function Header() {
                 <NavLink to="/UserCart" className="nav-link">
                   <IoCartSharp />
                   <sup>
-                    <Badge count={cart?.length} showZero></Badge>
+                    <Badge count={itemCount} showZero></Badge>
                   </sup>
                 </NavLink>
               </li>

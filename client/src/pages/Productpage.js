@@ -126,6 +126,24 @@ function Productpage() {
     }
   }
 
+  async function Addtocart(pid) {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/product/Addtocart/${pid}/${auth.user._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status == 200) {
+        toast.success("item added to cart");
+      }
+    } catch (error) {
+      toast.error("An error Occured");
+    }
+  }
   useEffect(() => {
     if (checked.length || Radioval.length) {
       FilterProduct();
@@ -246,12 +264,13 @@ function Productpage() {
                           if (!auth.user) {
                             toast("Please Login First");
                           } else {
-                            SetCart([...Cart, p]);
-                            localStorage.setItem(
-                              "Cart",
-                              JSON.stringify([...Cart, p])
-                            );
-                            toast("Item Added to cart!");
+                            // SetCart([...Cart, p]);
+                            // localStorage.setItem(
+                            //   "Cart",
+                            //   JSON.stringify([...Cart, p])
+                            // );
+                            // toast("Item Added to cart!");
+                            Addtocart(p._id);
                           }
                         }}
                       >

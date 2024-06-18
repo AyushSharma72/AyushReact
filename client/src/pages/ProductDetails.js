@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { IoCall } from "react-icons/io5";
 import { Image } from "antd";
 import Layout from "../components/layout/layout";
@@ -91,7 +91,7 @@ const ProductDetails = () => {
       } catch (error) {
         console.error(error);
         setShowModal(false);
-        toast.error("You have already reviewed");
+        toast.error("already reviewed this product");
       }
     } else {
       toast.error("Please provide a valid comment and rating (1-5)");
@@ -121,6 +121,24 @@ const ProductDetails = () => {
     }
   }
 
+  async function Addtocart(pid) {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/product/Addtocart/${pid}/${auth.user._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status == 200) {
+        toast.success("item added to cart");
+      }
+    } catch (error) {
+      toast.error("An error Occured");
+    }
+  }
   useEffect(() => {
     if (showModal) {
       setComment("");
@@ -183,14 +201,7 @@ const ProductDetails = () => {
                       className="button-27"
                       style={{ marginRight: "60px" }}
                       onClick={() => {
-                        SetCart([...Cart, p]);
-                        localStorage.setItem(
-                          "Cart",
-                          JSON.stringify([...Cart, p])
-                        );
-                        toast("Item Added to cart!", {
-                          icon: "👍",
-                        });
+                        Addtocart(p._id);
                       }}
                     >
                       ADD TO CART
@@ -245,9 +256,9 @@ const ProductDetails = () => {
                     effect={"coverflow"}
                     grabCursor={true}
                     centeredSlides={true}
-                    slidesPerView={Math.min(3, p.reviews.length)} // Ensure at least 3 reviews are visible
-                    loop={true}
+                    slidesPerView={1} // Ensure at least 3 reviews are visible
                     navigation={true}
+                    loop={true}
                     coverflowEffect={{
                       rotate: 50,
                       stretch: 0,
@@ -256,7 +267,7 @@ const ProductDetails = () => {
                     }}
                     modules={[EffectCoverflow, Navigation]}
                     className="mySwiper mb-3"
-                    initialSlide={1}
+                    initialSlide={0}
                   >
                     {p.reviews.length > 0 && (
                       <>

@@ -236,8 +236,17 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    const { Email, Name, Address, MobileNo, Github, LinkedIn, Website, tags } =
-      auth.user;
+    const {
+      Email,
+      Name,
+      Address,
+      Location,
+      MobileNo,
+      Github,
+      LinkedIn,
+      Website,
+      tags,
+    } = auth.user;
     SetName(Name);
     SetEmail(Email);
     SetLocation(Location);
@@ -252,8 +261,9 @@ const Profile = () => {
     <Layout>
       <div className="bg d-flex justify-content-around profilediv">
         <div className="w-25 usermenu">
-          {(auth.user.Role = 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>)}
+          {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu />}
         </div>
+
         <Tabs centered style={{ width: "60%" }} className="tabs">
           <TabPane
             tab={<span className="tabtitle">Personal Infromation</span>}

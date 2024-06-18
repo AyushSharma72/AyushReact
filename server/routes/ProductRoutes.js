@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const requireSignIn = require("../middlewares/authMiddleware");
 const IsAdmin = require("../middlewares/Isadmin");
+
 const {
   CreateProductController,
   GetProductController,
@@ -18,8 +19,14 @@ const {
   GetUserProductController,
   createProductReview,
   deleteReview,
-  GetAllProductsController
+  GetAllProductsController,
+  AddtoCart,
+  getCartItems,
+  getCartItemsCount,
+  RemoveCartitems,
+  ChangeCartQuantity,
 } = require("../controllers/ProductController");
+
 const formidable = require("express-formidable");
 //routes
 //create product
@@ -30,10 +37,10 @@ router.post(
   CreateProductController
 );
 
-// get all products without id 
-router.get("/get-product", GetAllProductsController)
+// get all products without id
+router.get("/get-product", GetAllProductsController);
 
-//get All products 
+//get All products
 router.get("/get-product/:id", GetProductController);
 
 // get single Product
@@ -56,7 +63,6 @@ router.put(
 
 // get by filter
 
-
 router.post("/productfilter", ProductFilterController);
 
 router.get("/product-count/:id", ProductCountController);
@@ -77,8 +83,18 @@ router.get("/product-CategoryWise/:id/:pid", CatergoryWiseProductController);
 router.get("/get-product-user/:id", GetUserProductController);
 
 //create review
-router.put("/get-product/:pid/:uid/create-review", createProductReview)
+router.put("/get-product/:pid/:uid/create-review", createProductReview);
 //delete review
-router.delete("/get-product/:pid/:uid/delete-review/:rid", deleteReview)
+router.delete("/get-product/:pid/:uid/delete-review/:rid", deleteReview);
 
+router.post("/Addtocart/:pid/:uid", AddtoCart);
+
+router.get("/getcartitems/:uid", getCartItems);
+
+router.get("/getcartitemscount/:uid", getCartItemsCount);
+
+router.get("/removecartitem/:pid/:uid", RemoveCartitems);
+
+router.post("/changequantitycartitem/:pid/:uid", ChangeCartQuantity);
+  
 module.exports = router;

@@ -9,6 +9,8 @@ import {
   RegionDropdown,
   // CountryRegionData,
 } from "react-country-region-selector";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const Register = () => {
   const Locate = useLocation();
@@ -25,6 +27,7 @@ const Register = () => {
   const [Location, setLocation] = useState("");
   const navigate = useNavigate();
   const [Loading, SetLoading] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -202,7 +205,12 @@ const Register = () => {
                   >
                     Mobile No.
                   </label>
-                  <input
+                  <PhoneInput
+                    country={"us"}
+                    value={MobileNo}
+                    onChange={SetMobileNo} // directly set the value here
+                  />
+                  {/* <input
                     type="text"
                     className="form-control"
                     id="exampleInputPassword1"
@@ -213,7 +221,7 @@ const Register = () => {
                     }}
                     required
                     style={{ fontSize: "16px" }}
-                  />
+                  /> */}
                 </div>
               </div>
 

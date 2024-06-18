@@ -4,7 +4,7 @@ const usermodel = require("../modles/usermodel");
 const fs = require("fs").promises;
 const slugify = require("slugify");
 const CategoryModel = require("../modles/CategoryModel");
-
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.configDotenv();
 //payment gateway
@@ -50,7 +50,7 @@ async function CreateProductController(req, resp) {
   }
 }
 
-//getAllproductscontroller without an ID  
+//getAllproductscontroller without an ID
 async function GetAllProductsController(req, resp) {
   try {
     const products = await ProductModel.find()
@@ -71,7 +71,6 @@ async function GetAllProductsController(req, resp) {
     });
   }
 }
-
 
 //get products
 async function GetProductController(req, resp) {
@@ -486,6 +485,131 @@ async function GetUserProductController(req, resp) {
   }
 }
 
+async function AddtoCart(req, res) {
+  try {
+    const { pid, uid } = req.params;
+    const user = await usermodel.findById(uid);
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    const cartItem = user.CartItems.find(
+      (item) => item.product.toString() === pid
+    );
+    if (cartItem) {
+      //i the product already exists
+      cartItem.quantity += 1;
+    } else {
+      //if it do not exists
+      user.CartItems.push({
+        product: new mongoose.Types.ObjectId(pid),
+        quantity: 1,
+      });
+    }
+    await user.save();
+    res.status(200).send({ message: "Product added to cart successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: "Failed to add product to cart" });
+  }
+}
+
+async function RemoveCartitems(req, res) {
+  try {
+    const { pid, uid } = req.params;
+    const user = await usermodel.findById(uid);
+
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    const cartItemIndex = user.CartItems.findIndex(
+      (item) => item.product.toString() === pid //find the index
+    );
+
+    if (cartItemIndex !== -1) {
+      user.CartItems.splice(cartItemIndex, 1); //remove from the array
+      await user.save();
+      return res
+        .status(200)
+        .send({ message: "Product removed from cart successfully" });
+    } else {
+      return res.status(404).send({ error: "Product not found in cart" });
+    }
+  } catch (error) {
+    return res.status(500).send({ error: "Error in API" });
+  }
+}
+
+async function getCartItems(req, res) {
+  try {
+    const { uid } = req.params;
+    const items = await usermodel
+      .findById(uid)
+      .select("CartItems")
+      .populate("CartItems.product");
+
+    if (!items) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    const count = items.CartItems.length;
+    res.status(200).send({ items, count });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: "Failed to retrieve cart items" });
+  }
+}
+
+async function getCartItemsCount(req, res) {
+  try {
+    const { uid } = req.params;
+    const items = await usermodel.findById(uid).select("CartItems");
+
+    if (!items) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    const count = items.CartItems.length;
+    res.status(200).send({ count });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: "Failed to retrieve cart items" });
+  }
+}
+
+async function ChangeCartQuantity(req, resp) {
+  try {
+    const { uid, pid } = req.params;
+    const value = req.body.value;
+    const user = await usermodel.findById(uid);
+
+    if (!user) {
+      return resp.status(404).send({
+        error: "user not found",
+      });
+    }
+    const cartitem = user.CartItems.find(
+      (item) => item.product.toString() === pid
+    );
+
+    if (!cartitem) {
+      return resp.status(404).send({
+        error: "item not found",
+      });
+    } else {
+      cartitem.quantity += value;
+      await user.save();
+      return resp.status(200).send({
+        cartitem,
+        message: "Value Updated",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    resp.status(404).send({
+      error: "Error in api ",
+    });
+  }
+}
+
 module.exports = {
   CreateProductController,
   GetAllProductsController,
@@ -504,4 +628,9 @@ module.exports = {
   createProductReview,
   deleteReview,
   ProductCountController,
+  AddtoCart,
+  getCartItems,
+  getCartItemsCount,
+  RemoveCartitems,
+  ChangeCartQuantity,
 };
