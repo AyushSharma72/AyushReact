@@ -209,8 +209,7 @@ const Forgotpassword = () => {
               </label>
 
               <div style={{ display: "flex" }}>
-                <in
-                  put
+                <input
                   type={showPassword ? "text" : "password"}
                   className="form-control"
                   id="exampleInputPassword1"
