@@ -52,6 +52,7 @@ const ContactForm = () => {
       onSubmit={(e) => {
         handleSubmit(e);
       }}
+      className="width1000 w-75"
     >
       <div className="mb-3 ">
         <label htmlFor="name" className="form-label smalltitlefont">
@@ -112,9 +113,12 @@ const ContactForm = () => {
 const Contact = () => {
   return (
     <Layout>
-      <div className="d-flex justify-content-center align-items-center formlayout ">
+      <div className="d-flex justify-content-center align-items-center  flex-col directionrev  boxlayout w-75 m-auto mt-4 width1000">
         {/* Left side: Contact Form */}
-        <div style={{ width: "50%" }}>
+        <div
+          style={{ width: "50%" }}
+          className="width1000 d-flex flex-column flex-col align-items-center"
+        >
           <h1 className="Titlefont aqua">Get in Touch</h1>
           <p className="smalltitlefont aqua">
             We are here for you. How can we help?
@@ -123,7 +127,7 @@ const Contact = () => {
         </div>
 
         {/* Right side: Contact Image and Details */}
-        <div style={{ width: "50%" }}>
+        <div style={{ width: "50%" }} className="width1000">
           <div className="w-100 d-flex justify-content-center align-items-center">
             <img
               src={Contactus}
@@ -178,115 +182,58 @@ const Contact = () => {
         className="Titlefont"
         style={{ textAlign: "center", marginTop: "2rem", marginBottom: "1rem" }}
       >
-        Meet the team
+        Developed By
       </div>
+
       <div className="d-flex justify-content-center">
-        <div className="memberinfo boxlayout">
-          <div className="memberimg">
+        {/* <div className="memberimg">
             <img src={AyushProfile} className="imgstyle" alt="Person 1" />
-          </div>
-          <div style={{ marginLeft: "1rem" }}>
-            <p className="smalltitlefont TeamNames">Ayush Sharma</p>
-            <p className="smalltitlefont" style={{ margin: "0" }}>
-              Developer and Project Manager
-            </p>
-            <div style={{ display: "flex" }}>
-              <div className="icons" style={{ backgroundColor: "black" }}>
-                <a
-                  href="https://github.com/AyushSharma72"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaGithub />
-                </a>
-              </div>
-              <div className="icons" style={{ backgroundColor: "#ff0000" }}>
-                <a
-                  href="mailto:asharma7588@gmail.com"
-                  style={{ color: "white" }}
-                >
-                  <FaEnvelope />
-                </a>
-              </div>
-              <div className="icons" style={{ backgroundColor: "#0077b5" }}>
-                <a
-                  href="https://www.linkedin.com/in/ayush-sharma-a155a8267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaLinkedin />
-                </a>
-              </div>
-              <div className="icons" style={{ backgroundColor: "#8B0000" }}>
-                <a
-                  href="https://youtube.com/@ayushSharma-fx3pf?feature=shared"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaYoutube />
-                </a>
-              </div>
+          </div> */}
+        <div style={{ marginLeft: "1rem" }} className="boxlayout w-50 width100">
+          <p className="smalltitlefont TeamNames">Ayush Sharma</p>
+          <p className="smalltitlefont" style={{ margin: "0" }}>
+            Developer and Project Manager
+          </p>
+          <div style={{ display: "flex" }}>
+            <div className="icons" style={{ backgroundColor: "black" }}>
+              <a
+                href="https://github.com/AyushSharma72"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "white" }}
+              >
+                <FaGithub />
+              </a>
             </div>
-          </div>
-        </div>
-        {/* Team Member 2 */}
-        <div className="memberinfo boxlayout">
-          <div className="memberimg">
-            <img src={vinayprofile} className="imgstyle" alt="Person 1" />
-          </div>
-          <div style={{ marginLeft: "1rem" }}>
-            <p className=" TeamNames">Vinay Anand Lodhi</p>
-            <p className="smalltitlefont" style={{ margin: "0" }}>
-              Developer and Project Manager
-            </p>
-            <div style={{ display: "flex" }}>
-              <div className="icons" style={{ backgroundColor: "black" }}>
-                <a
-                  href="https://github.com/VinayLodhi1712"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaGithub />
-                </a>
-              </div>
-              <div className="icons" style={{ backgroundColor: "#ff0000" }}>
-                <a
-                  href="mailto:vinayanandlodhi12@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaEnvelope />
-                </a>
-              </div>
-              <div className="icons" style={{ backgroundColor: "#0077b5" }}>
-                <a
-                  href="https://www.linkedin.com/in/vinay-anand-lodhi-5694b1234"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaLinkedin />
-                </a>
-              </div>
-              <div className="icons" style={{ backgroundColor: "#8B0000" }}>
-                <a
-                  href="https://www.youtube.com/channel/UCDSoSvpgsmz4b6gB1k3OLjg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "white" }}
-                >
-                  <FaYoutube />
-                </a>
-              </div>
+            <div className="icons" style={{ backgroundColor: "#ff0000" }}>
+              <a href="mailto:asharma7588@gmail.com" style={{ color: "white" }}>
+                <FaEnvelope />
+              </a>
+            </div>
+            <div className="icons" style={{ backgroundColor: "#0077b5" }}>
+              <a
+                href="https://www.linkedin.com/in/ayush-sharma-a155a8267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "white" }}
+              >
+                <FaLinkedin />
+              </a>
+            </div>
+            <div className="icons" style={{ backgroundColor: "#8B0000" }}>
+              <a
+                href="https://youtube.com/@ayushSharma-fx3pf?feature=shared"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "white" }}
+              >
+                <FaYoutube />
+              </a>
             </div>
           </div>
         </div>
       </div>
+      {/* Team Member 2 */}
     </Layout>
   );
 };

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 import { FaAddressBook, FaShoppingCart, FaComment } from "react-icons/fa";
+
 function Productcard() {
   return (
     <Card className="boxlayout" style={{ width: "22rem" }}>
@@ -115,132 +116,131 @@ const About = () => {
 
   return (
     <Layout>
-      <p className="Titlefont center WelcomeTExt" style={{ marginTop: "2rem" }}>
+      <div className="d-flex flex-column">
         {" "}
-        Welcome to <mark>TALKOFCODE</mark>, your go-to destination for all
-        things code-related!
-      </p>
-      <div className="cards">
-        <Productcard />
+        <p className="Titlefont center WelcomeTExt">
+          {" "}
+          Welcome to <mark>TALKOFCODE</mark>, your go-to destination for all
+          things code-related!
+        </p>
+        <div className="cards flex-col">
+          <Productcard />
 
-        <Codeconnectcard />
+          <Codeconnectcard />
 
-        <Technewscard />
-      </div>
-
-      <p className="Titlefont center " style={{ marginTop: "2rem" }}>
-        {" "}
-        About us
-      </p>
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ height: "100%", gap: "2rem" }}
-      >
-        <div
-          className="d-flex justify-content-around align-items-center"
-          style={{ width: "45%", height: "80%", gap: "1rem" }}
-        >
-          <div>
-            <div className="gradient1  p-2 ">
-              <div>
-                <FaAddressBook />
-              </div>
-              <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                {({ isVisible }) => (
-                  <div style={{ height: 50 }}>
-                    {isVisible ? (
-                      <h2>
-                        <CountUp end={900} duration={3} />{" "}
-                      </h2>
-                    ) : null}
-                  </div>
-                )}
-              </VisibilitySensor>
-              <b>Users</b>
-            </div>
-            <div className="statement">
-              <p className="statement-heading">TechNews :</p>
-              <p>"Stay Informed, Stay Ahead"</p>
-            </div>
-          </div>
-
-          <div>
-            <div className="gradient2  p-2">
-              <div>
-                <FaComment />
-              </div>
-              <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                {({ isVisible }) => (
-                  <div style={{ height: 50 }}>
-                    {isVisible ? (
-                      <h2>
-                        <CountUp end={234} duration={3} />{" "}
-                      </h2>
-                    ) : null}
-                  </div>
-                )}
-              </VisibilitySensor>
-
-              <b>Questions Asked</b>
-            </div>
-
-            <div className="statement">
-              <p className="statement-heading">CodeConnect :</p>
-              <p>"Empowering Knowledge Exchange"</p>
-            </div>
-          </div>
-
-          <div>
-            <div className="gradient3  p-2">
-              <div>
-                <FaShoppingCart />
-              </div>
-              <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                {({ isVisible }) => (
-                  <div style={{ height: 50 }}>
-                    {isVisible ? (
-                      <h2>
-                        <CountUp end={342} duration={3} />{" "}
-                      </h2>
-                    ) : null}
-                  </div>
-                )}
-              </VisibilitySensor>
-              <b>Products listed</b>
-            </div>
-
-            <div className="statement">
-              <p className="statement-heading">TalkOfCode :</p>
-              <p>"Sustainable Tech Solutions"</p>
-            </div>
-          </div>
-
-          {/* This will create an empty bottom half */}
+          <Technewscard />
         </div>
+        <p className="Titlefont center " style={{ marginTop: "2rem" }}>
+          {" "}
+          About us
+        </p>
+        <div className="d-flex justify-content-center align-items-center width1000 flex-col">
+          <div
+            className="d-flex justify-content-around align-items-center width1000 padding "
+            style={{ width: "45%", gap: "1rem" }}
+          >
+            <div>
+              <div className="gradient1  p-2 ">
+                <div>
+                  <FaAddressBook />
+                </div>
+                <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
+                  {({ isVisible }) => (
+                    <div style={{ height: 50 }}>
+                      {isVisible ? (
+                        <h2>
+                          <CountUp end={900} duration={2} />{" "}
+                        </h2>
+                      ) : null}
+                    </div>
+                  )}
+                </VisibilitySensor>
+                <b>Users</b>
+              </div>
+              <div className="statement">
+                <p className="statement-heading">TechNews :</p>
+                <p>"Stay Informed, Stay Ahead"</p>
+              </div>
+            </div>
 
-        <div
-          style={{ width: "50%", height: "80%", marginBottom: "1rem" }}
-          className="flex-column d-flex "
-        >
-          <div className="boxlayout smalltitlefont">
-            <p>
-              At TalkOfCode, we're more than just a platform – we're a vibrant
-              community of learners, creators, and enthusiasts united by our
-              passion for technology. Our mission is simple: to provide a
-              dynamic space where individuals from all backgrounds can come
-              together to learn, share, and grow.
-            </p>
-            <p className="smalltitlefont">
-              "Whether you're a seasoned developer, a student, or an
-              entrepreneur, TalkOfCode is here to support you every step of the
-              way."
-            </p>
-            <p className="smalltitlefont">
-              TalkOfCode also offers a unique marketplace where members can buy
-              and sell old tech products, fostering a culture of sustainability
-              and resourcefulness within our community. Let's code, connect, and
-              create together!
-            </p>
+            <div>
+              <div className="gradient2  p-2">
+                <div>
+                  <FaComment />
+                </div>
+                <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
+                  {({ isVisible }) => (
+                    <div style={{ height: 50 }}>
+                      {isVisible ? (
+                        <h2>
+                          <CountUp end={234} duration={2} />{" "}
+                        </h2>
+                      ) : null}
+                    </div>
+                  )}
+                </VisibilitySensor>
+
+                <b>Questions Asked</b>
+              </div>
+
+              <div className="statement">
+                <p className="statement-heading">CodeConnect :</p>
+                <p>"Empowering Knowledge Exchange"</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="gradient3  p-2">
+                <div>
+                  <FaShoppingCart />
+                </div>
+                <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
+                  {({ isVisible }) => (
+                    <div style={{ height: 50 }}>
+                      {isVisible ? (
+                        <h2>
+                          <CountUp end={342} duration={2} />{" "}
+                        </h2>
+                      ) : null}
+                    </div>
+                  )}
+                </VisibilitySensor>
+                <b>Products listed</b>
+              </div>
+
+              <div className="statement">
+                <p className="statement-heading">TalkOfCode :</p>
+                <p>"Sustainable Tech Solutions"</p>
+              </div>
+            </div>
+
+            {/* This will create an empty bottom half */}
+          </div>
+
+          <div
+            style={{ width: "50%", marginBottom: "1rem" }}
+            className="flex-column d-flex width1000"
+          >
+            <div className="boxlayout smalltitlefont">
+              <p>
+                At TalkOfCode, we're more than just a platform – we're a vibrant
+                community of learners, creators, and enthusiasts united by our
+                passion for technology. Our mission is simple: to provide a
+                dynamic space where individuals from all backgrounds can come
+                together to learn, share, and grow.
+              </p>
+              <p className="smalltitlefont">
+                "Whether you're a seasoned developer, a student, or an
+                entrepreneur, TalkOfCode is here to support you every step of
+                the way."
+              </p>
+              <p className="smalltitlefont">
+                TalkOfCode also offers a unique marketplace where members can
+                buy and sell old tech products, fostering a culture of
+                sustainability and resourcefulness within our community. Let's
+                code, connect, and create together!
+              </p>
+            </div>
           </div>
         </div>
       </div>

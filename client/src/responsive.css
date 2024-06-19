@@ -189,4 +189,10 @@
   .ViewIcon {
     margin-right: 1rem;
   }
+  .padding {
+    padding: 0px 5px 0px 5px;
+  }
+  .directionrev {
+    flex-direction: column-reverse;
+  }
 }
