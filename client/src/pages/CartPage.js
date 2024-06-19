@@ -122,8 +122,8 @@ const CartPage = () => {
         {auth?.token ? (
           //cart page items
           Cartitems.length > 0 ? (
-            <div className="d-flex  justify-content-around">
-              <div style={{ width: "60%" }}>
+            <div className="d-flex  justify-content-around flex-col align-items-center gap-4">
+              <div style={{ width: "60%" }} className="width1000">
                 <Swiper
                   effect={"coverflow"}
                   centeredSlides={true}
@@ -140,6 +140,16 @@ const CartPage = () => {
                   modules={[EffectCoverflow, Pagination, Navigation]}
                   className="mySwiper"
                   initialSlide={1}
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                    },
+                    450: {
+                      slidesPerView: 3,
+                      spaceBetween:50
+                    },
+                    // Add more breakpoints if needed
+                  }}
                 >
                   {Cartitems.map((item) => (
                     <SwiperSlide>
@@ -240,7 +250,7 @@ const CartPage = () => {
               </div>
               <div
                 style={{ width: "30%", border: "2px solid black" }}
-                className="d-flex flex-column p-2 "
+                className="d-flex flex-column p-2 width100 mb-4"
               >
                 <h2 className="text-center">Cart Summary</h2>
                 <p>

@@ -84,7 +84,7 @@ const CreateProductUSer = () => {
     <Layout>
       <div
         className="d-flex justify-content-around  overflow-auto createproductdiv"
-        style={{ height: "100%" }}
+       
       >
         <div className="w-25 mt-3 usermenu">
           {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}

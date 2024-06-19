@@ -150,23 +150,18 @@ const ProductDetails = () => {
 
   return (
     <Layout>
-      <style>{`
-       .swiper-wrapper {
-        width: 100% !important;
-      }
-      `}</style>
       <div className=" mt-3 d-flex flex-column">
         <h3 className="text-center mb-5 Titlefont">Product Details</h3>
         {Detail.map((p) => (
-          <div className="row">
-            <div className="col-md-6" style={{ width: "40%" }}>
+          <div className="row flex-col ">
+            <div className="col-md-6 justify-content-center d-flex">
               <Image
                 src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
                 className="card-Image-top"
                 style={{ height: "25rem" }}
               />
             </div>
-            <div className="col-md-6" style={{ width: "60%" }}>
+            <div className="col-md-6">
               <div className="d-flex  mb-3">
                 <button
                   className="button-16"

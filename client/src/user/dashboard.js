@@ -107,18 +107,7 @@ const UserDashboard = () => {
                 <FaUserEdit /> Edit Profile
               </NavLink>
             </button>
-            {/* <button
-  className="btn btn-dark ButtonBorder w-100"
-  style={{ fontWeight: "700" }}
->
-  <NavLink
-    to="/dashboard/user/Orders"
-    className="list-group-item list-group-item-action d-flex justify-content-center  align-items-center"
-    style={{ gap: "0.5rem" }}
-  >
-    <BsFillCartCheckFill /> Your Orders
-  </NavLink>
-</button> */}
+
             <button
               className="btn btn-dark ButtonBorder w-100"
               style={{ fontWeight: "700" }}
@@ -169,16 +158,17 @@ const UserDashboard = () => {
                 Your Contributions
               </NavLink>
             </button>
-            a
           </div>
         </Drawer>
-        <div className="container bootstrap snippets bootdey">
-          <div className="panel-body inf-content" style={{ width: "100%" }}>
+
+        <div className="container bootstrap snippets bootdey ">
+          <div className="panel-body inf-content w-100">
             <div className="row">
               <div className="col-md-4">
                 <div className="d-flex flex-column align-items-center">
                   <img
                     style={{ width: "90%" }}
+                    className="width50"
                     src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
                   />
                 </div>
