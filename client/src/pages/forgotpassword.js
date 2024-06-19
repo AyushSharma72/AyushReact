@@ -39,7 +39,7 @@ const Forgotpassword = () => {
       e.preventDefault();
       Setloading(true);
       const response = await fetch(
-        "http://localhost:8000/api/v1/auth/forgetPassword",
+        "https://ayushreactbackend.onrender.com/api/v1/auth/forgetPassword",
         {
           method: "POST",
           headers: {
@@ -75,7 +75,7 @@ const Forgotpassword = () => {
     try {
       Setloading(true);
       const response = await fetch(
-        "http://localhost:8000/api/v1/auth/SendResetEmail",
+        "https://ayushreactbackend.onrender.com/api/v1/auth/SendResetEmail",
         {
           method: "POST",
           headers: {

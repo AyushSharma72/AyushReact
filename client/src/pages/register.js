@@ -58,7 +58,7 @@ const Register = () => {
         return;
       }
       const response = await fetch(
-        "http://localhost:8000/api/v1/auth/register",
+        "https://ayushreactbackend.onrender.com/api/v1/auth/register",
         {
           method: "POST",
           body: formData,

@@ -37,7 +37,7 @@ const ProductDetails = () => {
   async function GetProduct() {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/getSingle-product/${params.slug}`
+        `https://ayushreactbackend.onrender.com/api/v1/product/getSingle-product/${params.slug}`
       );
       const data = await response.json();
       console.log(data);
@@ -70,7 +70,7 @@ const ProductDetails = () => {
     if (comment && !isNaN(rating) && rating >= 1 && rating <= 5) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/v1/product/get-product/${productId}/${authId}/create-review`,
+          `https://ayushreactbackend.onrender.com/api/v1/product/get-product/${productId}/${authId}/create-review`,
           {
             method: "PUT",
             headers: {
@@ -103,7 +103,7 @@ const ProductDetails = () => {
     const productId = Detail[0]._id;
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/get-product/${productId}/${authId}/delete-review/${reviewId}`,
+        `https://ayushreactbackend.onrender.com/api/v1/product/get-product/${productId}/${authId}/delete-review/${reviewId}`,
         {
           method: "delete",
         }
@@ -124,7 +124,7 @@ const ProductDetails = () => {
   async function Addtocart(pid) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/Addtocart/${pid}/${auth.user._id}`,
+        `https://ayushreactbackend.onrender.com/api/v1/product/Addtocart/${pid}/${auth.user._id}`,
         {
           method: "POST",
           headers: {
@@ -161,7 +161,7 @@ const ProductDetails = () => {
           <div className="row">
             <div className="col-md-6" style={{ width: "40%" }}>
               <Image
-                src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
+                src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
                 className="card-Image-top"
                 style={{ height: "25rem" }}
               />
