@@ -14,6 +14,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import DropIn from "braintree-web-drop-in-react";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 
@@ -24,6 +25,9 @@ const CartPage = () => {
   const Navigate = useNavigate();
   const [itemCount, setItemCount] = useState(0);
   const [totalprice, settotalprice] = useState(0);
+  const [ClientToken, SetClientToken] = useState("");
+  const [instance, Setinstance] = useState("");
+  const [loading, SetLoading] = useState(false);
 
   function TotalPrice() {
     try {
@@ -92,7 +96,53 @@ const CartPage = () => {
       toast.error("error try later");
     }
   }
+  async function GetToken() {
+    try {
+      const response = await fetch(
+        "https://ecomwebapp.onrender.com/api/v1/product/braintree/token"
+      );
+      const data = await response.json();
+      if (data) {
+        SetClientToken(data.clientToken);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //handle payment
 
+  async function HandlePayment() {
+    try {
+      SetLoading(true);
+
+      const response = await fetch(
+        "https://ecomwebapp.onrender.com/api/v1/product/braintree/payment",
+        {
+          headers: {
+            "Content-Type": "application/json", // Specify the content type
+            Authorization: auth?.token,
+          },
+          method: "POST",
+          body: JSON.stringify(Cartitems),
+        }
+      );
+
+      SetLoading(false);
+
+      toast.success("Payment Succesfull");
+      // setTimeout(() => {
+      //   Navigate("/dashboard/user/orders");
+      // }, 2000);
+    } catch (error) {
+      console.log(error);
+      SetLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    GetToken();
+  }, [auth?.token]); //call the function only if the user is logged in
+  //keep it to get drop in rendere
   useEffect(() => {
     settotalprice(TotalPrice());
   }, [Cartitems]);
@@ -144,9 +194,9 @@ const CartPage = () => {
                     0: {
                       slidesPerView: 1,
                     },
-                    450: {
+                    500: {
                       slidesPerView: 3,
-                      spaceBetween:50
+                      spaceBetween: 50,
                     },
                     // Add more breakpoints if needed
                   }}
@@ -217,15 +267,9 @@ const CartPage = () => {
                             <button
                               className="btn btn-primary ButtonBorder "
                               onClick={() => {
-                                if (!auth.user) {
-                                  toast("Please Login First", {
-                                    duration: 2000, // Set duration to 2 seconds
-                                  });
-                                } else {
-                                  Navigate(
-                                    `/ProductDetails/${item.product.slug}`
-                                  );
-                                }
+                                Navigate(
+                                  `/ProductDetails/${item.product.slug}`
+                                );
                               }}
                             >
                               More details
@@ -248,7 +292,7 @@ const CartPage = () => {
                   ))}
                 </Swiper>
               </div>
-              <div
+              {/* <div
                 style={{ width: "30%", border: "2px solid black" }}
                 className="d-flex flex-column p-2 width100 mb-4"
               >
@@ -256,6 +300,54 @@ const CartPage = () => {
                 <p>
                   <b>Total Price :</b> {totalprice} Rs
                 </p>
+              </div> */}
+              <div
+                className="d-flex flex-column  width90"
+                style={{ width: "40%" }}
+              >
+                <h2 className="text-center " style={{ margin: "0" }}>
+                  Cart Summary
+                </h2>
+
+                <hr />
+                <div className="card p-2">
+                  <h5>
+                    <b>Total Payable Amount:</b> ₹ {totalprice}.00 (This is only
+                    for demo purpose you can pay)
+                  </h5>
+                  {/* <h5>
+                    <b>Shipping Address:</b> {auth.user.Location}{" "}
+                    <button
+                      className="btn btn-dark"
+                      onClick={() => {
+                        Navigate("/dashboard/user/profile");
+                      }}
+                    >
+                      Change Address
+                    </button>
+                  </h5> */}
+                  <div className="d-flex flex-column align-items-center">
+                    {!ClientToken || !Cartitems.length ? null : (
+                      <>
+                        <DropIn
+                          options={{
+                            authorization: ClientToken,
+                          }}
+                          onInstance={(instance) => Setinstance(instance)}
+                        />
+                        <button
+                          className="btn btn-primary ButtonBorder"
+                          onClick={() => {
+                            HandlePayment();
+                          }}
+                          disabled={!instance}
+                        >
+                          {loading ? "Processing.." : "Make Payment"}
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           ) : null

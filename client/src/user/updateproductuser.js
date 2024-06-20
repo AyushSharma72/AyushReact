@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { Select } from "antd";
 import { useAuth } from "../context/auth";
+import AdminMenu from "../components/layout/AdminMenu";
 
 const UpateProductUSer = () => {
   const [categories, SetCategories] = useState([]);
@@ -141,13 +142,16 @@ const UpateProductUSer = () => {
   return (
     <Layout>
       <div
-        className="d-flex justify-content-around mt-3 overflow-auto"
+        className="d-flex justify-content-around mt-3 overflow-auto flex-col responsivestyles"
         style={{ height: "100%" }}
       >
-        <div className="w-25">
-          <UserMEnu />
+        <div className="w-25 width90">
+          {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
         </div>
-        <div className="w-50 d-flex flex-column" style={{ height: "100%" }}>
+        <div
+          className="w-50 d-flex flex-column mt-2 width1000  alc"
+          style={{ height: "100%" }}
+        >
           <h1>Update Product</h1>
           <div className="w-75">
             <form onSubmit={HandleUpdateProduct}>
@@ -232,7 +236,7 @@ const UpateProductUSer = () => {
               </button>
             </form>
             <button
-              className="mt-2  btn btn-danger"
+              className="mt-2 mb-2  btn btn-danger"
               onClick={() => {
                 HandleDelete();
               }}

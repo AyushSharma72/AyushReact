@@ -19,7 +19,8 @@ const UserContributions = () => {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null); // State to store the selected contribution ID
   const [expandedId, setExpandedId] = useState(null);
-  const isSmallScreen = window.innerWidth <= 450;
+  const isSmallScreen1 = window.innerWidth <= 450;
+
   async function getUserAnswer() {
     try {
       const response = await fetch(
@@ -207,7 +208,7 @@ const UserContributions = () => {
               onChange={(e) => setAnswer(e.target.value)}
               value={answer}
               rows="4"
-              cols={`${isSmallScreen ? "60" : "140"}`}
+              cols={`${isSmallScreen1 ? "10" : "140"}`}
             ></textarea>
           </Modal>
         </div>

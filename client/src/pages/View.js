@@ -159,14 +159,11 @@ const View = () => {
                 <div class="card-body">
                   <div className="d-flex justify-content-between">
                     <div
-                      className="d-flex justify-content-between"
+                      className="d-flex justify-content-between width90"
                       style={{ width: "25%" }}
                     >
                       {" "}
-                      <div
-                        className="d-flex  justify-content-between"
-                        style={{ width: "26%" }}
-                      >
+                      <div className="d-flex ">
                         <Avatar
                           src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${q.user._id}`}
                           sx={{ width: 30, height: 30 }}
@@ -191,24 +188,23 @@ const View = () => {
                       }}
                     />
                   </div>
-                  <blockquote class="blockquote mb-0">
-                    <p
-                      style={{ marginBottom: "0rem" }}
-                      className="QuestionTitle "
-                    >
-                      {q.title}{" "}
-                    </p>
-                    <small>{q.question}</small>
-                    <div className="d-flex align-items-center w-100 justify-content-between">
+
+                  <p
+                    style={{ marginBottom: "0.5rem" }}
+                    className="QuestionTitle "
+                  >
+                    {q.title}{" "}
+                  </p>
+                  <p>{q.question}</p>
+                  <div className="d-flex align-items-center w-100 justify-content-between">
+                    {" "}
+                    <div>
                       {" "}
-                      <div>
-                        {" "}
-                        {q.tags.map((tag, index) => (
-                          <Tag color="blue">{tag}</Tag>
-                        ))}
-                      </div>
+                      {q.tags.map((tag, index) => (
+                        <Tag color="blue">{tag}</Tag>
+                      ))}
                     </div>
-                  </blockquote>
+                  </div>
                 </div>
               </div>
             ))

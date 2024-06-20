@@ -15,7 +15,7 @@ import CreateCategory from "./pages/Admin/CreateCategory";
 import Orders from "./user/orders";
 import Profile from "./user/Profile";
 import Products from "./pages/Admin/products";
-import UpdateProduct from "./pages/Admin/updateproduct";
+// import UpdateProductAdmin from "./pages/Admin/updateproduct";
 import Search from "./Search";
 import ProductDetails from "./pages/ProductDetails";
 import Categorylist from "./pages/categorylist";
@@ -117,7 +117,7 @@ function App() {
           ></Route>
           <Route
             path="admin/Update-Product/:slug"
-            element={<UpdateProduct />}
+            element={<UpateProductUSer />}
           ></Route>
 
           <Route path="admin/Product" element={<Products></Products>}></Route>

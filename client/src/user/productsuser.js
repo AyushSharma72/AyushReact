@@ -45,15 +45,15 @@ const UpdateProducts = () => {
         </div>
 
         <div className="w-50 userprocuts" style={{ height: "100%" }}>
-          <h1 className="text-center">Edit products listed by you</h1>
+          <h1 className="text-center mt-3">Edit products listed by you</h1>
           <div
-            className="d-flex justify-content-around flex-wrap align-items-center "
+            className="d-flex justify-content-around flex-wrap align-items-center flex-col"
             style={{ gap: "0.5rem" }}
           >
             {Products.length > 0 ? (
               Products.map((p) => (
                 <div
-                  className="card border border-3 d-flex flex-column justify-content-center"
+                  className="card border border-3 d-flex flex-column justify-content-center width70"
                   style={{ width: "40%", height: "100%" }}
                 >
                   <Image

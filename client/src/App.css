@@ -153,11 +153,7 @@ body {
   top: 11%;
 }
 
-.CartFixed {
-  position: fixed;
-  right: 1%;
-  top: 11%;
-}
+
 
 .nav-item .dropdown a {
   text-decoration: none;
