@@ -70,11 +70,10 @@ function App() {
         ></Route>
 
         <Route path="/technews" element={<Technews />}></Route>
-
+        <Route path="/interaction" element={<Interaction />}></Route>
         {/* private routes */}
 
         <Route path="/Dashboard" element={<PrivateRoute />}>
-          <Route path="user/interaction" element={<Interaction />}></Route>
           <Route path="user" element={<Dashboard />}></Route>
           <Route path="user/orders" element={<Orders />}></Route>
           <Route path="user/Profile" element={<Profile />}></Route>
@@ -128,8 +127,6 @@ function App() {
           ></Route>
           <Route path="Admin/Profile" element={<Profile />}></Route>
           <Route path="Admin/Users" element={<Users />}></Route>
-
-          <Route path="Admin/Interaction" element={<Interaction />}></Route>
 
           <Route path="admin/Ask" element={<AskQuestion />}></Route>
           <Route path="admin/questions" element={<UserQuestions />}></Route>

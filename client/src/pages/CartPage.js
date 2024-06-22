@@ -156,19 +156,6 @@ const CartPage = () => {
   return (
     <Layout>
       <div style={{ width: "100%" }} className="mt-3">
-        <h4 className="text-center d-flex flex-column align-items-center">
-          You have {itemCount} items in your cart.{" "}
-          {itemCount == 0 ? (
-            <>
-              {" "}
-              <img src={emptycart} style={{ margin: "auto" }}></img>
-              <NavLink to="/products">
-                <button className="btn btn-primary ">Add items</button>
-              </NavLink>
-            </>
-          ) : null}
-        </h4>
-
         {auth?.token ? (
           //cart page items
           Cartitems.length > 0 ? (
@@ -350,7 +337,20 @@ const CartPage = () => {
                 </div>
               </div>
             </div>
-          ) : null
+          ) : (
+            <h4 className="text-center d-flex flex-column align-items-center">
+              You have {itemCount} items in your cart.{" "}
+              {itemCount == 0 ? (
+                <>
+                  {" "}
+                  <img src={emptycart} style={{ margin: "auto" }}></img>
+                  <NavLink to="/products">
+                    <button className="btn btn-primary ">Add items</button>
+                  </NavLink>
+                </>
+              ) : null}
+            </h4>
+          )
         ) : (
           //message if not login
           <div className="text-center d-flex flex-column align-items-center">

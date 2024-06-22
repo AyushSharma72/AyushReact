@@ -324,7 +324,7 @@ const Interaction = () => {
                       />
                       <p className="UserNameDisplay">{q.user.Name}</p>
                     </div>
-                    {auth.user.Role == 1 ? (
+                    {auth?.user?.Role == 1 ? (
                       <RiDeleteBin6Line
                         style={{ color: "red" }}
                         title="Delete Question"
