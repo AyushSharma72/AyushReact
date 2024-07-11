@@ -164,7 +164,7 @@ const Technews = () => {
           )}
         </div>
       </div>
-    </Layout>
+    </Layout> 
   );
 };
 
