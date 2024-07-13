@@ -75,7 +75,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/product/get-product"
+          "https://ayushreactbackend.onrender.com/api/v1/product/get-product"
         );
         const data = await response.json();
 
@@ -195,7 +195,7 @@ function Home() {
                   <div className="user-image2 boxshadow">
                     <Card.Img
                       variant="top"
-                      src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
+                      src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
                       style={{
                         width: "100%",
                         height: "17rem",

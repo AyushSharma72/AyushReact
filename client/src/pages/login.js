@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { auth, provider, signInWithPopup } from "../context/firebase";
 
 const Login = () => {
@@ -20,16 +20,19 @@ const Login = () => {
       e.preventDefault();
 
       SetLoading(true);
-      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Email,
-          Password,
-        }),
-      });
+      const response = await fetch(
+        "https://ayushreactbackend.onrender.com/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Email,
+            Password,
+          }),
+        }
+      );
       const data = await response.json();
 
       if (response.status === 404) {
@@ -80,7 +83,7 @@ const Login = () => {
       const { user } = result;
 
       const response = await fetch(
-        "http://localhost:8000/api/v1/auth/google-login",
+        "https://ayushreactbackend.onrender.com/api/v1/auth/google-login",
         {
           method: "POST",
           headers: {
