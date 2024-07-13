@@ -119,6 +119,7 @@ async function loginController(req, resp) {
     });
   }
 }
+
 async function googleLoginController(req, resp) {
   try {
     const { token } = req.body;
@@ -131,13 +132,14 @@ async function googleLoginController(req, resp) {
     }
 
     const decodedToken = await admin.auth().verifyIdToken(token);
-    const { uid, email } = decodedToken;
+    const {email } = decodedToken;
 
     let user = await Usermodel.findOne({ Email: email });
 
     if (!user) {
-      user = new Usermodel({ Email: email, Password: uid }); // You can save uid as a password or any other unique identifier
-      await user.save();
+      return resp.status(400).send({
+        message: "Please register to login",
+      });
     }
 
     const jwtToken = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {

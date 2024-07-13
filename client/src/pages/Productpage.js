@@ -133,7 +133,7 @@ function Productpage() {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json", 
+            "Content-Type": "application/json",
           },
         }
       );
@@ -185,15 +185,14 @@ function Productpage() {
           {/* filter by price */}
           <div className="mt-3 pricerange">
             <h2 className="mediumtitlefont">Select Price Range</h2>
-            <div className="d-flex flex-column p-1 ">
+            <div className="d-flex flex-column p-1">
               <Radio.Group
                 onChange={(e) => {
                   SetRadioval(e.target.value);
                 }}
-                className="pri"
               >
                 {Prices?.map((p) => (
-                  <div key={p._id} className="d-flex flex-column p-1 gap-2 ">
+                  <div key={p._id} className="d-flex flex-column p-1 gap-2 pri">
                     <Radio value={p.array}>
                       <strong>{p.name}</strong>
                     </Radio>
@@ -218,7 +217,7 @@ function Productpage() {
           className=" text-center productsparent"
           style={{ height: "100%", width: "80%" }}
         >
-          <h1 className="Titlefont">All Products</h1>
+          <h1 className="Titlefont mt-3">All Products</h1>
           {FilterProductLength ? (
             <div
               className="d-flex justify-content-around flex-wrap paroducts "

@@ -92,9 +92,13 @@ const UserInformation = () => {
         <div className=" d-flex justify-content-around w-100">
           <div className="panel-body inf-content " style={{ width: "65%" }}>
             <div className="row">
-              <div className="col-md-4 UserInfoImage">
+              <div className="col-md-5 UserInfoImage">
                 <img
-                  style={{ width: "100%", height: "28rem" }}
+                  style={{
+                    width: "100%",
+                    height: "28rem",
+                    borderRadius: "10px",
+                  }}
                   src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${Userid}`}
                 />
               </div>
@@ -217,24 +221,25 @@ const UserInformation = () => {
                   </NavLink>
                 ) : null}
                 {User.LinkedIn ? (
-                  <NavLink
-                    to={User.LinkedIn}
+                  <a
+                    target="blank"
+                    href={User.LinkedIn}
                     className="NavlinksDesign d-flex gap-2"
                   >
-                    {" "}
-                    <FaLinkedin />
+                    {console.log(User.LinkedIn)} <FaLinkedin />
                     <span className="Smalltxt"> {User.LinkedIn}</span>
-                  </NavLink>
+                  </a>
                 ) : null}
                 {User.Website ? (
-                  <NavLink
-                    to={User.Website}
+                  <a
+                    href={User.Website}
+                    target="blank"
                     className="NavlinksDesign d-flex gap-2"
                   >
                     {" "}
                     <FaGlobe />{" "}
                     <span className="Smalltxt"> {User.Website}</span>
-                  </NavLink>
+                  </a>
                 ) : null}
                 {User.MobileNo ? (
                   <div className="NavlinksDesign d-flex gap-2">

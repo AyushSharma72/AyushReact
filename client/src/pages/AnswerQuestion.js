@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/auth";
 import Button from "@mui/material/Button";
@@ -79,12 +79,12 @@ const AnswerQuestion = () => {
 
   return (
     <Layout>
-      <div className="d-flex flex-column align-items-center ">
+      <div className="d-flex flex-column align-items-center p-1">
         <h1 className="Titlefont mt-2" style={{ marginBottom: "-1rem" }}>
           Contribute
         </h1>
-        <div className="d-flex flex-column contactlayout width90">
-          <h3 className="mediumtitlefont">Question: {Title} </h3>
+        <div className="d-flex flex-column contactlayout width1000 ">
+          <h3 className="mediumtitlefont  ">Question: {Title} </h3>
           <p>
             <strong>Description:</strong> {Description}
           </p>
@@ -128,6 +128,11 @@ const AnswerQuestion = () => {
             Post Answer
           </Button>
         </form>
+        <div>
+          <NavLink to="/interaction">
+            <button className="btn btn-primary m-3">back</button>
+          </NavLink>
+        </div>
       </div>
     </Layout>
   );

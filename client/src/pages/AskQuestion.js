@@ -4,6 +4,7 @@ import { useAuth } from "../context/auth";
 import { Tag } from "antd";
 import { RxCross2 } from "react-icons/rx";
 import toast from "react-hot-toast";
+import { NavLink } from "react-router-dom";
 const AskQuestion = () => {
   const [auth, SetAuth] = useAuth();
   const [question, Setquestion] = useState("");
@@ -154,7 +155,11 @@ const AskQuestion = () => {
             </button>
           </form>
         </div>
-        <div></div>
+        <div>
+          <NavLink to="/interaction">
+            <button className="btn btn-primary m-3">back</button>
+          </NavLink>
+        </div>
       </div>
     </Layout>
   );

@@ -188,7 +188,7 @@ const UserContributions = () => {
                 <h2 className="text-center">
                   You haven't made any Contributions
                 </h2>
-                <NavLink to="/dashboard/user/interaction">
+                <NavLink to="/interaction">
                   <Button variant="contained" color="success">
                     Answer
                   </Button>
