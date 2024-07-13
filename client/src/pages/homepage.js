@@ -75,7 +75,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://ayushreactbackend.onrender.com/api/v1/product/get-product"
+          "http://localhost:8000/api/v1/product/get-product"
         );
         const data = await response.json();
 
@@ -195,7 +195,7 @@ function Home() {
                   <div className="user-image2 boxshadow">
                     <Card.Img
                       variant="top"
-                      src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                      src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                       style={{
                         width: "100%",
                         height: "17rem",
@@ -251,9 +251,9 @@ function Home() {
               where Knowledge Meets Collaboration.{" "}
             </span>
           </h1>
-          <div className="d-flex codechatgpt">
+          <div className="d-flex codechatgpt justify-content-around">
             {" "}
-            <div className="w-50 chatgpt">
+            <div className="w-25 chatgpt">
               <FadeIn />
             </div>
             <div className="w-50 mt-4 user-tile">

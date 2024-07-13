@@ -18,7 +18,7 @@ const ContactForm = () => {
       Setloading(true);
       e.preventDefault();
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/SubmitUserQueryForm",
+        "http://localhost:8000/api/v1/auth/SubmitUserQueryForm",
         {
           method: "POST",
           headers: {

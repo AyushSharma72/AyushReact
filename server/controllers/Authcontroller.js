@@ -3,6 +3,7 @@ const { hashPassword, comparePassword } = require("../helpers/authhelper");
 const JWT = require("jsonwebtoken");
 const fs = require("fs").promises;
 const nodemailer = require("nodemailer");
+const admin = require("../config/firebaseadmin");
 
 async function registerController(req, res) {
   try {
@@ -102,7 +103,7 @@ async function loginController(req, resp) {
     const token = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "4d",
     });
-    
+
     resp.status(200).send({
       success: true,
       message: "login successfull",
@@ -114,6 +115,46 @@ async function loginController(req, resp) {
     resp.status(500).send({
       success: false,
       message: "Error in Login",
+      error,
+    });
+  }
+}
+async function googleLoginController(req, resp) {
+  try {
+    const { token } = req.body;
+
+    if (!token) {
+      return resp.status(400).send({
+        success: false,
+        message: "Token is required",
+      });
+    }
+
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    const { uid, email } = decodedToken;
+
+    let user = await Usermodel.findOne({ Email: email });
+
+    if (!user) {
+      user = new Usermodel({ Email: email, Password: uid }); // You can save uid as a password or any other unique identifier
+      await user.save();
+    }
+
+    const jwtToken = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "4d",
+    });
+
+    resp.status(200).send({
+      success: true,
+      message: "Login successful",
+      user,
+      token: jwtToken,
+    });
+  } catch (error) {
+    console.log(error);
+    resp.status(500).send({
+      success: false,
+      message: "Error in Google Login",
       error,
     });
   }
@@ -551,6 +592,7 @@ async function ResetPasswordDirectly(req, resp) {
 
 module.exports = {
   registerController,
+  googleLoginController,
   loginController,
   ForgotPassword,
   UpdateProfileController,

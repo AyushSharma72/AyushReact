@@ -4,12 +4,9 @@ import "./../../App.css";
 import { useAuth } from "../../context/auth";
 import SearchBar from "../../pages/form/searchBar";
 import toast from "react-hot-toast";
-import { useCart } from "../../context/cart";
 import { Badge } from "antd";
 import { IoCartSharp } from "react-icons/io5";
-
 import Avatar from "@mui/material/Avatar";
-//import { logo } from ',,';
 function Header() {
   const [auth, setAuth] = useAuth();
 

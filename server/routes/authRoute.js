@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   loginController,
+  googleLoginController,
   registerController,
   ForgotPassword,
   UpdateProfileController,
@@ -32,7 +33,7 @@ router.post("/register", formidable(), registerController);
 
 //login
 router.post("/login", loginController);
-
+router.post("/google-login", googleLoginController);
 //user protected route
 router.get("/userAuth", requireSignIn, (req, res) => {
   res.status(200).send({ ok: true });

@@ -21,6 +21,7 @@
     "aos": "^2.3.4",
     "braintree-web-drop-in-react": "^1.2.1",
     "chart.js": "^4.4.2",
+    "firebase": "^10.12.3",
     "flowbite-react": "^0.8.0",
     "google-libphonenumber": "^3.2.34",
     "moment": "^2.30.1",

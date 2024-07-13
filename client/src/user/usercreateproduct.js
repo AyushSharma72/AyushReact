@@ -24,7 +24,7 @@ const CreateProductUSer = () => {
   async function GetCategories() {
     try {
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/category/GetAll-category",
+        "http://localhost:8000/api/v1/category/GetAll-category",
 
         {
           headers: {
@@ -56,7 +56,7 @@ const CreateProductUSer = () => {
 
     try {
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/product/create-product",
+        "http://localhost:8000/api/v1/product/create-product",
         {
           method: "POST",
           headers: {
@@ -82,10 +82,7 @@ const CreateProductUSer = () => {
   }
   return (
     <Layout>
-      <div
-        className="d-flex justify-content-around  overflow-auto createproductdiv"
-       
-      >
+      <div className="d-flex justify-content-around  overflow-auto createproductdiv">
         <div className="w-25 mt-3 usermenu">
           {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
         </div>

@@ -1,17 +1,17 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout/layout";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
+import { auth, provider, signInWithPopup } from "../context/firebase";
 
 const Login = () => {
   const [Email, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const [auth, setAuth] = useAuth();
+  const [authState, setAuthState] = useAuth();
   const [Loading, SetLoading] = useState(false);
   const location = useLocation();
 
@@ -20,19 +20,16 @@ const Login = () => {
       e.preventDefault();
 
       SetLoading(true);
-      const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Email,
-            Password,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email,
+          Password,
+        }),
+      });
       const data = await response.json();
 
       if (response.status === 404) {
@@ -49,8 +46,8 @@ const Login = () => {
             SetLoading(false);
             //login successful
             toast.success("Login Succesful");
-            setAuth({
-              ...auth, //spread auth to keep previous values as it is
+            setAuthState({
+              ...authState, //spread authState to keep previous values as it is
               user: data.user,
               token: data.token,
             });
@@ -76,10 +73,50 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      SetLoading(true);
+      const result = await signInWithPopup(auth, provider);
+      const { user } = result;
+
+      const response = await fetch(
+        "http://localhost:8000/api/v1/auth/google-login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: user.accessToken }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        SetLoading(false);
+        toast.success("Login Successful");
+        setAuthState({
+          ...authState,
+          user: data.user,
+          token: data.token,
+        });
+        localStorage.setItem(
+          "auth",
+          JSON.stringify({ user: data.user, token: data.token })
+        );
+        navigate("/");
+      } else {
+        SetLoading(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      SetLoading(false);
+      toast.error("Google login failed. Try again.");
+    }
+  };
+
   return (
     <Layout>
-      <ToastContainer />
-
       <div className="bg">
         <div
           className="Registerlayout bg-light width1000"
@@ -189,6 +226,18 @@ const Login = () => {
               </div>
             </div>
           </form>
+
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                handleGoogleLogin();
+              }}
+              disabled={Loading}
+            >
+              {Loading ? "Loading..." : "Login with Google"}
+            </button>
+          </div>
         </div>
       </div>
     </Layout>

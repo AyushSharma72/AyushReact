@@ -17,7 +17,7 @@ const Users = () => {
   async function GetAllUsers() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UsersListNoLogin/${Page}`,
+        `http://localhost:8000/api/v1/auth/UsersListNoLogin/${Page}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Users = () => {
   async function GetCount() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UserCount`
+        `http://localhost:8000/api/v1/auth/UserCount`
       );
       const data = await response.json();
       SetTotalvalue(data?.Total);
@@ -70,7 +70,7 @@ const Users = () => {
                 <img
                   className="img-fluid"
                   style={{ width: "10rem", height: "10rem" }}
-                  src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${u._id}`}
+                  src={`http://localhost:8000/api/v1/auth/get-userPhoto/${u._id}`}
                   alt={u.Name}
                 />
               </div>
@@ -130,4 +130,4 @@ const Users = () => {
 };
 
 export default Users;
-// image={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${u._id}`}
+// image={`http://localhost:8000/api/v1/auth/get-userPhoto/${u._id}`}

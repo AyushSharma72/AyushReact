@@ -28,7 +28,7 @@ const AskQuestion = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/ask_question/${auth.user._id}`,
+        `http://localhost:8000/api/v1/Questions/ask_question/${auth.user._id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
