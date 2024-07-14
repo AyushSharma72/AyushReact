@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { auth, provider, signInWithPopup } from "../context/firebase";
 
 const Login = () => {
@@ -121,6 +121,7 @@ const Login = () => {
   return (
     <Layout>
       <div className="bg">
+        <ToastContainer />
         <div
           className="Registerlayout bg-light width1000"
           style={{ width: "70%", padding: "20px", borderRadius: "10px" }}

@@ -132,7 +132,7 @@ async function googleLoginController(req, resp) {
     }
 
     const decodedToken = await admin.auth().verifyIdToken(token);
-    const {email } = decodedToken;
+    const { email } = decodedToken;
 
     let user = await Usermodel.findOne({ Email: email });
 
@@ -535,6 +535,12 @@ async function GetSingleUserInfo(req, resp) {
 
 async function ResetPasswordEmail(req, resp) {
   const { UserEmail } = req.body;
+  const user = await Usermodel.findOne({ Email: UserEmail });
+  if (!user) {
+    return resp.status(404).send({
+      message: "No such user found",
+    });
+  }
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -549,7 +555,7 @@ async function ResetPasswordEmail(req, resp) {
     subject: "Reset password",
     html: `
     <p>Reset your password from the link .</p>
-    <a href="https://talkofcode.vercel.app/Resetbyemail/${UserEmail}"><button>Click here</button></a> to reset password`,
+    <a href="https://ayush-react.vercel.app//Resetbyemail/${UserEmail}"><button>Click here</button></a> to reset password`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -558,7 +564,7 @@ async function ResetPasswordEmail(req, resp) {
       resp.status(500).send("Error sending email");
     } else {
       console.log("Email sent: " + info.response);
-      resp.status(200).send("Form data sent successfully");
+      resp.status(200).send({ message: "Form data sent successfully", user });
     }
   });
 }

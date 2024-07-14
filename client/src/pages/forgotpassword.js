@@ -90,9 +90,13 @@ const Forgotpassword = () => {
         Setloading(false);
         toast.success("Check Your Email");
         SetUserEmail("");
+      } else if (response.status === 404) {
+        Setloading(false);
+        toast.error("No such user found");
+        SetUserEmail("");
       } else {
         Setloading(false);
-        toast.success("please try later");
+        toast.error("please try later");
         SetUserEmail("");
       }
     } catch (error) {
@@ -101,6 +105,7 @@ const Forgotpassword = () => {
       SetUserEmail("");
     }
   }
+
   return (
     <Layout>
       <div className="bg">
