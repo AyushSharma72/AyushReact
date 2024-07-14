@@ -97,7 +97,7 @@ const Login = () => {
 
       if (response.status === 200) {
         SetLoading(false);
-        toast.success("Login Successful");
+        toast.success("Login Successfull");
         setAuthState({
           ...authState,
           user: data.user,
@@ -113,6 +113,7 @@ const Login = () => {
         toast.error(data.message);
       }
     } catch (error) {
+      console.log(error);
       SetLoading(false);
       toast.error("Google login failed. Try again.");
     }

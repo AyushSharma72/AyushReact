@@ -19,7 +19,7 @@ const Profile = () => {
   const [OldPassword, SetOldPassword] = useState("");
   const [NewPassword, SetNewPassword] = useState("");
   const [Location, SetLocation] = useState("");
-  const [Number, SetNumber] = useState(0);
+  const [Number, SetNumber] = useState("");
   const [photo, SetPhoto] = useState("");
   const [Github, SetGithub] = useState("");
   const [LinkedIn, SetLinkedIn] = useState("");
@@ -354,7 +354,7 @@ const Profile = () => {
                     <b>Contact :</b>
                   </label>
                   <input
-                    type="Number"
+                    type="text"
                     className="form-control w-75"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
@@ -362,6 +362,7 @@ const Profile = () => {
                     onChange={(e) => {
                       SetNumber(e.target.value);
                     }}
+                    maxLength={10} // set the maximum number of characters allowed
                   />
                 </div>
 

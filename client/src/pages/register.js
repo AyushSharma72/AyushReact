@@ -4,11 +4,7 @@ import Layout from "../components/layout/layout";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import {
-  CountryDropdown,
-  RegionDropdown,
-  // CountryRegionData,
-} from "react-country-region-selector";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
@@ -32,7 +28,7 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
   const Setlocation = () => {
-    setLocation(region + " " + country);
+    setLocation(region + ", " + " " + country);
   };
 
   useEffect(() => {
@@ -206,22 +202,11 @@ const Register = () => {
                     Mobile No.
                   </label>
                   <PhoneInput
-                    country={"us"}
+                    enableSearch={true}
+                    country={"in"}
                     value={MobileNo}
                     onChange={SetMobileNo} // directly set the value here
                   />
-                  {/* <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Enter your Mobile Number"
-                    value={MobileNo}
-                    onChange={(e) => {
-                      SetMobileNo(e.target.value);
-                    }}
-                    required
-                    style={{ fontSize: "16px" }}
-                  /> */}
                 </div>
               </div>
 
