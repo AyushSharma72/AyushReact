@@ -1,4 +1,4 @@
-@media (max-width: 500px) {
+@media (max-width: 768px) {
   .homepage-section {
     flex-direction: column;
   }
@@ -194,6 +194,15 @@
   }
   .width70 {
     width: 70% !important;
+  }
+  .margintop {
+    margin-top: 12rem;
+  }
+  .margintop2 {
+    margin-top: 6rem;
+  }
+  .marginbottom {
+    margin-bottom: 4rem;
   }
   .jtc {
     justify-content: center;

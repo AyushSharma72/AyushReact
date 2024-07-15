@@ -161,7 +161,7 @@ const UserDashboard = () => {
           </div>
         </Drawer>
 
-        <div className="container bootstrap snippets bootdey ">
+        <div className="container bootstrap snippets bootdey margintop2">
           <div className="panel-body inf-content w-100">
             <div className="row">
               <div className="col-md-4">

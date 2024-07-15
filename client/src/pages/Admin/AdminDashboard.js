@@ -159,12 +159,13 @@ const UserDashboard = () => {
           </div>
         </Drawer>
 
-        <div className="container bootstrap snippets bootdey">
+        <div className="container bootstrap snippets bootdey width1000 margintop">
           <div className="panel-body inf-content">
             <div className="row">
               <div className="col-md-4">
                 <div className="d-flex flex-column align-items-center">
                   <img
+                  className="width70"
                     style={{ width: "90%" }}
                     src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
                   />
