@@ -93,9 +93,7 @@ body {
   background-color: rgba(173, 218, 230, 0.205);
   padding: 1rem;
   gap: 0.5rem;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.4),
-    0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .registerformupdate {
@@ -104,9 +102,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 1rem;
   gap: 0.5rem;
 }
@@ -117,9 +113,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
   gap: 0.5rem;
 }
 
@@ -152,8 +146,6 @@ body {
   left: 0%;
   top: 11%;
 }
-
-
 
 .nav-item .dropdown a {
   text-decoration: none;
@@ -386,17 +378,8 @@ body {
   color: #3b3b3b;
   cursor: pointer;
   display: inline-block;
-  font-family:
-    Roobert,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Helvetica,
-    Arial,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 20px;
   font-weight: 600;
   line-height: normal;
@@ -518,9 +501,7 @@ UserInfo .col-md-4 img {
   height: 100%;
   width: 80%;
 
-  box-shadow:
-    4px 8px 10px rgba(0, 0, 0, 0.4),
-    4px 8px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.4), 4px 8px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 0.2rem;
 }
@@ -601,9 +582,7 @@ UserInfo .col-md-4 img {
 }
 
 .boxshadow {
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .bg-primary {
@@ -1302,4 +1281,11 @@ UserInfo .col-md-4 img {
 .minusplus:hover {
   cursor: pointer;
   background-color: white;
+}
+.voting {
+  position: absolute;
+  top: 2rem;
+}
+.answer {
+  margin-left: 3rem;
 }

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// Import useState with alias to avoid conflict with Quill's useState
+import React, { useEffect, useState as useStateReact } from "react";
 import Layout from "../components/layout/layout";
 import { Card } from "antd";
 import { useAuth } from "../context/auth";
@@ -9,17 +10,49 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { blue } from "@mui/material/colors";
-import UserMEnu from "../components/layout/UserMEnu";
+import UserMenu from "../components/layout/UserMEnu";
 import AdminMenu from "../components/layout/AdminMenu";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import React Quill styles
 
 const UserContributions = () => {
   const [auth, setAuth] = useAuth();
-  const [answer, setAnswer] = useState("");
-  const [response, setResponse] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState(null); // State to store the selected contribution ID
-  const [expandedId, setExpandedId] = useState(null);
+  const [answer, setAnswer] = useStateReact("");
+  const [response, setResponse] = useStateReact([]);
+  const [open, setOpen] = useStateReact(false);
+  const [selectedId, setSelectedId] = useStateReact(null); // State to store the selected contribution ID
+  const [expandedId, setExpandedId] = useStateReact(null);
   const isSmallScreen1 = window.innerWidth <= 450;
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "code-block"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "code-block",
+  ];
 
   async function getUserAnswer() {
     try {
@@ -123,7 +156,7 @@ const UserContributions = () => {
     <Layout>
       <div className="bg w-100 d-flex justify-content-around usercontributiondiv">
         <div className="w-25 usermenu">
-          {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
+          {auth.user.Role == 0 ? <UserMenu /> : <AdminMenu></AdminMenu>}
         </div>
         <div className="d-flex flex-column align-items-center w-50 usercontributions">
           <h1>Your Contributions</h1>
@@ -145,11 +178,12 @@ const UserContributions = () => {
                   >
                     <p
                       style={{
-                        fontSize: "18px",
+                        fontSize: "14px",
                       }}
-                    >
-                      {R.answer.substring(0, 50)}....
-                    </p>
+                      dangerouslySetInnerHTML={{
+                        __html: R.answer.substring(0, 100),
+                      }}
+                    ></p>
                   </Card>
                   <div className="d-flex justify-content-start mt-1 gap-3 w-100">
                     <ThemeProvider theme={theme}>
@@ -203,13 +237,15 @@ const UserContributions = () => {
             onOk={() => updateContribution(selectedId)} // Pass the selected ID to the update function
             onCancel={() => setOpen(false)}
             width={1000}
+            afterClose={() => setAnswer("")} // Reset answer state after modal closes
           >
-            <textarea
-              onChange={(e) => setAnswer(e.target.value)}
+            <ReactQuill
+              key={selectedId} // Ensure React Quill reinitializes with updated content
               value={answer}
-              rows="4"
-              cols={`${isSmallScreen1 ? "10" : "140"}`}
-            ></textarea>
+              onChange={setAnswer}
+              modules={modules}
+              formats={formats}
+            />
           </Modal>
         </div>
       </div>

@@ -223,7 +223,7 @@ const View = () => {
               Answers.map((a, index) => (
                 <div key={index} className="card d-flex flex-row w-100 p-2">
                   <div
-                    className="d-flex flex-column align-items-center  mt-1 justify-content-center"
+                    className="d-flex flex-column align-items-center  mt-1 justify-content-center voting"
                     style={{ gap: "0.2rem", marginLeft: "0.5rem" }}
                   >
                     <FaRegArrowAltCircleUp
@@ -246,12 +246,12 @@ const View = () => {
                       }}
                     />
                   </div>
-                  <div className="card-body mt-3 ">
+                  <div className="card-body mt-3 answer">
                     <b>Answer: </b>
-                    {a.answer}
+                    <div dangerouslySetInnerHTML={{ __html: a.answer }} />
                   </div>
 
-                  <div className="blockquote-footer username mt-1">
+                  <div className="blockquote-footer username mt-1 voting">
                     answered by{" "}
                     <cite title="Source Title">
                       <b>{a.user.Name}</b>

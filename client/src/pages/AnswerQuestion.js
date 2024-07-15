@@ -4,6 +4,9 @@ import { useParams, NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/auth";
 import Button from "@mui/material/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 const AnswerQuestion = () => {
   const params = useParams();
   const [Answer, SetAnswer] = useState("");
@@ -11,6 +14,36 @@ const AnswerQuestion = () => {
   const [Description, SetDescription] = useState("");
   const [auth, SetAuth] = useAuth();
   const [Email, SetEmail] = useState("");
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "code-block"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "code-block",
+  ];
+
   async function GetSingleQuestion() {
     try {
       const que = await fetch(
@@ -26,13 +59,17 @@ const AnswerQuestion = () => {
       }
     } catch (error) {
       toast.error("Something Went Wrong");
-
       console.log(error);
     }
   }
+
   async function PostAnswer(e) {
     e.preventDefault();
     try {
+      if (Answer == "") {
+        toast.error("please add answer");
+        return;
+      }
       const response = await fetch(
         `https://ayushreactbackend.onrender.com/api/v1/Answer/post_Answer/${auth.user._id}/${params.id}`,
         {
@@ -52,9 +89,11 @@ const AnswerQuestion = () => {
         toast.error("Answer was not posted");
       }
     } catch (error) {
-      toast.error("Something Went Wrong");
+      console.log(error);
+      toast.error("Something went wrong");
     }
   }
+
   async function SendEmail() {
     try {
       const response = await fetch(
@@ -73,6 +112,7 @@ const AnswerQuestion = () => {
       toast.error("EmailSent");
     }
   }
+
   useEffect(() => {
     GetSingleQuestion();
   }, []);
@@ -98,25 +138,20 @@ const AnswerQuestion = () => {
           <div className="w-75 width90">
             <b>
               <label
-                for="Question"
+                htmlFor="Question"
                 className="mediumtitlefont"
                 style={{ marginBottom: "1rem" }}
               >
                 Answer :{" "}
               </label>
             </b>
-            <textarea
-              id="Question"
-              className="form-control w-100"
-              type="text"
-              placeholder="Describe your Answer"
+            <ReactQuill
               value={Answer}
-              required
-              onChange={(e) => {
-                SetAnswer(e.target.value);
-              }}
-              style={{ height: "13rem", marginBottom: "1rem" }}
-            ></textarea>
+              onChange={SetAnswer}
+              modules={modules}
+              formats={formats}
+              placeholder="Answer..."
+            />
           </div>
 
           <Button
@@ -128,11 +163,6 @@ const AnswerQuestion = () => {
             Post Answer
           </Button>
         </form>
-        <div>
-          <NavLink to="/interaction">
-            <button className="btn btn-primary m-3">back</button>
-          </NavLink>
-        </div>
       </div>
     </Layout>
   );
