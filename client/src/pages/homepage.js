@@ -240,10 +240,7 @@ function Home() {
           </Swiper>
         </div>
       </div>
-      <div
-        className="homepage-section justify-content-around align-items-center codeconnect"
-        data-aos="fade-up"
-      >
+      <div className="homepage-section justify-content-around align-items-center codeconnect">
         <div className="mt-3 mb-3">
           <h1 className="text-center WelcomeText mb-4 mt-4">
             Code <MdOutlineConnectingAirports /> Connect, <br></br>
@@ -274,7 +271,7 @@ function Home() {
                 <li>Explore resources for expanding your skills.</li>
               </ul>
               <div style={{ textAlign: "center" }}>
-                <Link to="/dashboard/user/interaction">
+                <Link to="/interaction">
                   <button
                     size="small"
                     className="btn-outline-primary"
@@ -289,10 +286,7 @@ function Home() {
         </div>
       </div>
 
-      <div
-        className="homepage-section justify-content-around align-items-center "
-        data-aos="fade-up"
-      >
+      <div className="homepage-section justify-content-around align-items-center ">
         <h1 className="text-center WelcomeText mt-2">
           Get instant technical <span className="d-block">news</span>
         </h1>

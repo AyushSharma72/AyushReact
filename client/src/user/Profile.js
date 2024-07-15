@@ -222,8 +222,6 @@ const Profile = () => {
             user: data.user,
           })
         );
-        console.log(data.user);
-        toast.success("Skills Updated");
       } else {
         toast("Error", {
           icon: "❌",

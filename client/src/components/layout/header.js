@@ -102,7 +102,7 @@ function Header() {
                   ))}
                 </ul>
               </li> */}
-              <li className="nav-item">
+              <li className="nav-item ">
                 <NavLink to="/interaction" className="nav-link">
                   CodeConnect
                 </NavLink>
