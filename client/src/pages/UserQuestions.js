@@ -26,7 +26,7 @@ const UserQuestions = () => {
     try {
       setloading(true);
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/UserQuestions/${auth.user._id}/${SkipCount}`
+        `http://localhost:8000/api/v1/Questions/UserQuestions/${auth.user._id}/${SkipCount}`
       );
       const data = await response.json();
       if (response.status == 200) {
@@ -47,7 +47,7 @@ const UserQuestions = () => {
   async function GetNumberofQuestion() {
     try {
       const data = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/Questions/QuestionCount"
+        "http://localhost:8000/api/v1/Questions/QuestionCount"
       );
 
       if (data) {
@@ -67,7 +67,7 @@ const UserQuestions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://ayushreactbackend.onrender.com/api/v1/Questions/delete_question/${question}`,
+          `http://localhost:8000/api/v1/Questions/delete_question/${question}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
@@ -90,7 +90,7 @@ const UserQuestions = () => {
   async function GetBookmarkedQuestion() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/getBookmarked/${auth.user._id}`
+        `http://localhost:8000/api/v1/Questions/getBookmarked/${auth.user._id}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -108,7 +108,7 @@ const UserQuestions = () => {
   async function RemoveBookmark(qid) {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/removeBookmarked/${auth.user._id}/${qid}`,
+        `http://localhost:8000/api/v1/Questions/removeBookmarked/${auth.user._id}/${qid}`,
         {
           method: "PUT",
           headers: {
@@ -160,7 +160,7 @@ const UserQuestions = () => {
             tab={<span className="tabtitle">Your Questions</span>}
             key="1"
           >
-            <div className="d-flex w-100 justify-content-around mt-3  ">
+            <div className="d-flex w-100 justify-content-around ">
               <div
                 className="d-flex justify-content-center flex-column align-items-center w-100"
                 style={{ gap: "1rem" }}
@@ -172,7 +172,7 @@ const UserQuestions = () => {
                         <p className=" smalltitlefont3 bulletcircle mb-0">
                           &#8226; {q.title.substring(0, 40)}... ?{" "}
                         </p>
-                        <div className="d-flex justify-content-between w-75">
+                        <div className="d-flex justify-content-between w-75 mt-3">
                           <div>
                             {" "}
                             {q.tags.map((tag, index) => (
@@ -180,7 +180,7 @@ const UserQuestions = () => {
                             ))}
                           </div>
 
-                          <footer class="blockquote-footer mt-1 ">
+                          <footer className="blockquote-footer  ">
                             asked by{" "}
                             <cite title="Source Title">
                               <b>{q.user.Name}</b>

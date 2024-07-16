@@ -9,11 +9,14 @@ const {
   UpdateAnswerVotesController,
   UpdateAnswerDownVotesController,
   GetUserAnswersController,
+  GetAnswerCountController,
   EmailUser,
   // GetAnswerCountByQuestionId,
 } = require("../controllers/AnswerController");
 
-router.get("/get_Answer/:qid", GetAnswerController); // answer will be retrieved througth the question id
+router.get("/get_Answer/:qid/:pagenumber", GetAnswerController); // answer will be retrieved througth the question id
+
+router.get("/get_answer/:qid", GetAnswerCountController);
 
 router.post("/post_Answer/:uid/:qid", AnswerController);
 

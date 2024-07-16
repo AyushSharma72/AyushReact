@@ -25,7 +25,7 @@ const AdminQuestions = () => {
     try {
       setloading(true);
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/UserQuestions/${auth.user._id}/${SkipCount}`
+        `http://localhost:8000/api/v1/Questions/UserQuestions/${auth.user._id}/${SkipCount}`
       );
       const data = await response.json();
       if (response.status == 200) {
@@ -46,7 +46,7 @@ const AdminQuestions = () => {
   async function GetNumberofQuestion() {
     try {
       const data = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/Questions/QuestionCount"
+        "http://localhost:8000/api/v1/Questions/QuestionCount"
       );
 
       if (data) {
@@ -66,7 +66,7 @@ const AdminQuestions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://ayushreactbackend.onrender.com/api/v1/Questions/delete_question/${question}`,
+          `http://localhost:8000/api/v1/Questions/delete_question/${question}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
@@ -89,7 +89,7 @@ const AdminQuestions = () => {
   async function GetBookmarkedQuestion() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/getBookmarked/${auth.user._id}`
+        `http://localhost:8000/api/v1/Questions/getBookmarked/${auth.user._id}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -107,7 +107,7 @@ const AdminQuestions = () => {
   async function RemoveBookmark(qid) {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/removeBookmarked/${auth.user._id}/${qid}`,
+        `http://localhost:8000/api/v1/Questions/removeBookmarked/${auth.user._id}/${qid}`,
         {
           method: "PUT",
           headers: {

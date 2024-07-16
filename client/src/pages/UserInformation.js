@@ -23,7 +23,7 @@ const UserInformation = () => {
   async function GetUserDetails() {
     try {
       const Response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/Getuserinfo/${Userid}`
+        `http://localhost:8000/api/v1/auth/Getuserinfo/${Userid}`
       );
       if (Response) {
         const data = await Response.json();
@@ -41,7 +41,7 @@ const UserInformation = () => {
   async function GetAllUserQuestion() {
     try {
       const AllQuestion = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/AskedUserQuestion/${Userid}`
+        `http://localhost:8000/api/v1/Questions/AskedUserQuestion/${Userid}`
       );
 
       if (AllQuestion.status == 200) {
@@ -57,7 +57,7 @@ const UserInformation = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${Userid}`
+        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${Userid}`
       );
 
       if (AllAnswer.status == 200) {
@@ -71,7 +71,7 @@ const UserInformation = () => {
   }
   async function GetUserReputation() {
     const resp = await fetch(
-      `https://ayushreactbackend.onrender.com/api/v1/auth/GetReputation/${Userid}`
+      `http://localhost:8000/api/v1/auth/GetReputation/${Userid}`
     );
     if (resp.status === 200) {
       const reputation = await resp.json();
@@ -99,7 +99,7 @@ const UserInformation = () => {
                     height: "28rem",
                     borderRadius: "10px",
                   }}
-                  src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${Userid}`}
+                  src={`http://localhost:8000/api/v1/auth/get-userPhoto/${Userid}`}
                 />
               </div>
               <div className="col-md-6">

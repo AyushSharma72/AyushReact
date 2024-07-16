@@ -25,7 +25,7 @@ function Header() {
   async function GetCartItems(id) {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/product/getcartitemscount/${id}`
+        `http://localhost:8000/api/v1/product/getcartitemscount/${id}`
       );
       if (response.status == 200) {
         const { count } = await response.json();
@@ -134,7 +134,7 @@ function Header() {
                       {" "}
                       <Avatar
                         alt={auth.user.Name}
-                        src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                        src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                         sx={{ width: 30, height: 30 }}
                       />
                       {auth.user.Name}

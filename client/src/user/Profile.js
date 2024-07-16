@@ -59,7 +59,7 @@ const Profile = () => {
 
       e.preventDefault();
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/profile",
+        "http://localhost:8000/api/v1/auth/profile",
         {
           method: "PUT",
           headers: {
@@ -104,7 +104,7 @@ const Profile = () => {
       formData.append("NewPassword", NewPassword);
 
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/ProfilePassword",
+        "http://localhost:8000/api/v1/auth/ProfilePassword",
         {
           method: "PUT",
           headers: {
@@ -147,7 +147,7 @@ const Profile = () => {
       e.preventDefault();
 
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/ProfileLinks",
+        "http://localhost:8000/api/v1/auth/ProfileLinks",
         {
           method: "PUT",
           headers: {
@@ -198,7 +198,7 @@ const Profile = () => {
       e.preventDefault();
 
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/userskillsupdate/${skilltoremove}`,
+        `http://localhost:8000/api/v1/auth/userskillsupdate/${skilltoremove}`,
         {
           method: "PUT",
           headers: {
@@ -277,7 +277,7 @@ const Profile = () => {
                 style={{ height: "14rem", width: "14rem", marginRight: "2rem" }}
                 title
                 className="img-circle img-thumbnail isTooltip EditProfileUSerPhoto"
-                src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                 data-original-title="Usuario"
               />
               <div className="d-flex justify-content-start w-100 border-2 mb-2 photobutton">

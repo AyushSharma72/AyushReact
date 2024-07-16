@@ -219,4 +219,7 @@
   .directionrev {
     flex-direction: column-reverse;
   }
+  .username {
+    position: static;
+  }
 }

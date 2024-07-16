@@ -5,7 +5,39 @@ import { Tag } from "antd";
 import { RxCross2 } from "react-icons/rx";
 import toast from "react-hot-toast";
 import { NavLink } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import React Quill styles
 const AskQuestion = () => {
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "code-block"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "code-block",
+  ];
+
   const [auth, SetAuth] = useAuth();
   const [question, Setquestion] = useState("");
   const [title, SetTitle] = useState("");
@@ -27,15 +59,25 @@ const AskQuestion = () => {
 
   async function PostQuestion(e) {
     e.preventDefault();
+
+    // Trim title and question inputs to remove leading and trailing spaces
+    const trimmedTitle = title.trim();
+    const trimmedQuestion = question.trim();
+
+    if (trimmedQuestion === "") {
+      toast.error("Description is required");
+      return;
+    }
+
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/ask_question/${auth.user._id}`,
+        `http://localhost:8000/api/v1/Questions/ask_question/${auth.user._id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            title,
-            question,
+            title: trimmedTitle,
+            question: trimmedQuestion,
             tags,
           }),
         }
@@ -45,13 +87,13 @@ const AskQuestion = () => {
         toast.success("Question Posted ");
         SetTitle("");
         Setquestion("");
-        setTags("");
+        setTags([]);
       } else {
-        toast.error("Question not posted try again");
+        toast.error("Question not posted. Please try again.");
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong");
     }
   }
 
@@ -63,7 +105,7 @@ const AskQuestion = () => {
         style={{ gap: "1rem" }}
       >
         <h2 className="mt-2 Titlefont">Ask Your Question</h2>
-        <div className="form-container width90">
+        <div className="w-75 width90">
           <form
             onSubmit={(e) => {
               PostQuestion(e);
@@ -90,13 +132,13 @@ const AskQuestion = () => {
               ></input>
             </div>
 
-            <div className="w-75 width1000">
+            <div className="w-75  width1000">
               <b>
                 <label className="form-label " for="Question">
-                  Body
+                  Description
                 </label>
               </b>
-              <textarea
+              {/* <textarea
                 id="Question"
                 className="form-control w-100"
                 type="text"
@@ -107,10 +149,17 @@ const AskQuestion = () => {
                   Setquestion(e.target.value);
                 }}
                 style={{ height: "10rem" }}
-              ></textarea>
+              ></textarea> */}
+              <ReactQuill
+                value={question}
+                onChange={Setquestion}
+                modules={modules}
+                formats={formats}
+                placeholder="Describe your Question"
+              />
             </div>
 
-            <div className="w-50 d-flex flex-column width1000">
+            <div className="w-75 d-flex flex-column width1000">
               <b>
                 <label className="form-label " for="Question">
                   Tags
@@ -150,15 +199,18 @@ const AskQuestion = () => {
                   : null}
               </div>
             </div>
-            <button className="btn btn-primary" type="submit">
-              Post Question
-            </button>
+            <div>
+              {" "}
+              <div>
+                <button className="btn btn-primary" type="submit">
+                  Post Question
+                </button>
+                <NavLink to="/interaction">
+                  <button className="btn btn-primary m-3">Back</button>
+                </NavLink>
+              </div>
+            </div>
           </form>
-        </div>
-        <div>
-          <NavLink to="/interaction">
-            <button className="btn btn-primary m-3">back</button>
-          </NavLink>
         </div>
       </div>
     </Layout>

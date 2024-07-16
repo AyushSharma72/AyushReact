@@ -20,19 +20,16 @@ const Login = () => {
       e.preventDefault();
 
       SetLoading(true);
-      const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Email,
-            Password,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email,
+          Password,
+        }),
+      });
       const data = await response.json();
 
       if (response.status === 404) {
@@ -83,7 +80,7 @@ const Login = () => {
       const { user } = result;
 
       const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/google-login",
+        "http://localhost:8000/api/v1/auth/google-login",
         {
           method: "POST",
           headers: {

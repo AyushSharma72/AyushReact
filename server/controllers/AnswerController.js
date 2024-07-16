@@ -78,7 +78,7 @@ async function DeleteAnswerController(req, resp) {
       _id: req.params.aid,
       UserWhoVoted: { $exists: true },
     });
-  
+
     const del = await Answermodel.findByIdAndDelete(req.params.aid);
     if (del) {
       await Questionmodel.findByIdAndUpdate(qid, {
@@ -112,13 +112,37 @@ async function DeleteAnswerController(req, resp) {
     });
   }
 }
+async function GetAnswerCountController(req, resp) {
+  try {
+    const { qid } = req.params;
+    const count = await Answermodel.countDocuments({ questionid: qid });
 
+    if (count) {
+      return resp.status(200).send({
+        success: true,
+        count,
+      });
+    } else {
+      return resp.status(400).send({
+        message: "Erorr getting Answer Count",
+      });
+    }
+  } catch (error) {
+    resp.status(500).send({
+      message: "Error in Answer Count",
+    });
+  }
+}
 async function GetAnswerController(req, resp) {
   try {
+    const { qid, pagenumber } = req.params;
+    let skipanswers = (pagenumber - 1) * 3;
     const response = await Answermodel.find({
-      questionid: req.params.qid,
+      questionid: qid,
     })
       .populate("user", "Name")
+      .skip(skipanswers)
+      .limit(3)
       .sort({ votes: -1 });
     if (response) {
       resp.status(200).send({
@@ -133,7 +157,7 @@ async function GetAnswerController(req, resp) {
     }
   } catch (error) {
     console.log(error);
-    resp.status(400).send({
+    resp.status(500).send({
       success: false,
       message: "error in answers api",
     });
@@ -323,5 +347,5 @@ module.exports = {
   UpdateAnswerDownVotesController,
   GetUserAnswersController,
   EmailUser,
-  // GetAnswerCountByQuestionId,
+  GetAnswerCountController,
 };

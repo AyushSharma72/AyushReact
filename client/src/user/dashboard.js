@@ -31,7 +31,7 @@ const UserDashboard = () => {
   async function GetAllUserQuestion() {
     try {
       const AllQuestion = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/AskedUserQuestion/${auth.user._id}`
+        `http://localhost:8000/api/v1/Questions/AskedUserQuestion/${auth.user._id}`
       );
 
       if (AllQuestion.status == 200) {
@@ -47,7 +47,7 @@ const UserDashboard = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${auth.user._id}`
+        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${auth.user._id}`
       );
 
       if (AllAnswer.status == 200) {
@@ -61,7 +61,7 @@ const UserDashboard = () => {
   }
   async function GetUserReputation() {
     const resp = await fetch(
-      `https://ayushreactbackend.onrender.com/api/v1/auth/GetReputation/${auth.user._id}`
+      `http://localhost:8000/api/v1/auth/GetReputation/${auth.user._id}`
     );
     if (resp.status === 200) {
       const reputation = await resp.json();
@@ -169,7 +169,7 @@ const UserDashboard = () => {
                   <img
                     style={{ width: "90%" }}
                     className="width50"
-                    src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                    src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                   />
                 </div>
               </div>

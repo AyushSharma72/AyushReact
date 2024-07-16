@@ -196,7 +196,7 @@ body {
 
 .username {
   position: absolute;
-  top: 7%;
+  bottom: 3%;
   right: 2%;
 }
 
@@ -1281,11 +1281,4 @@ UserInfo .col-md-4 img {
 .minusplus:hover {
   cursor: pointer;
   background-color: white;
-}
-.voting {
-  position: absolute;
-  top: 2rem;
-}
-.answer {
-  margin-left: 3rem;
 }

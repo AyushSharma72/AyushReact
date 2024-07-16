@@ -22,7 +22,6 @@ const UserContributions = () => {
   const [open, setOpen] = useStateReact(false);
   const [selectedId, setSelectedId] = useStateReact(null); // State to store the selected contribution ID
   const [expandedId, setExpandedId] = useStateReact(null);
-  const isSmallScreen1 = window.innerWidth <= 450;
 
   const modules = {
     toolbar: [
@@ -231,13 +230,13 @@ const UserContributions = () => {
             )}
           </div>
           <Modal
-            title={<h2 className="modaltitle ff">Enter Updated Answer</h2>}
+            title={<h2 className="modaltitle ">Enter Updated Answer</h2>}
             centered
             visible={open}
             onOk={() => updateContribution(selectedId)} // Pass the selected ID to the update function
             onCancel={() => setOpen(false)}
             width={1000}
-            afterClose={() => setAnswer("")} // Reset answer state after modal closes
+            afterClose={() => setAnswer("")}
           >
             <ReactQuill
               key={selectedId} // Ensure React Quill reinitializes with updated content

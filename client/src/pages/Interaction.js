@@ -111,7 +111,7 @@ const Interaction = () => {
         return;
       }
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/Question_search/${keywordToSearch}`
+        `http://localhost:8000/api/v1/Questions/Question_search/${keywordToSearch}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -131,7 +131,7 @@ const Interaction = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://ayushreactbackend.onrender.com/api/v1/Questions/delete_question/${question}`,
+          `http://localhost:8000/api/v1/Questions/delete_question/${question}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
@@ -153,7 +153,7 @@ const Interaction = () => {
   async function GetQuestions() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/get_question/${Page}`
+        `http://localhost:8000/api/v1/Questions/get_question/${Page}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -170,7 +170,7 @@ const Interaction = () => {
   async function GetNumberofQuestion() {
     try {
       const data = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/Questions/QuestionCount"
+        "http://localhost:8000/api/v1/Questions/QuestionCount"
       );
 
       if (data) {
@@ -267,7 +267,7 @@ const Interaction = () => {
                   {message.role === "user" ? (
                     <div className="user-icon">
                       <Avatar
-                        src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+                        src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth.user._id}`}
                         sx={{ width: 30, height: 30 }}
                       />
                     </div>
@@ -314,16 +314,18 @@ const Interaction = () => {
                     style={{ width: "100%" }}
                   >
                     {/* User image and name */}
-                    <div
-                      className="d-flex align-items-center "
+                    <NavLink
+                      to={`/userinformation/${q.user._id}`}
+                      className="d-flex align-items-center text-decoration-none"
                       style={{ width: "50%" }}
                     >
+                      {" "}
                       <Avatar
-                        src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${q.user._id}`}
+                        src={`http://localhost:8000/api/v1/auth/get-userPhoto/${q.user._id}`}
                         sx={{ width: 30, height: 30 }} // Add margin for spacing
                       />
                       <p className="UserNameDisplay">{q.user.Name}</p>
-                    </div>
+                    </NavLink>
                     {auth?.user?.Role == 1 ? (
                       <RiDeleteBin6Line
                         style={{ color: "red" }}

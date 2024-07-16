@@ -13,6 +13,7 @@ import { LuBookmarkPlus } from "react-icons/lu";
 import Button from "@mui/material/Button";
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 import Avatar from "@mui/material/Avatar";
+import { Pagination } from "antd";
 
 const View = () => {
   const [Questions, SetQuestions] = useState([]);
@@ -20,11 +21,13 @@ const View = () => {
   const [Votes, SetVotes] = useState(0);
   const [auth, setAuth] = useAuth();
   const params = useParams();
+  const [pagenumber, Setpagenumber] = useState(1);
+  const [answercount, Setanswercount] = useState(0);
 
   async function GetSingleQuestion() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/getSingleQuestion/${params.qid}`
+        `http://localhost:8000/api/v1/Questions/getSingleQuestion/${params.qid}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -36,18 +39,30 @@ const View = () => {
       toast.error("Something went wrong");
     }
   }
+  async function GetAnswerCount() {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/Answer/get_Answer/${params.qid}`
+      );
 
+      const data = await response.json();
+
+      if (response.status === 200) {
+        Setanswercount(data.count);
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  }
   async function GetSingleAnswers() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/get_Answer/${params.qid}`
+        `http://localhost:8000/api/v1/Answer/get_Answer/${params.qid}/${pagenumber}`
       );
-      console.log("worked");
+
       const data = await response.json();
       if (response.status === 200) {
         SetAnswers(data.response);
-      } else {
-        toast.error("Please try again");
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -56,7 +71,7 @@ const View = () => {
   async function UpdateVotes(aid, Votes, ansuid) {
     try {
       const votevalue = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Update_Answer_votes/${aid}/${auth.user._id}/${ansuid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer_votes/${aid}/${auth.user._id}/${ansuid}`,
         {
           method: "PUT",
           headers: {
@@ -83,7 +98,7 @@ const View = () => {
   async function UpdateDownVotes(aid, Votes, ansuid) {
     try {
       const votevalue = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Update_Answer_Down_votes/${aid}/${auth.user._id}/${ansuid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer_Down_votes/${aid}/${auth.user._id}/${ansuid}`,
         {
           method: "PUT",
           headers: {
@@ -110,7 +125,7 @@ const View = () => {
   async function Bookmark(qid) {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth//Bookmark/${qid}/${auth.user._id}`,
+        `http://localhost:8000/api/v1/auth//Bookmark/${qid}/${auth.user._id}`,
         {
           method: "PUT",
           headers: {
@@ -141,8 +156,13 @@ const View = () => {
   }
 
   useEffect(() => {
+    GetSingleAnswers();
+  }, [pagenumber]);
+
+  useEffect(() => {
     GetSingleQuestion();
     GetSingleAnswers();
+    GetAnswerCount();
   }, []);
   return (
     <Layout>
@@ -165,7 +185,7 @@ const View = () => {
                       {" "}
                       <div className="d-flex ">
                         <Avatar
-                          src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${q.user._id}`}
+                          src={`http://localhost:8000/api/v1/auth/get-userPhoto/${q.user._id}`}
                           sx={{ width: 30, height: 30 }}
                         />
                         <p className="UserNameDisplay">{q.user.Name}</p>
@@ -195,7 +215,12 @@ const View = () => {
                   >
                     {q.title}{" "}
                   </p>
-                  <p>{q.question}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: q.question,
+                    }}
+                  />
+
                   <div className="d-flex align-items-center w-100 justify-content-between">
                     {" "}
                     <div>
@@ -220,46 +245,57 @@ const View = () => {
             style={{ gap: "1rem" }}
           >
             {Answers.length > 0 ? (
-              Answers.map((a, index) => (
-                <div key={index} className="card d-flex flex-row w-100 p-2">
-                  <div
-                    className="d-flex flex-column align-items-center  mt-1 justify-content-center voting"
-                    style={{ gap: "0.2rem", marginLeft: "0.5rem" }}
-                  >
-                    <FaRegArrowAltCircleUp
-                      className="UpVote"
-                      onClick={() => {
-                        const updatedVotes = a.votes + 1;
-                        SetVotes(updatedVotes);
-                        Handlevotes(a._id, updatedVotes, a.user._id);
-                      }}
-                      title="Upvote"
-                    />
-                    <p style={{ margin: "0rem" }}> {a.votes}</p>
-                    <FaRegArrowAltCircleDown
-                      className="DownVote"
-                      title="DownVote"
-                      onClick={() => {
-                        const updatedVotes = a.votes - 1;
-                        SetVotes(updatedVotes);
-                        HandleDownvotes(a._id, updatedVotes, a.user._id);
-                      }}
-                    />
+              <>
+                {Answers.map((a, index) => (
+                  <div key={index} className="card d-flex flex-row w-100 p-4">
+                    <div className="flex flex-column ">
+                      {/* answer */}
+                      <div
+                        dangerouslySetInnerHTML={{ __html: a.answer }}
+                      />{" "}
+                      {/* votes */}
+                      <div className="d-flex  align-items-center  mt-3  gap-2  justify-content-start ">
+                        <FaRegArrowAltCircleUp
+                          className="UpVote"
+                          onClick={() => {
+                            const updatedVotes = a.votes + 1;
+                            SetVotes(updatedVotes);
+                            Handlevotes(a._id, updatedVotes, a.user._id);
+                          }}
+                          title="Upvote"
+                        />
+                        <p style={{ margin: "0rem" }}> {a.votes}</p>
+                        <FaRegArrowAltCircleDown
+                          className="DownVote"
+                          title="DownVote"
+                          onClick={() => {
+                            const updatedVotes = a.votes - 1;
+                            SetVotes(updatedVotes);
+                            HandleDownvotes(a._id, updatedVotes, a.user._id);
+                          }}
+                        />
+                      </div>
+                      <div className="blockquote-footer username mt-1 ">
+                      answered by{" "}
+                      <cite title="Source Title">
+                        <b>{a.user.Name}</b>
+                      </cite>{" "}
+                      {moment(a.createdAt).format("MMMM Do YYYY")}
+                    </div>
+                    </div>
+                   
                   </div>
-                  <div className="card-body mt-3 answer">
-                    <b>Answer: </b>
-                    <div dangerouslySetInnerHTML={{ __html: a.answer }} />
-                  </div>
-
-                  <div className="blockquote-footer username mt-1 voting">
-                    answered by{" "}
-                    <cite title="Source Title">
-                      <b>{a.user.Name}</b>
-                    </cite>{" "}
-                    {moment(a.createdAt).format("MMMM Do YYYY")}
-                  </div>
-                </div>
-              ))
+                ))}
+                <Pagination
+                  className="mt-3 mb-3"
+                  total={answercount}
+                  showQuickJumper
+                  pageSize={3}
+                  onChange={(value) => {
+                    Setpagenumber(value);
+                  }}
+                />
+              </>
             ) : (
               <div
                 className="d-flex flex-column align-items-center"
