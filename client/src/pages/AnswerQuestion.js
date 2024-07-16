@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/auth";
 import Button from "@mui/material/Button";
@@ -47,7 +47,7 @@ const AnswerQuestion = () => {
   async function GetSingleQuestion() {
     try {
       const que = await fetch(
-        `http://localhost:8000/api/v1/Questions/getSingleQuestion/${params.id}`
+        `https://ayushreactbackend.onrender.com/api/v1/Questions/getSingleQuestion/${params.id}`
       );
       const data = await que.json();
       if (data) {
@@ -66,23 +66,26 @@ const AnswerQuestion = () => {
   async function PostAnswer(e) {
     e.preventDefault();
     try {
-      if (Answer == "") {
-        toast.error("please add answer");
+      // Remove HTML tags and check if the answer contains only whitespace
+      const plainTextAnswer = Answer.replace(/<[^>]*>?/gm, "").trim();
+
+      if (plainTextAnswer === "") {
+        toast.error("provide  meaningful answer");
         return;
       }
+
       const response = await fetch(
-        `http://localhost:8000/api/v1/Answer/post_Answer/${auth.user._id}/${params.id}`,
+        `https://ayushreactbackend.onrender.com/api/v1/Answer/post_Answer/${auth.user._id}/${params.id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            Answer,
-          }),
+          body: JSON.stringify({ Answer }),
         }
       );
+
       const answer = await response.json();
       if (answer) {
-        toast.success("Answer Posted Succesfully");
+        toast.success("Answer posted successfully");
         SetAnswer("");
         await SendEmail();
       } else {
@@ -97,7 +100,7 @@ const AnswerQuestion = () => {
   async function SendEmail() {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/Answer/EmailUser/${Email}`,
+        `https://ayushreactbackend.onrender.com/api/v1/Answer/EmailUser/${Email}`,
         {
           method: "POST",
           headers: {
@@ -124,13 +127,19 @@ const AnswerQuestion = () => {
           Contribute
         </h1>
         <div className="d-flex flex-column contactlayout width1000 ">
-          <h3 className="mediumtitlefont  ">Question: {Title} </h3>
+          <h3 className="mediumtitlefont  ">Q: {Title} </h3>
+          <hr></hr>
           <p>
-            <strong>Description:</strong> {Description}
+            <strong>Description:</strong>{" "}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: Description,
+              }}
+            />
           </p>
         </div>
         <form
-          className="w-100 d-flex flex-column justify-content-center align-items-center"
+          className="w-100 d-flex flex-column justify-content-center align-items-center  mb-3"
           onSubmit={(e) => {
             PostAnswer(e);
           }}

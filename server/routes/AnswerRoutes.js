@@ -10,6 +10,7 @@ const {
   UpdateAnswerDownVotesController,
   GetUserAnswersController,
   GetAnswerCountController,
+  GetUserAnswerCountController,
   EmailUser,
   // GetAnswerCountByQuestionId,
 } = require("../controllers/AnswerController");
@@ -24,7 +25,9 @@ router.put("/Update_Answer/:aid", UpdateAnswerController);
 
 router.delete("/delete_Answer/:aid/:qid/:ansuid", DeleteAnswerController);
 
-router.get("/Get_User_Answers/:uid", GetUserAnswerController);
+router.get("/Get_User_Answers/:uid/:pagenumber", GetUserAnswerController);
+
+router.get("/Get_User_Answers_Count/:userid", GetUserAnswerCountController);
 
 router.put(
   "/Update_Answer_votes/:aid/:uid/:ansuid",

@@ -28,7 +28,7 @@ function Productpage() {
   async function GetCategories() {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/v1/category/GetAll-category",
+        "https://ayushreactbackend.onrender.com/api/v1/category/GetAll-category",
 
         {
           headers: {
@@ -49,9 +49,9 @@ function Productpage() {
     try {
       let url;
       if (auth.user) {
-        url = `http://localhost:8000/api/v1/product/product-list/${Page}/${auth.user._id}`;
+        url = `https://ayushreactbackend.onrender.com/api/v1/product/product-list/${Page}/${auth.user._id}`;
       } else {
-        url = `http://localhost:8000/api/v1/product/product-list/${Page}/65f2f1dc6ecc89ef55716aaf`;
+        url = `https://ayushreactbackend.onrender.com/api/v1/product/product-list/${Page}/65f2f1dc6ecc89ef55716aaf`;
       }
 
       const response = await fetch(url);
@@ -83,7 +83,7 @@ function Productpage() {
   async function FilterProduct() {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/productfilter`,
+        `https://ayushreactbackend.onrender.com/api/v1/product/productfilter`,
         {
           method: "POST",
           headers: {
@@ -113,9 +113,9 @@ function Productpage() {
     try {
       let url;
       if (auth.user) {
-        url = `http://localhost:8000/api/v1/product/product-count/${auth.user._id}`;
+        url = `https://ayushreactbackend.onrender.com/api/v1/product/product-count/${auth.user._id}`;
       } else {
-        url = `http://localhost:8000/api/v1/product/product-count/65f2f1dc6ecc89ef55716aaf`;
+        url = `https://ayushreactbackend.onrender.com/api/v1/product/product-count/65f2f1dc6ecc89ef55716aaf`;
       }
 
       const response = await fetch(url);
@@ -129,7 +129,7 @@ function Productpage() {
   async function Addtocart(pid) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/Addtocart/${pid}/${auth.user._id}`,
+        `https://ayushreactbackend.onrender.com/api/v1/product/Addtocart/${pid}/${auth.user._id}`,
         {
           method: "POST",
           headers: {
@@ -229,7 +229,7 @@ function Productpage() {
                   style={{ width: "25%", height: "100%" }}
                 >
                   <Image
-                    src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
+                    src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
                     className="card-Image-top productimage"
                     style={{ height: "15rem", width: "100%" }}
                   />

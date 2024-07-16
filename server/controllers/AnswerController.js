@@ -259,12 +259,37 @@ async function UpdateAnswerDownVotesController(req, resp) {
     });
   }
 }
+async function GetUserAnswerCountController(req, resp) {
+  try {
+    const { userid } = req.params;
+    const count = await Answermodel.countDocuments({ user: userid });
+
+    if (count) {
+      return resp.status(200).send({
+        success: true,
+        count,
+      });
+    } else {
+      return resp.status(400).send({
+        message: "Erorr getting Answer Count",
+      });
+    }
+  } catch (error) {
+    resp.status(500).send({
+      error: error,
+      message: "Error in Answer Count",
+    });
+  }
+}
 async function GetUserAnswerController(req, resp) {
   try {
-    const answers = await Answermodel.find({ user: req.params.uid }).populate(
-      "questionid",
-      "title"
-    );
+    const { uid, pagenumber } = req.params;
+
+    let skipanswers = (pagenumber - 1) * 3;
+    const answers = await Answermodel.find({ user: uid })
+      .skip(skipanswers)
+      .limit(3)
+      .populate("questionid", "title");
 
     if (answers) {
       resp.status(200).send({
@@ -279,7 +304,8 @@ async function GetUserAnswerController(req, resp) {
     }
   } catch (error) {
     console.log(error);
-    resp.status(404).send({
+    resp.status(500).send({
+      error,
       success: false,
       message: "Error in api",
     });
@@ -348,4 +374,5 @@ module.exports = {
   GetUserAnswersController,
   EmailUser,
   GetAnswerCountController,
+  GetUserAnswerCountController,
 };

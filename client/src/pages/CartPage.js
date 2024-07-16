@@ -44,7 +44,7 @@ const CartPage = () => {
   async function GetCartItems(id) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/getcartitems/${id}`
+        `https://ayushreactbackend.onrender.com/api/v1/product/getcartitems/${id}`
       );
       if (response.status == 200) {
         const { items, count } = await response.json();
@@ -60,10 +60,9 @@ const CartPage = () => {
   async function RemoveCartitems(pid, uid) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/removecartitem/${pid}/${uid}`
+        `https://ayushreactbackend.onrender.com/api/v1/product/removecartitem/${pid}/${uid}`
       );
       if (response.status == 200) {
-        toast.success("Product removed from cart");
         GetCartItems(auth.user._id);
       } else {
         toast.error("Please try later");
@@ -76,7 +75,7 @@ const CartPage = () => {
   async function ChnageCartQuantity(pid, uid, val) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/product/changequantitycartitem/${pid}/${uid}`,
+        `https://ayushreactbackend.onrender.com/api/v1/product/changequantitycartitem/${pid}/${uid}`,
         {
           method: "post",
           headers: {
@@ -199,7 +198,7 @@ const CartPage = () => {
                           className="d-flex justify-content-center"
                         >
                           <Image
-                            src={`http://localhost:8000/api/v1/product/get-productPhoto/${item.product._id}`}
+                            src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${item.product._id}`}
                             className="card-Image-top productimage"
                             style={{ width: "100%", height: "10rem" }}
                           />

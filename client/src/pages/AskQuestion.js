@@ -59,19 +59,19 @@ const AskQuestion = () => {
 
   async function PostQuestion(e) {
     e.preventDefault();
-
+    const plainTextAnswer = question.replace(/<[^>]*>?/gm, "").trim();
     // Trim title and question inputs to remove leading and trailing spaces
     const trimmedTitle = title.trim();
     const trimmedQuestion = question.trim();
 
-    if (trimmedQuestion === "") {
+    if (plainTextAnswer === "") {
       toast.error("Description is required");
       return;
     }
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/Questions/ask_question/${auth.user._id}`,
+        `https://ayushreactbackend.onrender.com/api/v1/Questions/ask_question/${auth.user._id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

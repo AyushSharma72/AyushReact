@@ -1282,3 +1282,22 @@ UserInfo .col-md-4 img {
   cursor: pointer;
   background-color: white;
 }
+
+.deleteicon {
+  color: red;
+  position: absolute;
+  top: 14%;
+  right: 2%;
+}
+
+.Editicon {
+  color: darkblue;
+  position: absolute;
+  top: 14%;
+  right: 5%;
+}
+.UserAnswerCard {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+  background-color: whitesmoke;
+}

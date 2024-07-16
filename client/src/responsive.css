@@ -222,4 +222,24 @@
   .username {
     position: static;
   }
+
+  .deleteicon {
+    color: red;
+    position: absolute;
+    top: 80%;
+    right: 2%;
+  }
+
+  .Editicon {
+    color: darkblue;
+    position: absolute;
+
+    top: 80%;
+    right: 7%;
+  }
+  .UserAnswerCard {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    background-color: #ffffff;
+  }
 }
