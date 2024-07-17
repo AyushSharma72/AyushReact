@@ -222,7 +222,9 @@
   .username {
     position: static;
   }
-
+  .tc {
+    text-align: center;
+  }
   .deleteicon {
     color: red;
     position: absolute;
@@ -241,5 +243,17 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
     background-color: #ffffff;
+  }
+  .auto {
+    margin: auto;
+  }
+  .displayno {
+    display: none !important;
+  }
+  .navbar-toggler {
+    border: none; /* Optional: Remove border around the hamburger icon */
+  }
+  .navbar-toggler-icon {
+    background-color: white; /* Change the color to white */
   }
 }

@@ -215,7 +215,7 @@ const Interaction = () => {
   return (
     <Layout>
       <div
-        className="d-flex flex-column align-items-center"
+        className="d-flex flex-column align-items-center codeconnect"
         style={{ gap: "1rem" }}
       >
         <ThemeProvider theme={theme}>
@@ -383,14 +383,14 @@ const Interaction = () => {
                 </div>
                 <div className="d-flex justify-content-between">
                   <div className="AnswerParent">
-                    <div className="AnswerBox">
+                    <div className="AnswerBox ml-3">
                       <IoMdChatboxes />
                       <p style={{ margin: "0rem" }}>{q.AnswerCount} Answers</p>
                     </div>
                   </div>
 
                   <div
-                    className="d-flex align-items-center"
+                    className="d-flex align-items-center mr-3"
                     style={{ gap: "1rem" }}
                   >
                     <NavLink to={`/dashboard/user/answers/${q._id}`}>

@@ -5,7 +5,7 @@ import { useAuth } from "../context/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import { auth, provider, signInWithPopup } from "../context/firebase";
-
+import Signup from "../assests/Illustrations/login.svg";
 const Login = () => {
   const [Email, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
@@ -121,11 +121,16 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="bg">
+      <div className="d-flex justify-content-around align-items-center h-100">
         <ToastContainer />
+
+        <div className="   displayno" style={{ width: "35%" }}>
+          {" "}
+          <img src={Signup} className="w-100 "></img>
+        </div>
         <div
-          className="Registerlayout bg-light width1000"
-          style={{ width: "70%", padding: "20px", borderRadius: "10px" }}
+          className="Registerlayout bg-light width1000 m-0"
+          style={{ width: "50%", padding: "20px", borderRadius: "10px" }}
         >
           <div className="d-flex mb-3 gap-2 loginheader">
             <NavLink to="/register" className="w-50 loginreglink">

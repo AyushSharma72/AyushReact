@@ -13,7 +13,8 @@ import moment from "moment";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
-
+import { MdLocationPin } from "react-icons/md";
+import { FaThumbsUp } from "react-icons/fa";
 const UserDashboard = () => {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState("left");
@@ -77,7 +78,7 @@ const UserDashboard = () => {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-center align-items-center h-100 p-3">
+      <div className="d-flex justify-content-center align-items-center h-100 p-3 Profilebg">
         <div className="d-flex flex-column justify-content-center  align-items-center"></div>
         <Drawer
           title="User Dashboard"
@@ -161,144 +162,71 @@ const UserDashboard = () => {
           </div>
         </Drawer>
 
-        <div className="container bootstrap snippets bootdey margintop2">
-          <div className="panel-body inf-content w-100">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    style={{ width: "90%" }}
-                    className="width50"
-                    src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <strong className="UserInfo">User Information</strong>
-                <br />
-                <div className="table-responsive">
-                  <table className="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-asterisk text-primary" />
-                          Id
-                        </td>
-                        <td className="Info">{auth.user._id}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-user  text-primary" />
-                          Name
-                        </td>
-                        <td className="Info">{auth.user.Name}</td>
-                      </tr>
+        {/* user information  */}
 
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-eye-open text-primary" />
-                          Role
-                        </td>
-                        <td className="Info">
-                          {auth.user.Role == 0 ? "User" : "Admin"}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-envelope text-primary" />
-                          Email
-                        </td>
-                        <td className="Info">{auth.user.Email}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Location
-                        </td>
-                        <td className="Info">{auth.user.Location}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Question Asked
-                        </td>
-                        <td className="Info">{QuestionAsked}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Question Answered
-                        </td>
-                        <td className="Info">{AnswerAsked}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Reputation
-                        </td>
-                        <td className="Info">{Reputation}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Joined
-                        </td>
-                        <td className="Info">
-                          {moment(auth.user.createdAt).fromNow()}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Get connected with social media
-                        </td>
-                        <td className="Info">
-                          <div className="d-flex gap-4">
-                            {auth.user.Github ? (
-                              <NavLink
-                                to={auth.user.Github}
-                                className="NavlinksDesign"
-                              >
-                                {" "}
-                                <FaGithub />
-                              </NavLink>
-                            ) : null}
-                            {auth.user.LinkedIn ? (
-                              <NavLink
-                                to={auth.user.LinkedIn}
-                                className="NavlinksDesign"
-                              >
-                                {" "}
-                                <FaLinkedin />
-                              </NavLink>
-                            ) : null}
-                            {auth.user.Website ? (
-                              <NavLink
-                                to={auth.user.Website}
-                                className="NavlinksDesign"
-                              >
-                                {" "}
-                                <FaGlobe />{" "}
-                                <span className="Smalltxt">
-                                  {" "}
-                                  {auth.user.Website}
-                                </span>
-                              </NavLink>
-                            ) : null}
-                          </div>
-                        </td>
-                      </tr>
-                      <Space>
-                        <Button type="primary" onClick={showDrawer}>
-                          User Dashboard
-                        </Button>
-                      </Space>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+        <div className="w-100 d-flex justify-content-center gap-5">
+          {/* left div */}
+          <div className="flex-column w-25 d-flex gap-3">
+            <div
+              className="d-flex flex-column align-items-center border p-3 whitebg gap-2"
+              style={{ borderRadius: "5px" }}
+            >
+              <img
+                className=" rounded-circle"
+                style={{ width: "60%" }}
+                src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
+              />
+              <h3 className="m-0">
+                <b>{auth.user.Name}</b>
+              </h3>
+              <span className="d-flex gap-2 align-items-center">
+                {" "}
+                <MdLocationPin />{" "}
+                <h5 className="text-secondary m-0">{auth.user.Location}</h5>
+              </span>
+              <span className="d-flex gap-2 align-items-center">
+                <FaThumbsUp />{" "}
+                <h5 className=" text-secondary m-0">
+                  Reputation:{" "}
+                  <span className="text-success fw-bold">
+                    {auth.user.Reputation}
+                  </span>
+                </h5>
+              </span>
+            </div>
+
+            <div
+              className="mt-2 d-flex flex-column gap-3 whitebg p-2"
+              style={{ borderRadius: "5px" }}
+            >
+              <a
+                href={auth.user.Website}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
+              >
+                <FaGlobe />
+                <p className="m-0">{auth.user.Website.substring(0, 35)}</p>
+              </a>
+
+              <a
+                href={auth.user.Github}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1   "
+              >
+                <FaGithub />
+                <p className="m-0">{auth.user.Github.substring(0, 35)}</p>
+              </a>
+              <a
+                href={auth.user.LinkedIn}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
+              >
+                <FaLinkedin />
+                <p className="m-0">{auth.user.LinkedIn.substring(0, 35)}</p>
+              </a>
             </div>
           </div>
+
+          {/* right div */}
+
+          <div className="w-50 whitebg"></div>
         </div>
       </div>
     </Layout>
@@ -306,3 +234,7 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
+
+// <Button type="primary" onClick={showDrawer}>
+// User Dashboard
+// </Button>

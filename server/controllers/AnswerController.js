@@ -237,11 +237,14 @@ async function UpdateAnswerDownVotesController(req, resp) {
 
         // decrease reputation
         const user = await Usermodel.findById(ansuid);
+
         if (user.Reputation > 1) {
           user.Reputation = user.Reputation - 2;
+          user.save();
         } else {
           if (user.Reputation == 1) {
             user.Reputation = user.Reputation - 1;
+            user.save();
           }
         }
       } else {

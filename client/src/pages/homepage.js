@@ -1,8 +1,10 @@
 import HomeLayout from "../components/layout/HomePageLayout";
-import BannerCard from "./BannerCard";
+import News from "../assests/Illustrations/News.svg";
+import Question from "../assests/Illustrations/Question.svg";
+import Websirehomepage from "../assests/Illustrations/Websirehomepage.svg";
+
 import React, { useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import HomeImg from "../assests/homepageimage.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaCartShopping } from "react-icons/fa6";
@@ -16,7 +18,7 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import FadeIn from "./FadeIn";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MdOutlineConnectingAirports } from "react-icons/md";
 
@@ -104,10 +106,11 @@ function Home() {
 
   return (
     <HomeLayout>
-      <div className="d-flex flex-column">
-        <div className="homepage-section d-flex justify-content-around align-items-center HomeFirstDiv">
+      {/* home */}
+      <div className=" d-flex flex-column">
+        <div className="homepage-section d-flex justify-content-around align-items-center">
           <div
-            className="w-50 d-flex flex-column justify-content-center align-items-center homefirsttext"
+            className=" d-flex flex-column justify-content-center align-items-center "
             style={{ gap: "1rem" }}
             data-aos="fade-right"
           >
@@ -129,13 +132,16 @@ function Home() {
             </ThemeProvider>
           </div>
           <img
-            src={HomeImg}
-            className="h-75 homefirstimage"
+            src={Websirehomepage}
             data-aos="fade-left"
+            style={{ width: "30%" }}
+            className="width50"
           ></img>
         </div>{" "}
       </div>
-      <div className="homepage-section d-flex align-items-center flex-column justify-content-center w-100  mb-3">
+
+      {/* products */}
+      <div className=" d-flex align-items-center flex-column justify-content-center w-100  mb-3">
         <h1 className=" w-50 text-center WelcomeText mt-5">
           {" "}
           More than 30+ Products Listed. Checkout Now!
@@ -240,88 +246,71 @@ function Home() {
           </Swiper>
         </div>
       </div>
-      <div className="homepage-section justify-content-around align-items-center codeconnect">
-        <div className="mt-3 mb-3">
-          <h1 className="text-center WelcomeText mb-4 mt-4">
-            Code <MdOutlineConnectingAirports /> Connect, <br></br>
-            <span className="text-center">
-              where Knowledge Meets Collaboration.{" "}
-            </span>
-          </h1>
-          <div className="d-flex codechatgpt justify-content-around">
-            {" "}
-            <div className="w-25 chatgpt">
-              <FadeIn />
+
+      {/* connect */}
+      <div className=" justify-content-around align-items-center">
+        <h1 className="text-center WelcomeText mb-4 mt-4">
+          Code <MdOutlineConnectingAirports /> Connect, <br></br>
+          <span className="text-center">
+            where Knowledge Meets Collaboration.{" "}
+          </span>
+        </h1>
+        <div className="d-flex codechatgpt justify-content-around mt-5">
+          {" "}
+          <div className="w-25 width1000">
+            <img src={Question} className="w-100" c></img>
+          </div>
+          <div
+            className="w-50 user-tile d-flex flex-column p-3 gap-2 "
+            style={{ backgroundColor: "white" }}
+          >
+            <span className="fs-3 fw-bold tc"> Have Doubts?</span>
+            <div className="fs-5 ">
+              <li>Ask questions from experienced people.</li>
+              <li>Find solutions to common coding problems.</li>
+              <li>Share knowledge and learn from others in the community.</li>
+              <li>Explore resources for expanding your skills.</li>
             </div>
-            <div className="w-50 mt-4 user-tile">
-              <span
-                className="mediumtitlefont highlighted ff"
-                style={{ marginLeft: "6rem" }}
-              >
-                {" "}
-                Have Doubts?
-              </span>
-              <ul
-                className="faq-list smalltitlefont2 ff"
-                style={{ marginLeft: "1rem" }}
-              >
-                <li>Ask questions from experienced people.</li>
-                <li>Find solutions to common coding problems.</li>
-                <li>Share knowledge and learn from others in the community.</li>
-                <li>Explore resources for expanding your skills.</li>
-              </ul>
-              <div style={{ textAlign: "center" }}>
-                <Link to="/interaction">
-                  <button
-                    size="small"
-                    className="btn-outline-primary"
-                    style={{ display: "inline-block", marginTop: "1rem" }}
-                  >
-                    Get Help...
-                  </button>
-                </Link>
-              </div>
-            </div>
+
+            <Link to="/interaction ">
+              <button className="btn-primary mt-2">Explore</button>
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="homepage-section justify-content-around align-items-center ">
-        <h1 className="text-center WelcomeText mt-2">
+      {/* news */}
+
+      <div className="  mt-5 ">
+        <h1 className="text-center WelcomeText ">
           Get instant technical <span className="d-block">news</span>
         </h1>
 
-        <div className="d-flex">
-          {/* Left side */}
-          <div className="d-flex  justify-content-center  News">
-            <div className="d-flex flex-column justify-content-center">
-              <h2
-                className="font-bold text-black "
-                style={{ marginLeft: "2rem" }}
-              >
-                Stay updated with the latest tech news
-                <span className="highlighted "> on our website!</span>
-              </h2>
-              <p className="w-50 ff gg" style={{ fontSize: "20px" }}>
-                Explore the latest in tech news and stay informed about
-                cutting-edge developments, innovations, and trends in the
-                ever-evolving world of technology.
-              </p>
+        <div className="d-flex  justify-content-around w-100 m-auto mt-5 directionrev">
+          <div
+            className="d-flex flex-column justify-content-center align-items-center  gap-2  p-3 width1000 tc"
+            style={{ width: "40%" }}
+          >
+            <h2 className="fw-bold">
+              Stay updated with the latest tech news on our website!
+            </h2>
+            <h5>
+              Explore the latest in tech news and stay informed about
+              cutting-edge developments, innovations, and trends in the
+              ever-evolving world of technology.
+            </h5>
 
-              <Link to="/technews">
-                <div className="Explrebutton">
-                  <button className="btn btn-primary">Explore &rarr;</button>
-                </div>
-              </Link>
-            </div>
+            <Link to="/technews">
+              <button className="btn btn-primary">Explore &rarr;</button>
+            </Link>
+          </div>
 
-            {/* Right side */}
-            <div className="col-md-6 Banner">
-              <BannerCard />
-            </div>
+          {/* Right side */}
+          <div style={{ width: "25%" }} className="width70 auto ">
+            <img src={News} className="w-100"></img>
           </div>
         </div>
-        <div className="homepage-section AccordianParent">
+        <div className=" AccordianParent">
           <h1 className=" w-100 text-center WelcomeText mb-3">
             {" "}
             Frequently Asked Questions

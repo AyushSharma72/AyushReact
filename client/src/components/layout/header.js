@@ -79,29 +79,6 @@ function Header() {
                 </NavLink>
               </li>
 
-              {/* <li class="nav-item dropdown">
-                <NavLink
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Categories
-                </NavLink>
-                <ul className="dropdown-menu">
-                  {category?.map((c) => (
-                    <li>
-                      <NavLink
-                        to={`/categories/${c._id}`}
-                        className="dropdown-item"
-                        style={{ backgroundColor: "white", color: "black" }}
-                      >
-                        {c.name}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </li> */}
               <li className="nav-item ">
                 <NavLink to="/interaction" className="nav-link">
                   CodeConnect

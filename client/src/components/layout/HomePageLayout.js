@@ -8,7 +8,7 @@ function HomeLayout({ children }) {
       <Header></Header>
       <main
         style={{ height: "100%", scrollbarWidth: "none" }}
-        className="overflow-auto"
+        className="overflow-auto homebg"
       >
         {children}
       </main>
