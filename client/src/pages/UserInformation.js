@@ -95,7 +95,7 @@ const UserInformation = () => {
 
   return (
     <Layout>
-      <div className="d-flex align-items-center h-100 flex-column justify-content-center gap-2  Profilebg">
+      <div className="d-flex align-items-center h-100 flex-column justify-content-center gap-2  Profilebg hauto">
         <div className="w-100 d-flex justify-content-center gap-5 flex-col">
           {/* left div */}
           <div className="flex-column w-25  d-flex gap-3 width1000 alc">
@@ -246,7 +246,7 @@ const UserInformation = () => {
           </div>
         </div>
 
-        <NavLink to="/Users">
+        <NavLink to="/Users" className="mb-3 mt-3">
           <button className="btn btn-primary">Back</button>
         </NavLink>
       </div>

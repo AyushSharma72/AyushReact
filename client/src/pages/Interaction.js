@@ -390,7 +390,7 @@ const Interaction = () => {
                   </div>
 
                   <div
-                    className="d-flex align-items-center mr-3"
+                    className="d-flex align-items-center "
                     style={{ gap: "1rem" }}
                   >
                     <NavLink to={`/dashboard/user/answers/${q._id}`}>

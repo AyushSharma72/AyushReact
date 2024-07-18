@@ -66,96 +66,96 @@ function Technewscard() {
 }
 
 const About = () => {
-  const [totalUsers, setTotalUsers] = useState(null);
-  const [totalProducts, setTotalProducts] = useState(null);
-  const [totalQuestions, setTotalQuestions] = useState(null);
+  // useEffect(() => {
+  //   fetchTotalUsers();
+  //   fetchProductCount();
+  //   fetchQuestionCount();
+  // }, []);
 
-  useEffect(() => {
-    fetchTotalUsers();
-    fetchProductCount();
-    fetchQuestionCount();
-  }, []);
+  // const fetchTotalUsers = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://ayushreactbackend.onrender.com/api/v1/auth/count"
+  //     );
 
-  const fetchTotalUsers = async () => {
-    try {
-      const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/auth/count"
-      );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch total users");
+  //     }
+  //     const data = await response.json();
+  //     setTotalUsers(data.totalUsers);
+  //   } catch (error) {
+  //     console.error("Error fetching total users:", error);
+  //   }
+  // };
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch total users");
-      }
-      const data = await response.json();
-      setTotalUsers(data.totalUsers);
-    } catch (error) {
-      console.error("Error fetching total users:", error);
-    }
-  };
+  // const fetchProductCount = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://ayushreactbackend.onrender.com/api/v1/product/product-count"
+  //     );
+  //     const data = await response.json();
+  //     setTotalProducts(data.Total);
+  //   } catch (error) {
+  //     console.error("Error fetching product count:", error);
+  //   }
+  // };
 
-  const fetchProductCount = async () => {
-    try {
-      const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/product/product-count"
-      );
-      const data = await response.json();
-      setTotalProducts(data.Total);
-    } catch (error) {
-      console.error("Error fetching product count:", error);
-    }
-  };
-
-  const fetchQuestionCount = async () => {
-    try {
-      const response = await fetch(
-        "https://ayushreactbackend.onrender.com/api/v1/Questions/QuestionCount"
-      );
-      const data = await response.json();
-      setTotalQuestions(data.Total);
-    } catch (error) {
-      console.error("Error fetching product count:", error);
-    }
-  };
+  // const fetchQuestionCount = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://ayushreactbackend.onrender.com/api/v1/Questions/QuestionCount"
+  //     );
+  //     const data = await response.json();
+  //     setTotalQuestions(data.Total);
+  //   } catch (error) {
+  //     console.error("Error fetching product count:", error);
+  //   }
+  // };
+  const [usersCounted, setUsersCounted] = useState(false);
+  const [questionsCounted, setQuestionsCounted] = useState(false);
+  const [productsCounted, setProductsCounted] = useState(false);
 
   return (
     <Layout>
       <div className="d-flex flex-column">
-        {" "}
         <p className="Titlefont center WelcomeTExt">
-          {" "}
           Welcome to <mark>TALKOFCODE</mark>, your go-to destination for all
           things code-related!
         </p>
         <div className="cards flex-col">
           <Productcard />
-
           <Codeconnectcard />
-
           <Technewscard />
         </div>
-        <p className="Titlefont center " style={{ marginTop: "2rem" }}>
-          {" "}
+        <p className="Titlefont center" style={{ marginTop: "2rem" }}>
           About us
         </p>
-        <div className="d-flex justify-content-center align-items-center width1000 flex-col">
+        <div className="d-flex justify-content-around align-items-center width1000 flex-col">
           <div
-            className="d-flex justify-content-around align-items-center width1000 padding "
+            className="d-flex justify-content-around align-items-center width1000 padding"
             style={{ width: "45%", gap: "1rem" }}
           >
             <div>
-              <div className="gradient1  p-2 ">
+              <div className="gradient1 p-2">
                 <div>
                   <FaAddressBook />
                 </div>
-                <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                  {({ isVisible }) => (
-                    <div style={{ height: 50 }}>
-                      {isVisible ? (
-                        <h2>
-                          <CountUp end={900} duration={2} />{" "}
-                        </h2>
-                      ) : null}
-                    </div>
-                  )}
+                <VisibilitySensor
+                  partialVisibility
+                  offset={{ bottom: 200 }}
+                  onChange={(isVisible) => {
+                    if (isVisible && !usersCounted) {
+                      setUsersCounted(true);
+                    }
+                  }}
+                >
+                  <div style={{ height: 50 }}>
+                    {usersCounted ? (
+                      <h2>
+                        <CountUp end={900} duration={2} />
+                      </h2>
+                    ) : null}
+                  </div>
                 </VisibilitySensor>
                 <b>Users</b>
               </div>
@@ -166,22 +166,27 @@ const About = () => {
             </div>
 
             <div>
-              <div className="gradient2  p-2">
+              <div className="gradient2 p-2">
                 <div>
                   <FaComment />
                 </div>
-                <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                  {({ isVisible }) => (
-                    <div style={{ height: 50 }}>
-                      {isVisible ? (
-                        <h2>
-                          <CountUp end={234} duration={2} />{" "}
-                        </h2>
-                      ) : null}
-                    </div>
-                  )}
+                <VisibilitySensor
+                  partialVisibility
+                  offset={{ bottom: 200 }}
+                  onChange={(isVisible) => {
+                    if (isVisible && !questionsCounted) {
+                      setQuestionsCounted(true);
+                    }
+                  }}
+                >
+                  <div style={{ height: 50 }}>
+                    {questionsCounted ? (
+                      <h2>
+                        <CountUp end={234} duration={2} />
+                      </h2>
+                    ) : null}
+                  </div>
                 </VisibilitySensor>
-
                 <b>Questions Asked</b>
               </div>
 
@@ -192,20 +197,26 @@ const About = () => {
             </div>
 
             <div>
-              <div className="gradient3  p-2">
+              <div className="gradient3 p-2">
                 <div>
                   <FaShoppingCart />
                 </div>
-                <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
-                  {({ isVisible }) => (
-                    <div style={{ height: 50 }}>
-                      {isVisible ? (
-                        <h2>
-                          <CountUp end={342} duration={2} />{" "}
-                        </h2>
-                      ) : null}
-                    </div>
-                  )}
+                <VisibilitySensor
+                  partialVisibility
+                  offset={{ bottom: 200 }}
+                  onChange={(isVisible) => {
+                    if (isVisible && !productsCounted) {
+                      setProductsCounted(true);
+                    }
+                  }}
+                >
+                  <div style={{ height: 50 }}>
+                    {productsCounted ? (
+                      <h2>
+                        <CountUp end={342} duration={2} />
+                      </h2>
+                    ) : null}
+                  </div>
                 </VisibilitySensor>
                 <b>Products listed</b>
               </div>
@@ -215,12 +226,10 @@ const About = () => {
                 <p>"Sustainable Tech Solutions"</p>
               </div>
             </div>
-
-            {/* This will create an empty bottom half */}
           </div>
 
           <div
-            style={{ width: "50%", marginBottom: "1rem" }}
+            style={{ width: "40%", marginBottom: "1rem" }}
             className="flex-column d-flex width1000"
           >
             <div className="boxlayout smalltitlefont">
@@ -249,5 +258,4 @@ const About = () => {
     </Layout>
   );
 };
-
 export default About;

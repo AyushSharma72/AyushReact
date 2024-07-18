@@ -250,7 +250,7 @@ function Home() {
       </div>
 
       {/* connect */}
-      <div className=" justify-content-around align-items-center h-70">
+      <div className=" justify-content-around align-items-center">
         <h1 className="text-center WelcomeText mb-4 mt-4">
           Code <MdOutlineConnectingAirports /> Connect, <br></br>
           <span className="text-center">
