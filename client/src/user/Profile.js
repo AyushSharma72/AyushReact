@@ -308,7 +308,7 @@ const Profile = () => {
               className="userinputform"
             >
               <div
-                className="registerformupdate mt-3"
+                className="d-flex flex-column gap-4 mt-3 "
                 style={{ width: "100%" }}
               >
                 <div className="mb-1 w-100  d-flex align-items-center  justify-content-between">
@@ -378,21 +378,23 @@ const Profile = () => {
                     required
                   />
                 </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  style={{ width: "8rem" }}
-                >
-                  Save
-                </button>
-                <NavLink
-                  to="/dashboard/user"
-                  className="mt-3 btn btn-primary d-flex align-items-center text-decoration-none"
-                >
-                  <FaArrowLeft className="me-1" />
-                  Dashboard
-                </NavLink>
+                <div className="w-100 d-flex justify-content-center gap-2 align-items-center">
+                  <NavLink
+                    to="/dashboard/user"
+                    className="btn btn-primary d-flex align-items-center text-decoration-none  "
+                    style={{ width: "8rem" }}
+                  >
+                    <FaArrowLeft className="me-1" />
+                    Dashboard
+                  </NavLink>
+                  <button
+                    type="submit "
+                    className="btn btn-primary "
+                    style={{ width: "5rem" }}
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </form>
           </TabPane>

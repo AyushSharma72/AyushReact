@@ -1001,7 +1001,7 @@ UserInfo .col-md-4 img {
   background-color: whitesmoke;
 }
 .Profilebg {
-  background-color: #c5fff8;
+  background-color: #3f4d4e37;
 }
 .whitebg {
   background-color: white;
@@ -1037,5 +1037,8 @@ UserInfo .col-md-4 img {
   color: rgb(4, 51, 219);
 }
 .no-scrollbar::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, and Opera */
+  display: none; /* Chrome, Safari, and Opera */
+}
+.w-30 {
+  width: 30%;
 }

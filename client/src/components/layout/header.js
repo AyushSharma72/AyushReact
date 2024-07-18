@@ -63,7 +63,12 @@ function Header() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <NavLink to="/" className="navbar-brand" href="#">
+            <NavLink
+              to="/"
+              className="navbar-brand"
+              href="#"
+              style={{ color: "white" }}
+            >
               TALKOFCODE
             </NavLink>
 

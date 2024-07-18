@@ -207,6 +207,9 @@
   .jtc {
     justify-content: center;
   }
+  .jtb {
+    justify-content: space-between;
+  }
   .alc {
     align-items: center;
   }
@@ -255,5 +258,15 @@
   }
   .navbar-toggler-icon {
     background-color: white; /* Change the color to white */
+  }
+  .flex-row {
+    flex-direction: row !important;
+  }
+
+  .margin {
+    margin-top: 25rem;
+  }
+  .hauto {
+    height: auto !important;
   }
 }
