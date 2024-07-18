@@ -15,7 +15,7 @@ const User = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:8000/api/v1/auth/UsersList/${Page}`,
+        `https://ayushreactbackend.onrender.com/api/v1/auth/UsersList/${Page}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const User = () => {
   async function HandleUserDelete(id) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/auth/UserDelete/${id}`,
+        `https://ayushreactbackend.onrender.com/api/v1/auth/UserDelete/${id}`,
         {
           method: "Delete",
           headers: {
@@ -61,7 +61,7 @@ const User = () => {
   async function GetCount() {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/auth/UserCount`
+        `https://ayushreactbackend.onrender.com/api/v1/auth/UserCount`
       );
       const data = await response.json();
       SetTotalvalue(data?.Total);
@@ -84,10 +84,7 @@ const User = () => {
         <div className="w-25 usermenu">
           <AdminMenu />
         </div>
-        <div
-         
-          className="mt-3 d-flex flex-column align-items-center w-50"
-        >
+        <div className="mt-3 d-flex flex-column align-items-center w-50">
           <table className="table table-striped table-bordered overflow-auto">
             <thead>
               <tr>

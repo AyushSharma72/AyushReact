@@ -57,7 +57,7 @@ const UserContributions = () => {
   async function getUserAnswer() {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/Answer/Get_User_Answers/${auth.user._id}/${pagenumber}`
+        `https://ayushreactbackend.onrender.com/api/v1/Answer/Get_User_Answers/${auth.user._id}/${pagenumber}`
       );
       const answers = await response.json();
       if (answers) {
@@ -74,7 +74,7 @@ const UserContributions = () => {
   async function GetAnswerCount() {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/Answer/Get_User_Answers_Count/${auth.user._id}`
+        `https://ayushreactbackend.onrender.com/api/v1/Answer/Get_User_Answers_Count/${auth.user._id}`
       );
 
       const data = await response.json();
@@ -94,7 +94,7 @@ const UserContributions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `http://localhost:8000/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
+          `https://ayushreactbackend.onrender.com/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
           {
             method: "DELETE",
             headers: {
@@ -119,7 +119,7 @@ const UserContributions = () => {
   async function updateContribution(aid) {
     try {
       const updated = await fetch(
-        `http://localhost:8000/api/v1/Answer/Update_Answer/${aid}`,
+        `https://ayushreactbackend.onrender.com/api/v1/Answer/Update_Answer/${aid}`,
         {
           method: "PUT",
           headers: {

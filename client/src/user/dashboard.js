@@ -56,7 +56,7 @@ const UserDashboard = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${auth?.user?._id}`
+        `https://ayushreactbackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${auth?.user?._id}`
       );
 
       if (AllAnswer.status === 200) {
@@ -71,7 +71,7 @@ const UserDashboard = () => {
   async function GetUserReputation() {
     try {
       const resp = await fetch(
-        `http://localhost:8000/api/v1/auth/GetReputation/${auth?.user?._id}`
+        `https://ayushreactbackend.onrender.com/api/v1/auth/GetReputation/${auth?.user?._id}`
       );
 
       if (resp.status === 200) {
@@ -184,7 +184,7 @@ const UserDashboard = () => {
               <img
                 className="rounded-circle"
                 style={{ width: "60%" }}
-                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth?.user?._id}`}
+                src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth?.user?._id}`}
                 alt="User"
               />
               <h3 className="m-0">
