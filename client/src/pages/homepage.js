@@ -2,7 +2,6 @@ import HomeLayout from "../components/layout/HomePageLayout";
 import News from "../assests/Illustrations/News.svg";
 import Question from "../assests/Illustrations/Question.svg";
 import Websirehomepage from "../assests/Illustrations/Websirehomepage.svg";
-
 import React, { useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import AOS from "aos";
@@ -18,15 +17,12 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MdOutlineConnectingAirports } from "react-icons/md";
-
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const Accordion = styled((props) => (
@@ -68,8 +64,14 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 function Home() {
   useEffect(() => {
-    AOS.init({ duration: "1000" });
+    AOS.init({
+      offset: 150,
+      duration: 700,
+      once: true,
+      mirror: false,
+    });
   }, []);
+
   const [expanded, setExpanded] = React.useState("false");
   const [product, setProduct] = React.useState([]);
 
@@ -77,7 +79,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://ayushreactbackend.onrender.com/api/v1/product/get-product"
+          "http://localhost:8000/api/v1/product/get-product"
         );
         const data = await response.json();
 
@@ -201,7 +203,7 @@ function Home() {
                   <div className="user-image2 boxshadow">
                     <Card.Img
                       variant="top"
-                      src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                      src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                       style={{
                         width: "100%",
                         height: "17rem",
@@ -248,7 +250,7 @@ function Home() {
       </div>
 
       {/* connect */}
-      <div className=" justify-content-around align-items-center">
+      <div className=" justify-content-around align-items-center h-70">
         <h1 className="text-center WelcomeText mb-4 mt-4">
           Code <MdOutlineConnectingAirports /> Connect, <br></br>
           <span className="text-center">
@@ -266,15 +268,14 @@ function Home() {
           >
             <span className="fs-3 fw-bold tc"> Have Doubts?</span>
             <div className="fs-5 ">
-              <li>Ask questions from experienced people.</li>
-              <li>Find solutions to common coding problems.</li>
-              <li>Share knowledge and learn from others in the community.</li>
-              <li>Explore resources for expanding your skills.</li>
+              Ask questions from experienced people. Share knowledge and learn
+              from others in the community. Explore resources for expanding your
+              skills.
             </div>
 
-            <Link to="/interaction ">
-              <button className="btn-primary mt-2">Explore</button>
-            </Link>
+            <NavLink to="/interaction ">
+              <button className=" btn btn-primary mt-2">Explore</button>
+            </NavLink>
           </div>
         </div>
       </div>

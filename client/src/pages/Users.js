@@ -17,7 +17,7 @@ const Users = () => {
   async function GetAllUsers() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UsersListNoLogin/${Page}`,
+        `http://localhost:8000/api/v1/auth/UsersListNoLogin/${Page}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Users = () => {
   async function GetCount() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UserCount`
+        `http://localhost:8000/api/v1/auth/UserCount`
       );
       const data = await response.json();
       SetTotalvalue(data?.Total);
@@ -57,20 +57,21 @@ const Users = () => {
 
   return (
     <Layout>
-      <div
-        className="bg2 d-flex flex-column align-items-center"
-        style={{ width: "100%" }}
-      >
+      <div className=" d-flex flex-column align-items-center ">
         <h3 className="mt-3 Titlefont">Total Active Users</h3>
 
-        <div className="d-flex flex-wrap justify-content-around w-75">
+        <div className="d-flex flex-wrap justify-content-around w-75 gap-4">
           {Users.map((u, index) => (
-            <div key={index} className="user-tile">
+            <div
+              key={index}
+              className="user-tile p-2 "
+              style={{ borderRadius: "10px" }}
+            >
               <div className="user-image">
                 <img
                   className="img-fluid"
                   style={{ width: "10rem", height: "10rem" }}
-                  src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${u._id}`}
+                  src={`http://localhost:8000/api/v1/auth/get-userPhoto/${u._id}`}
                   alt={u.Name}
                 />
               </div>
@@ -130,4 +131,4 @@ const Users = () => {
 };
 
 export default Users;
-// image={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${u._id}`}
+// image={`http://localhost:8000/api/v1/auth/get-userPhoto/${u._id}`}

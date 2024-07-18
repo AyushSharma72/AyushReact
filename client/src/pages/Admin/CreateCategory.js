@@ -127,17 +127,13 @@ const CreateCategory = () => {
   return (
     <Layout>
       <div
-        className="bg d-flex justify-content-around categorycreatediv"
+        className=" d-flex justify-content-around categorycreatediv mt-3"
         style={{ height: "100%" }}
       >
         <div className="w-25 usermenu">
           <AdminMenu />
         </div>
-        <div
-          className=" d-flex flex-column categoryshowdiv"
-          style={{ gap: "2rem", height: "100%", width: "60%" }}
-          categoryshowdiv
-        >
+        <div className=" d-flex flex-column categoryshowdiv w-50">
           <h1 className="mt-2" style={{ textAlign: "center" }}>
             Manage Category
           </h1>

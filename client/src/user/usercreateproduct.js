@@ -82,8 +82,8 @@ const CreateProductUSer = () => {
   }
   return (
     <Layout>
-      <div className="d-flex justify-content-around  overflow-auto createproductdiv">
-        <div className="w-25 mt-3 usermenu">
+      <div className="d-flex justify-content-around  overflow-auto createproductdiv mt-3">
+        <div className="w-25  usermenu">
           {auth.user.Role == 0 ? <UserMEnu /> : <AdminMenu></AdminMenu>}
         </div>
         <div

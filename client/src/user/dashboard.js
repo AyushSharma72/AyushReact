@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 import { NavLink } from "react-router-dom";
 import { Button, Drawer, Space } from "antd";
-import { FaAddressCard } from "react-icons/fa";
+import { Tag } from "antd";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaQuestionCircle } from "react-icons/fa";
 import { SiAnswer } from "react-icons/si";
 import { IoMdCall } from "react-icons/io";
 import { FaUserClock } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
 import { useAuth } from "../context/auth";
 import {
   FaUserEdit,
@@ -55,7 +56,7 @@ const UserDashboard = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${auth?.user?._id}`
+        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${auth?.user?._id}`
       );
 
       if (AllAnswer.status === 200) {
@@ -70,7 +71,7 @@ const UserDashboard = () => {
   async function GetUserReputation() {
     try {
       const resp = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/GetReputation/${auth?.user?._id}`
+        `http://localhost:8000/api/v1/auth/GetReputation/${auth?.user?._id}`
       );
 
       if (resp.status === 200) {
@@ -183,7 +184,7 @@ const UserDashboard = () => {
               <img
                 className="rounded-circle"
                 style={{ width: "60%" }}
-                src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth?.user?._id}`}
+                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth?.user?._id}`}
                 alt="User"
               />
               <h3 className="m-0">
@@ -215,7 +216,7 @@ const UserDashboard = () => {
                 className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
               >
                 <FaGlobe />
-                <p className="m-0">
+                <p className="m-0 d-flex flex-wrap">
                   {auth?.user?.Website?.substring(0, 35) ?? "Website"}
                 </p>
               </a>
@@ -225,7 +226,7 @@ const UserDashboard = () => {
                 className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
               >
                 <FaGithub />
-                <p className="m-0">
+                <p className="m-0 d-flex flex-wrap">
                   {auth?.user?.Github?.substring(0, 35) ?? "Github"}
                 </p>
               </a>
@@ -234,7 +235,7 @@ const UserDashboard = () => {
                 className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
               >
                 <FaLinkedin />
-                <p className="m-0">
+                <p className="m-0 d-flex flex-wrap">
                   {auth?.user?.LinkedIn?.substring(0, 35) ?? "LinkedIn"}
                 </p>
               </a>
@@ -246,14 +247,6 @@ const UserDashboard = () => {
             className="w-50 whitebg d-flex flex-column gap-2 p-4 border width1000"
             style={{ borderRadius: "5px" }}
           >
-            {/* <div className="d-flex ">
-              <p className="fw-bold d-flex align-items-center gap-1 w-30 ">
-                <FaAddressCard />
-                Id
-              </p>{" "}
-              <p> {auth?.user?._id}</p>
-            </div> */}
-
             <hr className="m-0"></hr>
 
             <div className="d-flex ">
@@ -313,6 +306,21 @@ const UserDashboard = () => {
 
             <hr className="m-0"></hr>
 
+            {/* skills */}
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <FaCode />
+                Skills
+              </p>
+              <p className="d-flex flex-wrap">
+                {" "}
+                {auth?.user?.tags.map((t) => (
+                  <Tag color="blue">{t}</Tag>
+                ))}
+              </p>
+            </div>
+            <hr className="m-0"></hr>
             <Button type="primary w-25 width50 auto" onClick={showDrawer}>
               User Dashboard
             </Button>

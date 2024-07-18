@@ -15,7 +15,7 @@ const User = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UsersList/${Page}`,
+        `http://localhost:8000/api/v1/auth/UsersList/${Page}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const User = () => {
   async function HandleUserDelete(id) {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UserDelete/${id}`,
+        `http://localhost:8000/api/v1/auth/UserDelete/${id}`,
         {
           method: "Delete",
           headers: {
@@ -61,7 +61,7 @@ const User = () => {
   async function GetCount() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/UserCount`
+        `http://localhost:8000/api/v1/auth/UserCount`
       );
       const data = await response.json();
       SetTotalvalue(data?.Total);
@@ -78,15 +78,15 @@ const User = () => {
   return (
     <Layout>
       <div
-        className="bg d-flex justify-content-around responsivestyles"
+        className="bg d-flex justify-content-around responsivestyles mt-3"
         style={{ width: "100%" }}
       >
         <div className="w-25 usermenu">
           <AdminMenu />
         </div>
         <div
-          style={{ width: "60%" }}
-          className="mt-3 d-flex flex-column align-items-center"
+         
+          className="mt-3 d-flex flex-column align-items-center w-50"
         >
           <table className="table table-striped table-bordered overflow-auto">
             <thead>

@@ -27,7 +27,7 @@ const View = () => {
   async function GetSingleQuestion() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/getSingleQuestion/${params.qid}`
+        `http://localhost:8000/api/v1/Questions/getSingleQuestion/${params.qid}`
       );
       const data = await response.json();
       if (response.status === 200) {
@@ -42,7 +42,7 @@ const View = () => {
   async function GetAnswerCount() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/get_Answer/${params.qid}`
+        `http://localhost:8000/api/v1/Answer/get_Answer/${params.qid}`
       );
 
       const data = await response.json();
@@ -57,7 +57,7 @@ const View = () => {
   async function GetSingleAnswers() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/get_Answer/${params.qid}/${pagenumber}`
+        `http://localhost:8000/api/v1/Answer/get_Answer/${params.qid}/${pagenumber}`
       );
 
       const data = await response.json();
@@ -71,7 +71,7 @@ const View = () => {
   async function UpdateVotes(aid, Votes, ansuid) {
     try {
       const votevalue = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Update_Answer_votes/${aid}/${auth.user._id}/${ansuid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer_votes/${aid}/${auth.user._id}/${ansuid}`,
         {
           method: "PUT",
           headers: {
@@ -98,7 +98,7 @@ const View = () => {
   async function UpdateDownVotes(aid, Votes, ansuid) {
     try {
       const votevalue = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Update_Answer_Down_votes/${aid}/${auth.user._id}/${ansuid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer_Down_votes/${aid}/${auth.user._id}/${ansuid}`,
         {
           method: "PUT",
           headers: {
@@ -125,7 +125,7 @@ const View = () => {
   async function Bookmark(qid) {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth//Bookmark/${qid}/${auth.user._id}`,
+        `http://localhost:8000/api/v1/auth//Bookmark/${qid}/${auth.user._id}`,
         {
           method: "PUT",
           headers: {
@@ -185,7 +185,7 @@ const View = () => {
                       {" "}
                       <div className="d-flex ">
                         <Avatar
-                          src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${q.user._id}`}
+                          src={`http://localhost:8000/api/v1/auth/get-userPhoto/${q.user._id}`}
                           sx={{ width: 30, height: 30 }}
                         />
                         <p className="UserNameDisplay">{q.user.Name}</p>

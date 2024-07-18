@@ -57,7 +57,7 @@ const UserContributions = () => {
   async function getUserAnswer() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Get_User_Answers/${auth.user._id}/${pagenumber}`
+        `http://localhost:8000/api/v1/Answer/Get_User_Answers/${auth.user._id}/${pagenumber}`
       );
       const answers = await response.json();
       if (answers) {
@@ -74,7 +74,7 @@ const UserContributions = () => {
   async function GetAnswerCount() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Get_User_Answers_Count/${auth.user._id}`
+        `http://localhost:8000/api/v1/Answer/Get_User_Answers_Count/${auth.user._id}`
       );
 
       const data = await response.json();
@@ -94,7 +94,7 @@ const UserContributions = () => {
       );
       if (confirmed) {
         const del = await fetch(
-          `https://ayushreactbackend.onrender.com/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
+          `http://localhost:8000/api/v1/Answer/delete_Answer/${aid}/${qid}/${auth.user._id}`,
           {
             method: "DELETE",
             headers: {
@@ -119,7 +119,7 @@ const UserContributions = () => {
   async function updateContribution(aid) {
     try {
       const updated = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/Update_Answer/${aid}`,
+        `http://localhost:8000/api/v1/Answer/Update_Answer/${aid}`,
         {
           method: "PUT",
           headers: {
@@ -164,7 +164,7 @@ const UserContributions = () => {
 
   return (
     <Layout>
-      <div className="bg w-100 d-flex justify-content-around usercontributiondiv">
+      <div className="bg w-100 d-flex justify-content-around usercontributiondiv mt-3">
         <div className="w-25 usermenu">
           {auth.user.Role == 0 ? <UserMenu /> : <AdminMenu></AdminMenu>}
         </div>

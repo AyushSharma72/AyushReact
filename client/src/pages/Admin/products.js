@@ -13,7 +13,7 @@ const Products = () => {
   async function GetAllProducts() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/product/get-product/${auth.user._id}`
+        `http://localhost:8000/api/v1/product/get-product/${auth.user._id}`
       );
       const data = await response.json();
       if (data?.success) {
@@ -33,7 +33,7 @@ const Products = () => {
 
   return (
     <Layout>
-      <div className="bg d-flex justify-content-around  adminprodutsdiv">
+      <div className="bg d-flex justify-content-around  adminprodutsdiv mt-3">
         <div className="w-25 usermenu">
           <AdminMenu></AdminMenu>
         </div>
@@ -50,7 +50,7 @@ const Products = () => {
                 style={{ width: "25%", height: "100%" }}
               >
                 <Image
-                  src={`https://ayushreactbackend.onrender.com/api/v1/product/get-productPhoto/${p._id}`}
+                  src={`http://localhost:8000/api/v1/product/get-productPhoto/${p._id}`}
                   className="card-Image-top productimage"
                   style={{ height: "15rem", width: "100%" }}
                 />

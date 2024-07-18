@@ -47,7 +47,7 @@ const AnswerQuestion = () => {
   async function GetSingleQuestion() {
     try {
       const que = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/getSingleQuestion/${params.id}`
+        `http://localhost:8000/api/v1/Questions/getSingleQuestion/${params.id}`
       );
       const data = await que.json();
       if (data) {
@@ -75,7 +75,7 @@ const AnswerQuestion = () => {
       }
 
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/post_Answer/${auth.user._id}/${params.id}`,
+        `http://localhost:8000/api/v1/Answer/post_Answer/${auth.user._id}/${params.id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -100,7 +100,7 @@ const AnswerQuestion = () => {
   async function SendEmail() {
     try {
       const response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/EmailUser/${Email}`,
+        `http://localhost:8000/api/v1/Answer/EmailUser/${Email}`,
         {
           method: "POST",
           headers: {

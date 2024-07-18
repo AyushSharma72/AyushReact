@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/layout";
 import { NavLink } from "react-router-dom";
-import { Button, Drawer, Space } from "antd";
-
+import { Button, Drawer, Space, Tag } from "antd";
 import { useAuth } from "../../context/auth";
-import { FaUserEdit } from "react-icons/fa";
-import { FaPlusSquare } from "react-icons/fa";
-import { MdPublishedWithChanges } from "react-icons/md";
-import { BsFillQuestionSquareFill } from "react-icons/bs";
-import { FaHandsHelping } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaGlobe, FaThumbsUp } from "react-icons/fa";
+import { MdLocationPin } from "react-icons/md";
+import { FaCircleUser } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { FaQuestionCircle } from "react-icons/fa";
+import { SiAnswer } from "react-icons/si";
+import { IoMdCall } from "react-icons/io";
+import { FaUserClock } from "react-icons/fa";
 import moment from "moment";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGlobe } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
 
 const UserDashboard = () => {
   const [open, setOpen] = useState(false);
@@ -31,7 +31,7 @@ const UserDashboard = () => {
   async function GetAllUserQuestion() {
     try {
       const AllQuestion = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/AskedUserQuestion/${auth.user._id}`
+        `http://localhost:8000/api/v1/Questions/AskedUserQuestion/${auth.user._id}`
       );
 
       if (AllQuestion.status == 200) {
@@ -47,7 +47,7 @@ const UserDashboard = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${auth.user._id}`
+        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${auth.user._id}`
       );
 
       if (AllAnswer.status == 200) {
@@ -61,7 +61,7 @@ const UserDashboard = () => {
   }
   async function GetUserReputation() {
     const resp = await fetch(
-      `https://ayushreactbackend.onrender.com/api/v1/auth/GetReputation/${auth.user._id}`
+      `http://localhost:8000/api/v1/auth/GetReputation/${auth.user._id}`
     );
     if (resp.status === 200) {
       const reputation = await resp.json();
@@ -77,7 +77,7 @@ const UserDashboard = () => {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-center align-items-center h-100 p-3">
+      <div className="d-flex justify-content-center align-items-center h-100 p-3 Profilebg hauto">
         <div className="d-flex flex-column justify-content-center  align-items-center"></div>
         <Drawer
           title="Admin Dashboard"
@@ -159,143 +159,162 @@ const UserDashboard = () => {
           </div>
         </Drawer>
 
-        <div className="container bootstrap snippets bootdey width1000 margintop">
-          <div className="panel-body inf-content">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    className="width70"
-                    style={{ width: "90%" }}
-                    src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${auth.user._id}`}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <strong className="UserInfo">Admin Information</strong>
-                <br />
-                <div className="table-responsive">
-                  <table className="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-asterisk text-primary" />
-                          Id
-                        </td>
-                        <td className="Info">{auth.user._id}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-user  text-primary" />
-                          Name
-                        </td>
-                        <td className="Info">{auth.user.Name}</td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-eye-open text-primary" />
-                          Role
-                        </td>
-                        <td className="Info">
-                          {auth.user.Role == 0 ? "User" : "Admin"}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-envelope text-primary" />
-                          Email
-                        </td>
-                        <td className="Info">{auth.user.Email}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Location
-                        </td>
-                        <td className="Info">{auth.user.Location}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Question Asked
-                        </td>
-                        <td className="Info">{QuestionAsked}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Question Answered
-                        </td>
-                        <td className="Info">{AnswerAsked}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Reputation
-                        </td>
-                        <td className="Info">{Reputation}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Joined
-                        </td>
-                        <td className="Info">
-                          {moment(auth.user.createdAt).fromNow()}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Get connected with social media
-                        </td>
-                        <td className="Info">
-                          <div className="d-flex gap-4">
-                            {auth.user.Github ? (
-                              <NavLink
-                                to={auth.user.Github}
-                                className="NavlinksDesign"
-                              >
-                                {" "}
-                                <FaGithub />
-                              </NavLink>
-                            ) : null}
-                            {auth.user.LinkedIn ? (
-                              <NavLink
-                                to={auth.user.LinkedIn}
-                                className="NavlinksDesign"
-                              >
-                                {" "}
-                                <FaLinkedin />
-                              </NavLink>
-                            ) : null}
-                            {auth.user.Website ? (
-                              <NavLink
-                                to={auth.user.Website}
-                                className="NavlinksDesign"
-                              >
-                                {" "}
-                                <FaGlobe />{" "}
-                                <span className="Smalltxt">
-                                  {" "}
-                                  {auth.user.Website}
-                                </span>
-                              </NavLink>
-                            ) : null}
-                          </div>
-                        </td>
-                      </tr>
-                      <Space>
-                        <Button type="primary" onClick={showDrawer}>
-                          Admin Dashboard
-                        </Button>
-                      </Space>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+        <div className="w-100 d-flex justify-content-center gap-5 flex-col">
+          {/* left div */}
+          <div className="flex-column w-25  d-flex gap-3 width1000  alc">
+            <div
+              className="d-flex flex-column align-items-center border p-3 whitebg gap-2 width1000"
+              style={{ borderRadius: "5px" }}
+            >
+              <img
+                className="rounded-circle"
+                style={{ width: "60%" }}
+                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${auth?.user?._id}`}
+                alt="User"
+              />
+              <h3 className="m-0">
+                <b>{auth?.user?.Name ?? "User Name"}</b>
+              </h3>
+              <span className="d-flex gap-2 align-items-center">
+                <MdLocationPin />
+                <h5 className="text-secondary m-0">
+                  {auth?.user?.Location ?? "Location"}
+                </h5>
+              </span>
+              <span className="d-flex gap-2 align-items-center">
+                <FaThumbsUp />
+                <h5 className="text-secondary m-0">
+                  Reputation:{" "}
+                  <span className="text-success fw-bold">
+                    {Reputation ?? 0}
+                  </span>
+                </h5>
+              </span>
             </div>
+
+            <div
+              className="mt-2 d-flex flex-column gap-3 whitebg p-2 width1000"
+              style={{ borderRadius: "5px" }}
+            >
+              <a
+                href={auth?.user?.Website ?? "#"}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1 "
+              >
+                <FaGlobe />
+                <p className="m-0 d-flex flex-wrap">
+                  {auth?.user?.Website?.substring(0, 35) ?? "Website"}
+                </p>
+              </a>
+
+              <a
+                href={auth?.user?.Github ?? "#"}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1 "
+              >
+                <FaGithub />
+                <p className="m-0 d-flex flex-wrap">
+                  {auth?.user?.Github?.substring(0, 35) ?? "Github"}
+                </p>
+              </a>
+              <a
+                href={auth?.user?.LinkedIn ?? "#"}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1 "
+              >
+                <FaLinkedin />
+                <p className="m-0 d-flex flex-wrap ">
+                  {auth?.user?.LinkedIn?.substring(0, 35) ?? "LinkedIn"}
+                </p>
+              </a>
+              <Button type="primary w-50  auto" onClick={showDrawer}>
+                Admin Dashboard
+              </Button>
+            </div>
+          </div>
+
+          {/* right div */}
+          <div
+            className="w-50 whitebg d-flex flex-column gap-2 p-4 border width1000"
+            style={{ borderRadius: "5px" }}
+          >
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1 w-30 width50">
+                <FaCircleUser /> Role
+              </p>
+
+              <p> {auth?.user?.Role == 0 ? "User" : "Admin"}</p>
+            </div>
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30  width50">
+                <MdEmail />
+                Email
+              </p>
+              <p> {auth?.user?.Email}</p>
+            </div>
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <IoMdCall />
+                Mobile
+              </p>
+              <p> {auth?.user?.MobileNo}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1 w-30 width50">
+                <FaQuestionCircle />
+                Question asked
+              </p>
+              <p> {QuestionAsked}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1 w-30 width50">
+                <SiAnswer />
+                Question answered
+              </p>
+              <p> {AnswerAsked}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+            <div className="d-flex  ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <FaUserClock />
+                joined
+              </p>
+              <p> {moment(auth?.user?.createdAt).fromNow()}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <FaCode />
+                Skills
+              </p>
+              <p className="d-flex flex-wrap">
+                {" "}
+                {auth?.user?.tags.map((t) => (
+                  <Tag color="blue">{t}</Tag>
+                ))}
+              </p>
+            </div>
+            <hr className="m-0"></hr>
+            <NavLink
+              to="/dashboard/Admin/Profile"
+              className="auto w-25 width50"
+            >
+              <Button type="primary w-100">Edit Profile</Button>
+            </NavLink>
+            <NavLink to="/" className="auto w-25 width50">
+              <Button type="primary w-100">Home</Button>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -809,14 +809,6 @@ UserInfo .col-md-4 img {
   background-color: rgba(255, 255, 255, 0.253);
 }
 
-/* Add custom styles for the form */
-.bg {
-  /* background-image: url("../src/assests/backgroungimage.jpg"); */
-  background-color: #f2f2f2;
-  min-height: 100vh;
-  padding: 20px;
-}
-
 .Registerlayout {
   background-color: #ffffff;
 
@@ -1041,4 +1033,13 @@ UserInfo .col-md-4 img {
 }
 .w-30 {
   width: 30%;
+}
+.profilediv {
+  height: 90%;
+}
+.userimg {
+  aspect-ratio: 1;
+}
+.h-70 {
+  height: 70vh;
 }

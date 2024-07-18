@@ -8,10 +8,17 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { IoCall } from "react-icons/io5";
-import Image from "antd";
-
+import { FaCircleUser } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { FaQuestionCircle } from "react-icons/fa";
+import { SiAnswer } from "react-icons/si";
+import { IoMdCall } from "react-icons/io";
+import { FaUserClock } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
 import { Tag } from "antd";
+import { FaThumbsUp } from "react-icons/fa";
+import { MdPublishedWithChanges, MdLocationPin } from "react-icons/md";
+import { BsFillQuestionSquareFill } from "react-icons/bs";
 const UserInformation = () => {
   const [auth, SetAuth] = useAuth();
   const [QuestionAsked, SetQuestionAsked] = useState(0);
@@ -23,7 +30,7 @@ const UserInformation = () => {
   async function GetUserDetails() {
     try {
       const Response = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/auth/Getuserinfo/${Userid}`
+        `http://localhost:8000/api/v1/auth/Getuserinfo/${Userid}`
       );
       if (Response) {
         const data = await Response.json();
@@ -41,7 +48,7 @@ const UserInformation = () => {
   async function GetAllUserQuestion() {
     try {
       const AllQuestion = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Questions/AskedUserQuestion/${Userid}`
+        `http://localhost:8000/api/v1/Questions/AskedUserQuestion/${Userid}`
       );
 
       if (AllQuestion.status == 200) {
@@ -57,7 +64,7 @@ const UserInformation = () => {
   async function GetAllUserAnswers() {
     try {
       const AllAnswer = await fetch(
-        `https://ayushreactbackend.onrender.com/api/v1/Answer/GetNumberOfQuestions/${Userid}`
+        `http://localhost:8000/api/v1/Answer/GetNumberOfQuestions/${Userid}`
       );
 
       if (AllAnswer.status == 200) {
@@ -71,7 +78,7 @@ const UserInformation = () => {
   }
   async function GetUserReputation() {
     const resp = await fetch(
-      `https://ayushreactbackend.onrender.com/api/v1/auth/GetReputation/${Userid}`
+      `http://localhost:8000/api/v1/auth/GetReputation/${Userid}`
     );
     if (resp.status === 200) {
       const reputation = await resp.json();
@@ -88,171 +95,155 @@ const UserInformation = () => {
 
   return (
     <Layout>
-      <div className="d-flex align-items-center h-100 flex-column justify-content-center gap-2 ">
-        <div className=" d-flex justify-content-around w-100">
-          <div className="panel-body inf-content " style={{ width: "65%" }}>
-            <div className="row">
-              <div className="col-md-5 UserInfoImage">
-                <img
-                  style={{
-                    width: "100%",
-                    height: "28rem",
-                    borderRadius: "10px",
-                  }}
-                  src={`https://ayushreactbackend.onrender.com/api/v1/auth/get-userPhoto/${Userid}`}
-                />
-              </div>
-              <div className="col-md-6">
-                <strong className="UserInfo">User Information</strong>
-                <br />
-                <div className="table-responsive">
-                  <table className="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-asterisk text-primary" />
-                          Id
-                        </td>
-                        <td className="Info">{User._id}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-user  text-primary" />
-                          Name
-                        </td>
-                        <td className="Info">{User.Name}</td>
-                      </tr>
+      <div className="d-flex align-items-center h-100 flex-column justify-content-center gap-2  Profilebg">
+        <div className="w-100 d-flex justify-content-center gap-5 flex-col">
+          {/* left div */}
+          <div className="flex-column w-25  d-flex gap-3 width1000 alc">
+            <div
+              className="d-flex flex-column align-items-center border p-3 whitebg gap-2 width1000"
+              style={{ borderRadius: "5px" }}
+            >
+              <img
+                className="rounded-circle userimg"
+                style={{ width: "60%" }}
+                src={`http://localhost:8000/api/v1/auth/get-userPhoto/${User?._id}`}
+                alt="User"
+              />
+              <h3 className="m-0">
+                <b>{User?.Name ?? "User Name"}</b>
+              </h3>
+              <span className="d-flex gap-2 align-items-center">
+                <MdLocationPin />
+                <h5 className="text-secondary m-0">
+                  {User?.Location ?? "Location"}
+                </h5>
+              </span>
+              <span className="d-flex gap-2 align-items-center">
+                <FaThumbsUp />
+                <h5 className="text-secondary m-0">
+                  Reputation:{" "}
+                  <span className="text-success fw-bold">
+                    {Reputation ?? 0}
+                  </span>
+                </h5>
+              </span>
+            </div>
 
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-eye-open text-primary" />
-                          Role
-                        </td>
-                        <td className="Info">
-                          {User.Role == 0 ? "User" : "Admin"}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-envelope text-primary" />
-                          Email
-                        </td>
-                        <td className="Info">{User.Email}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Location
-                        </td>
-                        <td className="Info">{User.Location}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Question Asked
-                        </td>
-                        <td className="Info">{QuestionAsked}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Question Answered
-                        </td>
-                        <td className="Info">{AnswerAsked}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Reputation
-                        </td>
-                        <td className="Info">{Reputation}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          Joined
-                        </td>
+            <div
+              className="mt-2 d-flex flex-column gap-3 whitebg p-2 width1000"
+              style={{ borderRadius: "5px" }}
+            >
+              <a
+                href={User?.Website ?? "#"}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
+              >
+                <FaGlobe />
+                <p className="m-0 d-flex flex-wrap">
+                  {User?.Website?.substring(0, 35) ?? "Website"}
+                </p>
+              </a>
 
-                        <td className="Info">
-                          {moment(User.createdAt).fromNow()}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span className="glyphicon glyphicon-calendar text-primary" />
-                          SkillSet
-                        </td>
-
-                        <td className="Info">
-                          {User.tags && User.tags.length > 0 ? (
-                            <>
-                              {User.tags.map((t) => (
-                                <Tag color="blue" key={t}>
-                                  {t}
-                                </Tag>
-                              ))}
-                            </>
-                          ) : (
-                            "Not Set"
-                          )}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <a
+                href={User?.Github ?? "#"}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
+              >
+                <FaGithub />
+                <p className="m-0 d-flex flex-wrap">
+                  {User?.Github?.substring(0, 35) ?? "Github"}
+                </p>
+              </a>
+              <a
+                href={User?.LinkedIn ?? "#"}
+                className="d-flex gap-4 align-items-center text-decoration-none text-dark border-bottom p-1"
+              >
+                <FaLinkedin />
+                <p className="m-0 d-flex flex-wrap">
+                  {User?.LinkedIn?.substring(0, 35) ?? "LinkedIn"}
+                </p>
+              </a>
             </div>
           </div>
-          {User.Github || User.LinkedIn || User.Website || User.MobileNo ? (
-            <div
-              className="d-flex flex-column align-items-center "
-              style={{ width: "25%" }}
-            >
-              <h4> Contact Info</h4>
-              <div className="d-flex flex-column gap-3 contactinfo p-2 w-100">
-                {User.Github ? (
-                  <NavLink
-                    to={User.Github}
-                    className="NavlinksDesign d-flex gap-2"
-                  >
-                    {" "}
-                    <FaGithub />
-                    <span className="Smalltxt"> {User.Github}</span>
-                  </NavLink>
-                ) : null}
-                {User.LinkedIn ? (
-                  <a
-                    target="blank"
-                    href={User.LinkedIn}
-                    className="NavlinksDesign d-flex gap-2"
-                  >
-                    {console.log(User.LinkedIn)} <FaLinkedin />
-                    <span className="Smalltxt"> {User.LinkedIn}</span>
-                  </a>
-                ) : null}
-                {User.Website ? (
-                  <a
-                    href={User.Website}
-                    target="blank"
-                    className="NavlinksDesign d-flex gap-2"
-                  >
-                    {" "}
-                    <FaGlobe />{" "}
-                    <span className="Smalltxt"> {User.Website}</span>
-                  </a>
-                ) : null}
-                {User.MobileNo ? (
-                  <div className="NavlinksDesign d-flex gap-2">
-                    {" "}
-                    <IoCall />
-                    <span className="numberStyle"> {User.MobileNo}</span>
-                  </div>
-                ) : null}
-              </div>
+
+          {/* right div */}
+          <div
+            className="w-50 whitebg d-flex flex-column gap-2 p-4 border width1000"
+            style={{ borderRadius: "5px" }}
+          >
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1 w-30 width50">
+                <FaCircleUser /> Role
+              </p>
+
+              <p> {User?.Role == 0 ? "User" : "Admin"}</p>
             </div>
-          ) : (
-            "No contact info"
-          )}
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30  width50">
+                <MdEmail />
+                Email
+              </p>
+              <p> {User?.Email}</p>
+            </div>
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <IoMdCall />
+                Mobile
+              </p>
+              <p> {User?.MobileNo}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1 w-30 width50">
+                <FaQuestionCircle />
+                Question asked
+              </p>
+              <p> {QuestionAsked}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1 w-30 width50">
+                <SiAnswer />
+                Question answered
+              </p>
+              <p> {AnswerAsked}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+            <div className="d-flex  ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <FaUserClock />
+                joined
+              </p>
+              <p> {moment(User?.createdAt).fromNow()}</p>
+            </div>
+
+            <hr className="m-0"></hr>
+
+            {/* skills */}
+
+            <div className="d-flex ">
+              <p className="fw-bold d-flex align-items-center gap-1  w-30 width50">
+                <FaCode />
+                Skills
+              </p>
+              <p className="d-flex flex-wrap">
+                {" "}
+                {User?.tags?.map((t) => (
+                  <Tag color="blue">{t}</Tag>
+                ))}
+              </p>
+            </div>
+            <hr className="m-0"></hr>
+          </div>
         </div>
 
         <NavLink to="/Users">
